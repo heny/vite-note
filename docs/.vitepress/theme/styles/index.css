@@ -1,0 +1,15 @@
+:root {
+  /* --c-text: red!important; */
+  --c-brand: #2A5BB8;
+  --c-brand-light: #2553ab;
+  --pre-code-font-size: 14px;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 5px;
+}
