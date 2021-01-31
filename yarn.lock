@@ -163,18 +163,6 @@
   resolved "https://registry.npm.taobao.org/@francoischalifour/autocomplete-preset-algolia/download/@francoischalifour/autocomplete-preset-algolia-1.0.0-alpha.28.tgz#a5ad7996f42e43e4acbb4e0010d663746d0e9997"
   integrity sha1-pa15lvQuQ+Ssu04AENZjdG0OmZc=
 
-"@kwsites/file-exists@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.npm.taobao.org/@kwsites/file-exists/download/@kwsites/file-exists-1.1.1.tgz#ad1efcac13e1987d8dbaf235ef3be5b0d96faa99"
-  integrity sha1-rR78rBPhmH2NuvI17zvlsNlvqpk=
-  dependencies:
-    debug "^4.1.1"
-
-"@kwsites/promise-deferred@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.npm.taobao.org/@kwsites/promise-deferred/download/@kwsites/promise-deferred-1.1.1.tgz#8ace5259254426ccef57f3175bc64ed7095ed919"
-  integrity sha1-is5SWSVEJszvV/MXW8ZO1wle2Rk=
-
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
   resolved "https://registry.npm.taobao.org/@nodelib/fs.scandir/download/@nodelib/fs.scandir-2.1.4.tgz?cache=0&sync_timestamp=1609074440839&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40nodelib%2Ffs.scandir%2Fdownload%2F%40nodelib%2Ffs.scandir-2.1.4.tgz#d4b3549a5db5de2683e0c1071ab4f140904bbf69"
@@ -532,6 +520,11 @@ concat-map@0.0.1:
   resolved "https://registry.npm.taobao.org/concat-map/download/concat-map-0.0.1.tgz#d8a96bd77fd68df7793a73036a3ba0d5405d477b"
   integrity sha1-2Klr13/Wjfd5OnMDajug1UBdR3s=
 
+console-color-mr@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.npm.taobao.org/console-color-mr/download/console-color-mr-2.0.1.tgz#bed789d999052d14dc3928e5f1a0b3ae3933c756"
+  integrity sha1-vteJ2ZkFLRTcOSjl8aCzrjkzx1Y=
+
 consolidate@^0.16.0:
   version "0.16.0"
   resolved "https://registry.npm.taobao.org/consolidate/download/consolidate-0.16.0.tgz?cache=0&sync_timestamp=1599596654038&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fconsolidate%2Fdownload%2Fconsolidate-0.16.0.tgz#a11864768930f2f19431660a65906668f5fbdc16"
@@ -556,7 +549,7 @@ debug@2.6.9:
   dependencies:
     ms "2.0.0"
 
-debug@^4.1.1, debug@^4.3.1:
+debug@^4.1.1:
   version "4.3.1"
   resolved "https://registry.npm.taobao.org/debug/download/debug-4.3.1.tgz?cache=0&sync_timestamp=1607566517339&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fdebug%2Fdownload%2Fdebug-4.3.1.tgz#f0d229c505e0c6d8c49ac553d1b13dc183f6b2ee"
   integrity sha1-8NIpxQXgxtjEmsVT0bE9wYP2su4=
@@ -1359,15 +1352,6 @@ signal-exit@^3.0.2:
   version "3.0.3"
   resolved "https://registry.npm.taobao.org/signal-exit/download/signal-exit-3.0.3.tgz#a1410c2edd8f077b08b4e253c8eacfcaf057461c"
   integrity sha1-oUEMLt2PB3sItOJTyOrPyvBXRhw=
-
-simple-git@^2.31.0:
-  version "2.31.0"
-  resolved "https://registry.npm.taobao.org/simple-git/download/simple-git-2.31.0.tgz?cache=0&sync_timestamp=1608190273733&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fsimple-git%2Fdownload%2Fsimple-git-2.31.0.tgz#3e5954c1e36c76fb382c08eaa2749a206db9f613"
-  integrity sha1-PllUweNsdvs4LAjqonSaIG259hM=
-  dependencies:
-    "@kwsites/file-exists" "^1.1.1"
-    "@kwsites/promise-deferred" "^1.1.1"
-    debug "^4.3.1"
 
 sirv@^1.0.10:
   version "1.0.11"
