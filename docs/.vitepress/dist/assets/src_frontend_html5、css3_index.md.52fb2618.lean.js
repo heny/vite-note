@@ -1,1 +1,0 @@
-import{o as h,c as a,d as t}from"./app.fc5f256e.js";const l='{"title":"目录","description":"","frontmatter":{},"headers":[{"level":2,"title":"目录","slug":"目录"}],"relativePath":"src\\\\frontend\\\\html5、css3\\\\index.md","lastUpdated":1612105747583}',e={},p=t('',25);e.render=function(t,l,e,r,m,f){return h(),a("div",null,[p])};export default e;export{l as __pageData};
