@@ -481,10 +481,6 @@ X: 未知状态(很可能是遇到git的bug了，你可以向git提交bug report
 
 方便查看git分支提交记录，可以直接基于一个log创建一个新的分支、
 
-![image-20200814102540364](C:/Users/Administrator/AppData/Roaming/Typora/typora-user-images/image-20200814102540364.png)
-
-
-
 两种打开方式：
 
 ![image-20200729003318782](https://notecdn.heny.vip/images/image-20200729003318782.png)![image-20200814102618851](https://notecdn.heny.vip/images/image-20200814102618851.png)

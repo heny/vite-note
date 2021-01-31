@@ -1,7 +1,7 @@
 const path = require('path')
 const fs = require('fs')
 const shell = require('shelljs')
-const createREADME = require('../../scripts/createREADME')
+const createREADME = require('../scripts/createREADME')
 
 const resolve = (...args) => {
 	return path.resolve(__dirname, ...args)

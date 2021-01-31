@@ -1,6 +1,5 @@
 ---
 home: true
-# heroImage: https://notecdn.heny.vip/images/logo.png?imageView2/1/w/1920/h/1080/q/75
 heroImage: /logo.png
 heroText: 前端学习圈
 actionText: 开始学习 →

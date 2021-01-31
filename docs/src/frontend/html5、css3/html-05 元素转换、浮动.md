@@ -82,7 +82,7 @@ text-align: center;
 
 3. 浮动元素的父元素高度撑不起来，父元素高度为0，下面的元素往上移动。(问题)
 
-单个div不浮动，可以在单个div设置<p style="clear:both";></p>。
+单个div不浮动，可以在单个div设置`<p style="clear:both";></p>`。
 
 
 

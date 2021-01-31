@@ -265,7 +265,7 @@ import {Link} from 'react-scroll'
    }
    ```
 
-   ![image-20200417110903782](http:notecdn.heny.vip/images/react_常用插件-01.png)
+   ![image-20200417110903782](http://notecdn.heny.vip/images/react_常用插件-01.png)
 
    可以通过f12查看控制台是否懒加载成功
 
