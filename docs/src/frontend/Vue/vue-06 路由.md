@@ -58,8 +58,8 @@ new Vue({
 
 在app.vue文件中填写
 
-* 路由中转：<font color=red>\<router-link to='/menu'></font>菜单<font color=red>\</router-link></font>
-* 用来显示要加载的组件：<font color=red>\<router-view/></font>
+* 路由中转：`<router-link to='/menu'>菜单</router-link>`
+* 用来显示要加载的组件：`<router-view/>`
 
 
 

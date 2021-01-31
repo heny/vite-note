@@ -118,7 +118,7 @@ module.exports = {
 			{ text: 'React', link: '/src/frontend/React/'},
 			{ text: 'Vue', link: '/src/frontend/Vue/' },
 			{ text: 'node', link: '/src/frontend/node/' },
-			{ text: 'git', link: '/src/frontend/其他笔记/git' },
+			{ text: 'git', link: '/src/frontend/other-note/git' },
 			{ text: 'frontend', items: webItems },
 			{
 				text: '友情链接', 

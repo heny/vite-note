@@ -1,0 +1,1 @@
+import{o as r,c as e,d as a}from"./app.0b9a38dc.js";const t='{"title":"未学知识","description":"","frontmatter":{},"relativePath":"src\\\\frontend\\\\其他笔记\\\\未学知识.md","lastUpdated":1612089670060}',n={},o=a('',2);n.render=function(a,t,n,l,i,s){return r(),e("div",null,[o])};export default n;export{t as __pageData};

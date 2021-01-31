@@ -165,7 +165,7 @@ rm -rf build.gz
 
 ## nohup后台运行sh程序及查看
 
-1. <font color=red>后台执行.sh文件（使用nohup和&命令）</font>
+1. 后台执行.sh文件（使用nohup和&命令）
 
    ```sh
    nohup ./a.sh &
@@ -178,7 +178,7 @@ rm -rf build.gz
 
    注意：在执行该.sh文件出错时，建议可以先手动运行一下sh文件有没有错误
 
-2. <font color=red>查看后台运行的命令（使用ps和jobs）</font>
+2. 查看后台运行的命令（使用ps和jobs）
 
    * `jobs`：只能查看当前终端后台执行的任务，换了终端就看不见了
 
@@ -202,7 +202,7 @@ rm -rf build.gz
 
      第二列为PID；
 
-3. <font color=red>关闭当前后台运行的程序（使用kill）</font>
+3. 关闭当前后台运行的程序（使用kill）
 
    （1）通过jobs命令查看jobnum，然后执行`kill jobnum`
 
@@ -210,7 +210,7 @@ rm -rf build.gz
 
    （3）当前的前台的进程按`ctrl+c`就可以终止了
 
-4. <font color=red>前后台进程的切换与控制</font>
+4. 前后台进程的切换与控制
 
    （1）`fg`命令
 

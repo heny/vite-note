@@ -164,7 +164,7 @@ const inputFocus = e => {
 父元素.addEventListener('focusin', inputFocus, false)
 ```
 
-6. 解决 <font color=red>Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method</font>报红
+6. 解决 `Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method` 报红
 
 原因：在willMount中有setState的事件，
 ```jsx

@@ -1,1 +1,0 @@
-import{o as n,c as a,d as s}from"./app.dc9dbd0c.js";const p='{"title":"node使用babel","description":"","frontmatter":{},"relativePath":"src\\\\frontend\\\\node\\\\node使用babel.md","lastUpdated":1612089669954}',o={},t=s('',4);o.render=function(s,p,o,e,l,r){return n(),a("div",null,[t])};export default o;export{p as __pageData};

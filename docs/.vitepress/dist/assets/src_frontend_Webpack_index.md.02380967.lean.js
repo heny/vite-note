@@ -1,1 +1,0 @@
-import{o as e,c as a,d as r}from"./app.dc9dbd0c.js";const p='{"title":"目录","description":"","frontmatter":{},"headers":[{"level":2,"title":"目录","slug":"目录"}],"relativePath":"src/frontend/Webpack/index.md","lastUpdated":1612098844424}',t={},c=r('',8);t.render=function(r,p,t,h,l,d){return e(),a("div",null,[c])};export default t;export{p as __pageData};
