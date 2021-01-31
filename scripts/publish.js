@@ -7,16 +7,21 @@ async function build() {
   // const spinner = ora()
   // spinner.start('start deploy...')
   console.log('start build');
-  shelljs.exec('yarn build');
-  const { commit } = inquirer.prompt([{
-    type: 'input',
-    message: 'Please enter commit message：',
-    name: 'commit',
-    default: 'deploy'
-  }])
-  console.log(commit);
-  await commitGit(commit);
-  console.log('push success');
+  try {
+    shelljs.exec('yarn build');
+    const { commit } = inquirer.prompt([{
+      type: 'input',
+      message: 'Please enter commit message：',
+      name: 'commit',
+      default: 'deploy'
+    }])
+    console.log(commit);
+    await commitGit(commit);
+    console.log('push success');
+    shelljs.exit(1);
+  } catch(e) {
+    shelljs.exit(1);
+  }
 }
 
 async function commitGit(message) {
