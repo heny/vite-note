@@ -5,13 +5,20 @@
   "license": "MIT",
   "scripts": {
     "start": "vitepress dev docs",
+    "d": "vitepress dev docs",
     "build": "vitepress build docs",
-    "serve": "vitepress serve docs"
+    "b": "vitepress build docs",
+    "serve": "vitepress serve docs",
+    "s": "vitepress serve docs",
+    "publish": "node scripts/publish.js",
+    "p": "node scripts/publish.js"
   },
   "devDependencies": {
+    "inquirer": "^7.3.3",
+    "ora": "^5.3.0",
+    "shelljs": "^0.8.4",
+    "simple-git": "^2.31.0",
     "vitepress": "^0.11.5"
   },
-  "dependencies": {
-    "shelljs": "^0.8.4"
-  }
+  "dependencies": {}
 }
