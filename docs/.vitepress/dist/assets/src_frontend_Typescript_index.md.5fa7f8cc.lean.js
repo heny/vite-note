@@ -1,0 +1,1 @@
+import{o as t,c as e,d as p}from"./app.fc5f256e.js";const a='{"title":"目录","description":"","frontmatter":{},"headers":[{"level":2,"title":"目录","slug":"目录"}],"relativePath":"src/frontend/Typescript/index.md","lastUpdated":1612105747586}',r={},h=p('',16);r.render=function(p,a,r,s,l,f){return t(),e("div",null,[h])};export default r;export{a as __pageData};

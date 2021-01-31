@@ -1,15 +1,24 @@
 const simpleGit = require('simple-git');
 const inquirer = require('inquirer');
+const process = require('child_process');
 const shelljs = require('shelljs');
 const ora = require('ora');
 
+function exec(cmd) {
+  return new Promise((resolve, reject) => {
+    if(shelljs.exec(cmd).code !== 0) {
+      reject();
+      shelljs.exit(1);
+    } else {
+      resolve();
+    }
+  })
+}
+
 async function build() {
-  // const spinner = ora()
-  // spinner.start('start deploy...')
   console.log('start build');
-  try {
-    shelljs.exec('yarn build');
-    const { commit } = inquirer.prompt([{
+    await exec('yarn build');
+    const { commit } = await inquirer.prompt([{
       type: 'input',
       message: 'Please enter commit message：',
       name: 'commit',
@@ -19,13 +28,11 @@ async function build() {
     await commitGit(commit);
     console.log('push success');
     shelljs.exit(1);
-  } catch(e) {
-    shelljs.exit(1);
-  }
 }
 
 async function commitGit(message) {
-  const git = simpleGit(process.cwd());
+  const git = simpleGit();
+  console.log('开始提交git');
   try {
     await git.raw(['add', '.'])
     await git.raw(['commit', '-m', message])
