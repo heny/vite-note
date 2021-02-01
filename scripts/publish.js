@@ -7,7 +7,8 @@ async function build() {
   await exec('git add .')
   await exec(`git commit -m '${commit}'`)
   await exec('git push')
-  shelljs.exit(1);
+  await exec('echo "1"')
+  // shelljs.exit(1);
 }
 
 build();
