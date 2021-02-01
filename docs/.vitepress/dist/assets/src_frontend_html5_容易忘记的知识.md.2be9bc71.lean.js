@@ -1,0 +1,1 @@
+import{o as t,c as e,d as p}from"./app.b11e2761.js";const o='{"title":"容易忘记的知识","description":"","frontmatter":{},"relativePath":"src\\\\frontend\\\\html5\\\\容易忘记的知识.md","lastUpdated":1612089669938}',a={},r=p('',18);a.render=function(p,o,a,n,d,i){return t(),e("div",null,[r])};export default a;export{o as __pageData};

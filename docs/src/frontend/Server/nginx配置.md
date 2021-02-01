@@ -28,7 +28,7 @@ server {
 * `docker exec -it data_nginx_1 nginx -t`
 * 进入nginx容器：`docker exec -it data_nginx_1 bash`；
 
-```sh
+```bash
 nginx: the configuration file /etc/nginx/nginx.conf syntax is ok
 nginx: configuration file /etc/nginx/nginx.conf test is successful
 ```
@@ -48,7 +48,7 @@ root 		# 查找资源的路径
 
 ## 常用指令
 
-```sh
+```bash
 nginx -t 		# 检查配置文件是否有语法错误 
 nginx -s reload # 向主进程发送信号，重新加载配置文件 
 nginx -s stop 	# 快速关闭 
@@ -225,7 +225,7 @@ server {
 
 1. 在ssl目录下面生成`dhparam.pem`文件
 
-```shell
+```bash
 openssl dhparam -out dhparam.pem 2048
 ```
 

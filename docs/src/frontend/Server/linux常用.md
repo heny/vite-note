@@ -21,7 +21,7 @@
 
 3. 编辑文件后保存退出
 
-   ```sh
+   ```bash
    LANG="zh_CN.UTF-8" # en_US.UTF-8为英文
    ```
 
@@ -32,7 +32,7 @@
 
 ## 本地直接连接linux
 
-```shell
+```bash
 ssh root@39.107.82.176
 ```
 
@@ -51,7 +51,7 @@ ssh root@39.107.82.176
 
 ## 本地cmd直接操作文件上传
 
-```shell
+```bash
 # 下载文件
 scp build.gz root@107.172.27.254:/home/test.txt
 # 上传文件
@@ -69,20 +69,20 @@ scp -r * root@39.107.82.176:/home
 ## 解决scp不需要输入密码直接上传
 
 1. 在linux输入
-```shell
+```bash
 ssh-keygen -t rsa
 cd /root/.ssh
 ```
 2. 在本地执行以下命令，并一路回车创建ssh密钥
-```shell
+```bash
 ssh-keygen -t rsa
 ```
 之后到`C:\Users\Administrator\.ssh`，输入以下命令
-```shell
+```bash
 scp id_rsa.pub root@39.107.82.176
 ```
 3. 文件上传之后到linux输入命令
-```shell
+```bash
 cd /root/.ssh
 cat id_rsa.pub >> authorized_keys
 ```
@@ -92,7 +92,7 @@ cat id_rsa.pub >> authorized_keys
 
 ## 本地直接打包加上传
 
-```shell
+```bash
 # 切换到build目录里
 $ cd ./build
 $ tar -cvf build.gz *
@@ -113,7 +113,7 @@ tar -xvf build.gz
 ## 填写脚本自动上传
 
 1. 本地脚本，在项目根目录创建文件夹delony.sh，只要是sh后缀都行
-```shell
+```bash
 #!/bin/bash
 npm run build
 cd ./build
@@ -122,7 +122,7 @@ scp build.gz root@39.107.82.176:/www/wwwroot/chart
 ssh root@39.107.82.176
 ```
 2. 运行之后会直接到服务器
-```shell
+```bash
 touch delony.sh
 chmod 777 delony.sh
 vim delony.sh
@@ -167,7 +167,7 @@ rm -rf build.gz
 
 1. 后台执行.sh文件（使用nohup和&命令）
 
-   ```sh
+   ```bash
    nohup ./a.sh &
    ```
 
@@ -182,7 +182,7 @@ rm -rf build.gz
 
    * `jobs`：只能查看当前终端后台执行的任务，换了终端就看不见了
 
-     ```sh
+     ```bash
      [1]- 运行中        nohup ./one.sh &
      [2]+ 运行中        nohup ./a.sh &
      ```
@@ -191,7 +191,7 @@ rm -rf build.gz
 
    * `ps`：可以查看别的终端的任务
 
-     ```sh
+     ```bash
      [root@heny test]ps -aux | grep a.sh # 将a.sh的任务过滤出来
      root     15208  0.0  0.0 113176  1404 pts/1    S    16:02   0:00 /bin/bash ./one.sh
      root     16413  0.0  0.2 151752  5356 pts/1    S+   16:11   0:00 vim one.sh
@@ -236,7 +236,7 @@ rm -rf build.gz
 
    需要先创建~/git目录，之后将git的东西放在里面；还需要`apt install git`；
 
-   ```sh
+   ```bash
    $ cd ~/git
    $ git clone https://github.com/creationix/nvm.git
    ```
@@ -245,7 +245,7 @@ rm -rf build.gz
 
    在 ~/.bashrc, ~/.bash_profile, ~/.profile, 或者 ~/.zshrc 文件添加以下命令:
 
-   ```sh
+   ```bash
    source ~/git/nvm/nvm.sh
    ```
 
@@ -255,7 +255,7 @@ rm -rf build.gz
 
    添加到上面一样的文件里面
 
-   ```sh
+   ```bash
    # nvm
    export NVM_NODEJS_ORG_MIRROR=https://npm.taobao.org/mirrors/node
    source ~/git/nvm/nvm.sh
@@ -323,7 +323,7 @@ cd code-server-3.2.0-linux-x86_64/
 
 ### 设置密码
 
-```shell
+```bash
 # 设置web登录密码
 vi ~/.bashrc
 # 在该文件的末端导出环境变量，xxxxxx为你自己设置的登录密码，保存
@@ -334,7 +334,7 @@ source ~/.bashrc
 
 ### 运行
 
-```shell
+```bash
 # 检查端口是否被占用，注意Linux防火墙要开放该端口
 lsof -i:8080
 # 前台运行，使能了登录密码

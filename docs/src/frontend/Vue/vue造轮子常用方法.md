@@ -4,7 +4,7 @@
 
 全局安装vue-cli
 
-```shell
+```bash
 npm install -g @vue/cli
 // or
 yarn global add @vue/cli
@@ -374,7 +374,7 @@ sourceMap介绍
 
 3. 需要nginx配置，其实也可以不用配置，宝塔面板的nginx默认就已经配置好了
 
-   ```sh
+   ```bash
        #开启和关闭gzip模式
        gzip on;
        #gizp压缩起点，文件大于1k才进行压缩

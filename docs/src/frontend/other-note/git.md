@@ -1,7 +1,7 @@
 # git
 ## 一、配置ssh
 1. 设置user name和email
-```sh
+```bash
 git config --global user.name 'heny'
 git config --global user.email 'heny@qq.com'
 ```
@@ -13,7 +13,7 @@ git config --global user.email 'heny@qq.com'
 
 （2）生成密钥
 
-```sh
+```bash
 ssh-keygen -t rsa -C 'heny@qq.com'   // 回车之后记得根据提示按下yes
 ```
 注意：如果提示ssh-keygen不是内部命令或者其他的报错，则需要以下配置
@@ -31,7 +31,7 @@ ssh-keygen -t rsa -C 'heny@qq.com'   // 回车之后记得根据提示按下yes
 1. 在git官网新建一个git仓库之后；
 
 如果没有使用readme初始化，执行以下四步
-```sh
+```bash
 git init  # 初始化
 git add .   # 添加当前项目文件夹下的所有文件， 如果是./*则是当前文件夹下
 git commit -m '描述'   # 给文件添加备注
@@ -39,11 +39,11 @@ git remote add origin 地址    # 添加远程仓库地址
 git push -u origin master   # 把本地添加的文件上传到git;
 ```
 2. 如果使用了readme初始化；
-```sh
+```bash
 git clone 地址  # 克隆只需要操作一次
 ```
 3. 当修改了文件之后想要上传代码
-```sh
+```bash
 git add .
 git commit -m '添加描述'
 git pull   
@@ -116,7 +116,7 @@ git tag -a v0.1 -m '部署包版本名'
 
 ### 清理本地分支
 
-```sh
+```bash
 git remote show origin
 git remote prune origin
 ```
@@ -128,12 +128,12 @@ git remote prune origin
 >  删除不能删除远程的分支
 
 （1）删除单个分支
-```sh
+```bash
 git branch -D dev
 ```
 （2）批量删除：删除除去master分支：
 
-```sh
+```bash
 git checkout master
 git branch | grep -v 'master' | xargs git branch -D
 ```
@@ -195,7 +195,7 @@ git rebase -i commit-id
 
 （1）无论有没有添加到暂存区都行（暂存区就是有commit代码）
 
-```sh
+```bash
 git checkout -b new_branch # 建立临时分支, 这样改动会被带到新分支
 git stash # 保存在栈区
 git checkout 目标分支
@@ -204,7 +204,7 @@ git stash pop # 将栈区内容取出放到当前分支
 ```
 （2）已提交到本地仓库
 
-```sh
+```bash
 git reset HEAD^ # 撤销最近一次提交
 ```
 2. ignoring broken ref refs问题
@@ -226,7 +226,7 @@ git reset HEAD^ # 撤销最近一次提交
    * （2）当我们修改了一些文件时，想查看修改的文件是否造成了其他问题，可以先保存在暂存区，测试完再拉下来
 
 2. 基础使用
-```sh
+```bash
 git stash # 提交到暂存区
 git stash pop # 拉下来
 ```
@@ -319,7 +319,7 @@ git branch --set-upstream-to=origin/master master # 将本地分支追踪到远�
 
 ### 项目名字被修改，地址被更换
 
-```shell
+```bash
 # 第一种
 git remote set-url origin url # 重新设置远程地址
 
@@ -349,7 +349,7 @@ git remote add origin url # 重新配置远程地址
 修改since开始日期，和until到什么日期，如果不修改则是至今
 
 如果单独查询某个用户，修改$name为用户邮箱
-```sh
+```bash
 git log --format='%aN' | sort -u | while read name; do echo -en "$name\t"; git log --author="$name" --pretty=tformat: --since =2020-03-30 --until=2020-04-02 --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }' -; done
 ```
 --since 限制显示输出的范围
@@ -366,7 +366,7 @@ git log --format='%aN' | sort -u | while read name; do echo -en "$name\t"; git l
 
 
 指定时间
-```sh
+```bash
 git log --format='%aN' | sort -u | while read name; do echo -en "$name\t"; git log --author="$name" --pretty=tformat: --since ='2020-04-02 00:00:00' --until='2020-04-02 23:59:59' --numstat | awk '{ add += $1; subs += $2;  loc += $1 - $2 } END { printf "added lines: %s, removed lines: %s, total lines: %s\n", add, subs, loc }' -; done
 ```
 

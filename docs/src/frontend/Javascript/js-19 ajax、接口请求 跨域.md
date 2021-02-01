@@ -798,7 +798,7 @@ this.$axios.get('/api/movie/index')   //带上前缀，连接到访问的地址
 host文件位置：C:\Windows\System32\drivers\etc\hosts
 也可以安装[SwitchHosts](https://oldj.github.io/SwitchHosts/)使用；
 host修改格式如下：
-```shell
+```bash
 10.107.18.124  a.com
 ```
 之后访问a.com将会映射到10.107.18.124地址，也可以输入127.0.0.1直接代理本地

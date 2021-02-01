@@ -340,7 +340,7 @@ mongoexport导出表，或者表中部分字段；
 ### 导入表
 * 还原非csv文件整张表；
 
-```shell
+```bash
 mogoimport -d 数据库 -c 表名 --upsert --drop文件名；
 # 示例：
 mongoimport -d demo -c users --upsert c:/data/users.dat;
@@ -349,7 +349,7 @@ mongoimport -d demo -c users --upsert c:/data/users.dat;
 
 * 还原部分字段的导出文件
 
-```shell
+```bash
 mogoimport -d 数据库 -c 表名 --upsertFields 字段 --drop 文件名；
 # 示例：
 mongoimport -d demo -c users --upsertFields uid,name /data/users.json;
@@ -358,7 +358,7 @@ mongoimport -d demo -c users --upsertFields uid,name /data/users.json;
 
 * 还原导出的csv文件
 
-```shell
+```bash
 mongoimport -d 数据库 -c 表名 --type 类型 --headerline --upsert --drop 文件名；
 # 示例：
 mongoimport -d demo -c users --type csv --headerline --file /data/users.csv;

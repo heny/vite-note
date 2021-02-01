@@ -93,7 +93,7 @@
 
 11. `mount [-t文件系统] 设备文件名` 挂载点
 
-    ```sh
+    ```bash
     mount -t iso9660 /dev/sr0 /mnt/cdrom
     ```
 

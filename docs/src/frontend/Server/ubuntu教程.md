@@ -2,7 +2,7 @@
 
 将包提升到最新：
 
-```sh
+```bash
 sudo apt update && sudo apt upgrade -y
 ```
 
@@ -28,7 +28,7 @@ sudo apt update && sudo apt upgrade -y
 
 1. 安装
 
-   ```sh
+   ```bash
    sudo apt install mongodb
    ```
 

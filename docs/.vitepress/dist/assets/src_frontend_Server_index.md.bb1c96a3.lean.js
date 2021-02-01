@@ -1,0 +1,1 @@
+import{o as e,c as a,d as l}from"./app.b11e2761.js";const h='{"title":"目录","description":"","frontmatter":{},"headers":[{"level":2,"title":"目录","slug":"目录"}],"relativePath":"src/frontend/Server/index.md","lastUpdated":1612189655922}',t={},r=l('',12);t.render=function(l,h,t,p,n,i){return e(),a("div",null,[r])};export default t;export{h as __pageData};

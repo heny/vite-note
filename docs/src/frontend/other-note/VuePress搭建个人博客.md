@@ -301,7 +301,7 @@ layout: custom //填写components文件夹下的文件名字
 
 2. 打开git bash工具，
 
-   ```shell
+   ```bash
    git init
    git remote add origin 地址  # 进行连接;
    ```
@@ -314,7 +314,7 @@ layout: custom //填写components文件夹下的文件名字
 
 4. 下载gh-pages包
 
-   ```shell
+   ```bash
    npm install gh-pages
    ```
 

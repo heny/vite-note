@@ -288,7 +288,7 @@ map.get(key) // {foo:1}
 在cmd打开之后执行以下操作
 
 如果引用所指向的值占用特别多的内存时，可以使用process.memoryUsage查看，执行--expose-gc可以开启手机执行垃圾回收机制；
-```shell
+```bash
 node --expose-gc   # --expose-gc表示允许手机执行垃圾回收机制;
 > global.gc()
 undefined

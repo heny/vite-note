@@ -114,7 +114,7 @@
 * `-z`  通过gzip压缩或解压
 * `-t`  不解压查看包内容
 
-```sh
+```bash
 #解压：x 解包，z解压缩，-f，-v；
 # 压缩: 
 tar -zcvf build.tar.gz ./build
@@ -143,7 +143,7 @@ make
 
 * `--exclude=dir`
 
-```shell
+```bash
 # 不使用排除压缩
 tar -zcvf build.gz *
 # 使用排除压缩

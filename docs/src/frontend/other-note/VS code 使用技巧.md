@@ -176,7 +176,7 @@ typings install dt~lodash --global
 
 1. 新建1.reg（一样要是reg后缀）
 2. 找到VsCode安装目录，替换即可
-```shell
+```bash
 Windows Registry Editor Version 5.00
 
 [HKEY_CLASSES_ROOT\*\shell\VSCode]

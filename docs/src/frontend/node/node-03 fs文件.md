@@ -367,7 +367,7 @@ function rename(dirName,oldStr,newStr){
 rename('./files','hello','pink')
 ```
 （2）通过shift+右键   打开PowerShell可以使用
-```shell
+```bash
 Get-ChildItem * | rename-item -newname {$_.name -replace 'hello','你好'}
 ```
 （3）打开cmd，输入node，输入以下的代码即可
