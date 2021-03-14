@@ -397,6 +397,7 @@ import {CSSTransition} from 'react-transition-group'
 
 ## 其他插件
 * [面板可以随意拖放的插件](https://github.com/tomkp/react-split-pane)
-* [classnames动态设置class](https://github.com/JedWatson/classnames)
+* [classnames动态设置class](https://github.com/JedWatson/classnames) 动态class设置方便
 * [SVG图标库](https://github.com/FortAwesome/react-fontawesome)
+* [图片裁剪工具](https://github.com/react-cropper/react-cropper) 方便框选大小，头像经常使用
 

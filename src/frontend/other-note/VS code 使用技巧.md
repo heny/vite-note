@@ -286,6 +286,30 @@ Cmder添加右键：
 
 
 
+## CRLF 转 LF方便处理
+
+1、vscode安装[EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+2、项目根目录下创建`.editorconfig`，并写入内容如下：
+
+```bash
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+insert_final_newline = false
+trim_trailing_whitespace = false
+```
+3、之后文件打开按ctrl+s即可
+
+
+
 ## 配置path autocomplete插件
 
 配置该插件必须安装插件：path autocomplete

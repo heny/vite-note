@@ -143,7 +143,8 @@ if(!arr.length) return true //true必须填写 否则报错;
 ![image](https://notecdn.heny.vip/images/react-09_项目优化、项目坑-01.png)
 
 
-5. 解决ios输入框导致页面上移
+
+### ios输入框导致页面上移
 
 将以下代码放到生命周期DidMount里面
 ```jsx

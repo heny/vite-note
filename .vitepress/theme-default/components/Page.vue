@@ -27,17 +27,13 @@ const route = useRoute();
 
 // 添加代码左上小点
 function addCodeIcon(element) {
-  const span = document.createElement('span')
+  const span: HTMLSpanElement = document.createElement('span')
   span.style = 'display: block;background: url("https://notecdn.heny.vip/code-header.png") 0px 2px / 40px no-repeat rgb(40, 44, 52);height: 35px;width: 100%;margin-bottom: -7px;border-radius: 5px;';
   Array.from(element.children).forEach(curEl => {
-    if(curEl.nodeName === 'CODE') {
+    if((curEl as HTMLSpanElement).nodeName === 'CODE') {
       element.insertBefore(span, curEl)
     }
   })
-}
-
-function addCopy() {
-
 }
 
 const update = () => {

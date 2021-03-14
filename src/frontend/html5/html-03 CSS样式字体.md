@@ -181,6 +181,10 @@ overflow:hidden;        /*超出内容隐藏;*/
 
    （2）pre-line，保留换行符，在textarea输入的回车会换行；
 
+4. 多行变点状不生效原因
+
+   由于postcss原因导致，将`-webkit-box-orient:vertical` 写入行内即可
+
 
 
 
