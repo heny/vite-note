@@ -21,7 +21,7 @@ import PageFooter from './PageFooter.vue'
 import NextAndPrevLinks from './NextAndPrevLinks.vue'
 // import CodeCopy from './Copy.vue'
 import { useRoute } from 'vitepress';
-import { onMounted, watch, createApp, nextTick } from 'vue';
+import { watch, nextTick } from 'vue';
 
 const route = useRoute();
 
@@ -38,37 +38,35 @@ function addCodeIcon(element) {
 
 const update = () => {
   // 获取所有的dom，之后在所有的代码块上插入vue的组件
-  const dom = Array.from(document.querySelectorAll('div[class*="language-"] pre'));
-  console.log(dom, 'domdomdomd')
-  dom.forEach(el => {
-    // 添加span标签，增加三个小点
-    addCodeIcon(el);
+  // const dom = document.querySelectorAll('div[class*="language-"] pre');
+  // dom.forEach(el => {
+  //   // 添加span标签，增加三个小点
+  //   addCodeIcon(el);
 
-    // 判断一下，当前节点是不是已经插入了
-    // if (/v-copy/.test(el.className)) {
-    //   return;
-    // }
-    // // 创建copy组件
-    // const copy = createApp(CodeCopy);
-    // const copyEl = document.createElement('div');
-    // el.appendChild(copyEl)
-    // console.log(copy, 'copy');
-    // copy.mount(copyEl);
-    // // 下面这些是组件的props以及一些私有属性
-    // copy.code = el.textContent;
-    // copy._parent = el;
-    // copy.mount();
-    // el.className += ` v-copy`;
-    // // 将copy添加进代码区域
-    // el.appendChild(copy);
-  })
+  //   // 判断一下，当前节点是不是已经插入了
+  //   // if (/v-copy/.test(el.className)) {
+  //   //   return;
+  //   // }
+  //   // // 创建copy组件
+  //   // const copy = createApp(CodeCopy);
+  //   // const copyEl = document.createElement('div');
+  //   // el.appendChild(copyEl)
+  //   // console.log(copy, 'copy');
+  //   // copy.mount(copyEl);
+  //   // // 下面这些是组件的props以及一些私有属性
+  //   // copy.code = el.textContent;
+  //   // copy._parent = el;
+  //   // copy.mount();
+  //   // el.className += ` v-copy`;
+  //   // // 将copy添加进代码区域
+  //   // el.appendChild(copy);
+  // })
 }
 
-// watch(() => route.path, async (val, oldVal) => {
-//   // console.log(val);
-//   await nextTick();
-//   update();
-// }, { immediate: true })
+watch(() => route.path, async (val, oldVal) => {
+  await nextTick();
+  update();
+}, { immediate: true })
 
 </script>
 
