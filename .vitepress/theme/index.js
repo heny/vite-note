@@ -9,6 +9,6 @@ export default {
   enhanceApp({ app, router, siteData }) {
     // 注册组件
     app.component("Comment", Comment);
-    console.log(app, 'app');
+    // console.log(app, 'app');
   }
 }

@@ -19,7 +19,7 @@
 <script setup lang="ts">
 import PageFooter from './PageFooter.vue'
 import NextAndPrevLinks from './NextAndPrevLinks.vue'
-import CodeCopy from './Copy.vue'
+// import CodeCopy from './Copy.vue'
 import { useRoute } from 'vitepress';
 import { onMounted, watch, createApp, nextTick } from 'vue';
 
@@ -49,11 +49,11 @@ const update = () => {
     //   return;
     // }
     // // 创建copy组件
-    const copy = createApp(CodeCopy);
-    const copyEl = document.createElement('div');
-    el.appendChild(copyEl)
-    console.log(copy, 'copy');
-    copy.mount(copyEl);
+    // const copy = createApp(CodeCopy);
+    // const copyEl = document.createElement('div');
+    // el.appendChild(copyEl)
+    // console.log(copy, 'copy');
+    // copy.mount(copyEl);
     // // 下面这些是组件的props以及一些私有属性
     // copy.code = el.textContent;
     // copy._parent = el;
@@ -64,11 +64,11 @@ const update = () => {
   })
 }
 
-watch(() => route.path, async (val, oldVal) => {
-  console.log(val);
-  await nextTick();
-  update();
-}, { immediate: true })
+// watch(() => route.path, async (val, oldVal) => {
+//   // console.log(val);
+//   await nextTick();
+//   update();
+// }, { immediate: true })
 
 </script>
 
