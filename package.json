@@ -4,12 +4,12 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "vitepress dev docs",
-    "d": "vitepress dev docs",
-    "build": "vitepress build docs",
-    "b": "vitepress build docs",
-    "serve": "vitepress serve docs",
-    "s": "vitepress serve docs",
+    "start": "vitepress dev ./",
+    "d": "vitepress dev ./",
+    "build": "vitepress build ./",
+    "b": "vitepress build ./",
+    "serve": "vitepress serve ./",
+    "s": "vitepress serve ./",
     "publish": "node scripts/publish.js",
     "p": "node scripts/publish.js"
   },
