@@ -39,6 +39,14 @@ process.nextTick = function(callback) {
 
 
 
+**setTimeout的特性**
+
+1. setTimeout写入的毫秒数不一定是准确的，由于事件循环的机制问题，需要等待微任务执行完毕之后再执行setTimeout
+2. setTimeout嵌套五次，至少是4毫秒，不是0毫秒
+3. setTimeout调用的this指向是window
+
+
+
 ### setInterval
 
 `setInterval(函数，时间(毫秒))`;

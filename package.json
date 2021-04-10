@@ -10,7 +10,6 @@
     "b": "vitepress build ./",
     "serve": "vitepress serve ./",
     "s": "vitepress serve ./",
-    "publish": "node scripts/publish.js",
     "p": "node scripts/publish.js"
   },
   "devDependencies": {

@@ -140,6 +140,8 @@ npm publish 包名@版本号
 
 
 
+
+
 ## 三、Vue.extend
 
 >  Vue.extend属于Vue的全局API，在实际业务开发中很少使用，因为相比常用Vue.component写法使用extend更加麻烦，用于注册插件使用
