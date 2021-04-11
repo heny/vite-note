@@ -72,17 +72,25 @@ socket.on('huida',data=>{
     console.log(data); //接收到自己发出的消息;
 })
 ```
-### 如何进入一个房间和离开一个房间
+### 进入一个房间和离开一个房间
 ```js
 io.on('connection', socket => {
     console.log('有人上线了')
-    // 加入指定的房间
-    socket.join('a room')
-    // 用to或者in是一样的, 用emit来给事件
-    io.to('a room').emit('some event')
-    // 进入多个房间
-    soket.to('room1').to('room2').emit('hello')
-    socket.on('disconnection', socket => {console.log('有人离开了')} )
+    socket.on('subscribe', function(data) {
+        // 加入指定的房间
+        socket.join(data.room)
+        // 用emit来给事件
+        io.to(data.room).emit('some event')
+        // 进入多个房间
+        soket.to('room1').to('room2').emit('hello')
+        // or
+        socket.to(['room1', 'room2']).emit('hello')
+    })
+    
+    socket.on('unsubscribe', function(data) {
+        // 离开一个房间
+        soket.leave(data.room[,callback])
+    })
 })
 ```
 
@@ -98,7 +106,18 @@ io.sockets.in('roomA').emit('message','大家好')
 io.sockets.socket(socketId).emit('message','唯有你')
 ```
 
+### 离开服务器
+
+```js
+io.on('connection', (socket) => {
+    socket.on('disconnection', reason => {console.log('有人离开了', reason)} )
+})
+```
+
+
+
 ### 如何set和get    socket属性
+
 ```js
 io.sockets.on('connection', function (socket) {
     // 监听设置nickname事件
@@ -117,10 +136,7 @@ io.sockets.on('connection', function (socket) {
 })
 ```
 
-### 离开一个房间
-```js
-soket.leave(room[,callback])
-```
+官方文档：[https://socket.io/docs/v4/server-api/#socket-join-room](https://socket.io/docs/v4/server-api/#socket-join-room)
 
 
 
@@ -181,11 +197,44 @@ socket.on('huida',msg=>{
 
 ## 六、react连接socket.io
 
-```js
+```jsx
+import React from 'react'
 import IO from 'socket.io-client'
-const socket = IO('ws://localhost:3006', {
-    path: '/router' // 如果需要可以添加地址
-})
+const Home = () => {
+    const socketConnect = () => {
+        let socket = IO("ws://localhost:3006", {
+            transports: ['websocket']
+        })
+        
+        // 成功时
+        socket.on('connect', () => {
+            console.log(socket.connected)
+        })
+        
+        // 重连接时出错
+        socket.on('reconnect_error', attemptNumber => {
+            console.log(attemptNumber)
+        })
+        
+        // 不间断尝试重连接
+        socket.on('reconnect_attempt', () => {
+            socket.transport = ['websocket', 'polling', 'flash']
+        })
+        
+        // 连接存活验证
+        socket.on('ping', error => {
+            console.log('ping status')
+        })
+        
+        // 报错时
+        socket.on('connect_error', error => {
+            console.log(error)
+        })
+    }
+    useEffect(() => {
+        socketConnect();
+    }, [])
+}
 socket.close() // 页面关闭时记得断开连接
 ```
 
