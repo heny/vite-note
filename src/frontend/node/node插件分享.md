@@ -186,6 +186,14 @@ if (shell.exec('git commit -am "Auto-commit"').code !== 0){
 
 
 
+## rimraf 删除
+
+与rm -rf 不同的是，rm仅支持linux，rimraf还支持window和linux
+
+使用方式：`rimraf -rf ./node_modules`；
+
+
+
 ## mime模块：获取文件的扩展名
 
 安装：`yarn add mime`

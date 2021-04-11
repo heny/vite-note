@@ -49,6 +49,8 @@ var ajax = new XMLHttpRequest()
 ajax.open(method,url,async)
 // 发送
 ajax.send()
+// 设置响应类型
+ajax.responseType = 'json'
 // 接收
 ajax.onreadystatechange = function(){
     if(ajax.readyState === 4 && ajax.status === 200){
@@ -57,13 +59,15 @@ ajax.onreadystatechange = function(){
 }
 ```
 
-1. ajax的open参数介绍
+1. `open`方法参数
 
-   1. method分为post和get；
-   2. url：地址，传输或获取的地址，
-   3. async定义异步或同步，true是异步的，false是同步的；
+   * method分为post和get；
 
-2. 发送：
+   * url：地址，传输或获取的地址，
+
+   * async定义异步或同步，true是异步的，false是同步的；
+
+2. `send`：
 
    1. get方式下
    2. post方式下：
@@ -72,7 +76,9 @@ ajax.onreadystatechange = function(){
 
    ajax.send()；必须在发送之前设置头信息，否则会报错；
 
-3. 结果
+3. `responseType`：可为arraybuffer 、blob、document、json、text
+
+4. 结果
 
    每当 readyState 改变时，onreadystatechange 函数就会被执行。
 
@@ -91,6 +97,8 @@ ajax.onreadystatechange = function(){
    3. ajax.responseText 将结果以字符串的形式返回；
       * `eval(val)`：将字符串转换成真正的数据类型；
       * `JSON.parse(val)`：将json格式的字符串转为对象；
+
+
 
 
 
@@ -159,8 +167,9 @@ xhr.onload = function(){
 
 ```js
 // 请求一个接口
-let xhr = new XMLHttpRequest()
+const xhr = new XMLHttpRequest()
 xhr.open('GET', 'http://wyy.heny.vip/banner', true)
+xhr.responseType = 'json'
 xhr.onloadstart = function(){
     console.log('开始请求')
 }
@@ -170,6 +179,7 @@ xhr.onload = function(progressEvent){
 xhr.onerror = function(){
     console.log('请求出错了')
 }
+xhr.send()
 ```
 
 
@@ -415,7 +425,12 @@ axios.interceptors.response.use(
     // 返回类型，常用有：blob、stream
     responseType: 'json',
     // 上传处理进度
-    onUploadProgress: function(progressEvent){},
+    onUploadProgress: function(e: progressEvent){
+        let percentage = Math.round((e.loaded * 100) / e.total) || 0;
+        if(percentage < 100) {
+            // 这里调用进度方法
+        }
+    },
     // 下载处理进度
     onDownloadProgress: function(progressEvent){},
     // 代理请求，在ip被拉黑时特别有用
@@ -597,8 +612,9 @@ F12查看控制台---Network---headers；点击clear清除一下，再获取，�
 
 ```js
 fetch('https://wyy.heny.vip/banner')
-    .then(response=>response.json()) // 获取json格式数据
-    .then(data=>{ console.log(data) })
+    .then(response=> response.json()) // 获取json格式数据
+    .then(data=> console.log(data) )
+	.catch(e=> console.log(e) )
 
 // 常用方式
 async function fetchData(){
@@ -637,7 +653,12 @@ const url = 'https://notecdn.heny.vip'
 })()
 ```
 
+### fetch的缺点
 
+* 只对网络请求报错，对400，500都当做成功的请求
+* 默认不会带cookie
+* 不支持abort，不支持超时控制
+* 没办法原生监测请求的进度
 
 
 
@@ -648,6 +669,10 @@ const url = 'https://notecdn.heny.vip'
 * 由于fetch返回的只是一个http响应，而不是真的JSON，为了获取JSON的内容，需要使用json()方法
 
 fetch是一个实验的API，在生产环境不建议使用
+
+
+
+
 
 
 
@@ -791,7 +816,9 @@ this.$axios.get('/api/movie/index')   //带上前缀，连接到访问的地址
 ```
 
 
+
 ### 跨域其他解决办法
+
 #### 修改本地host解决跨域
 > 由于造成跨域的原因是因为不同域，我们可以手动修改为同域
 
