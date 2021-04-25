@@ -4,7 +4,7 @@
 
 可以使用import和export导入导出；
 
-1. 安装：`yarn add @babel/core @babel/cli @babel/node @babel/preset-evn @babel/plugin-transform-runtime @babel/runtime nodemon -D`
+1. 安装：`yarn add @babel/core @babel/cli @babel/node @babel/preset-env @babel/plugin-transform-runtime @babel/runtime nodemon -D`
 
 2. 配置package.json
 
