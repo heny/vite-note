@@ -104,18 +104,18 @@
 1. 单行变点状：
 
 ```css
-white-space:nowrap;     /*超出文本不换行*/
-text-overflow:ellipsis;    /*超出文本变点状*/
-overflow:hidden;        /*超出文本内容隐藏*/
+white-space:nowrap;
+text-overflow:ellipsis;
+overflow:hidden;
 ```
 
 2. 多行变点状：
 
 ```css
-display:-webkit-box;    /*旧版弹性盒子;*/
--webkit-box-orient:vertical;    /*项目往下排;*/
--webkit-line-clamp:2;    /*超出两行文本变点状;*/
-overflow:hidden;        /*超出内容隐藏;*/
+display:-webkit-box;
+-webkit-box-orient:vertical;
+-webkit-line-clamp:2;
+overflow:hidden;
 ```
 
 
