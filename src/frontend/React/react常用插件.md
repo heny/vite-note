@@ -123,6 +123,30 @@ componentDidMount: {
 
 
 
+## mock接口请求
+
+文档地址：[mock](https://github.com/nuysoft/Mock/wiki/Mock.mock())
+
+安装：`npm i mockjs`
+
+1. 创建mock.js 文件
+
+   ```js
+   import Mock from 'mockjs'
+   Mock.mock('/list', 'get', {
+     "object|2-4": {
+       "110000": "北京市",
+       "120000": "天津市",
+       "130000": "河北省",
+       "140000": "山西省"
+     }
+   })
+   ```
+
+2. 之后在入口文件直接引入该文件即可，mock会拦截到请求，并输出结果
+
+
+
 ## 路由缓存插件
 
 1. 安装：`yarn add react-router-cache-route`

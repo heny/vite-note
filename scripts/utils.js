@@ -18,12 +18,12 @@ exports.exec = function exec(cmd) {
   })
 }
 
-exports.prompt = async function prompt(message){
+exports.prompt = async function prompt(message, options){
   const { commit } = await inquirer.prompt([{
     type: 'input',
     message,
     name: 'commit',
-    default: 'deploy'
+    ...options
   }])
   return commit;
 }

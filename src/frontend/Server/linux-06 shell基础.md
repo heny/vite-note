@@ -91,10 +91,17 @@ date ; dd if=输入文件 of=输出文件 bs=字节数 count=个数 ; date 计�
 
 * 变量叠加   
   *  `aa="$aa"456`
-  * ``aa=${aa}789`
+  * `aa=${aa}789`
 * `set`            变量查看
 * `unset 变量`     变量删除
 * `echo $name`     调用变量 变量前加$
+
+如果想获取一条命令的执行结果，需要使用反引号``
+
+```bash
+name=`git pull`
+echo $name
+```
 
 
 
