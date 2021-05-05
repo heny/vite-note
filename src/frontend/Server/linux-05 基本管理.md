@@ -177,8 +177,8 @@ du                          -a显示每个子文件 -h人性化 -s统计占用�
 
 ## 七、查询于挂载
 
-mount -l 显示已经挂载的设备  -l显示卷标
-mount -a 依据/etc/fstab的内容自动挂载
+`mount -l` 显示已经挂载的设备  -l显示卷标
+`mount -a` 依据/etc/fstab的内容自动挂载
 mount -t -L -o 设备文件名 挂载点     -t文件类型 -L卷标名  -o特殊选项  exec/noexec 执行 不执行 remount重新挂载 
 
 挂载光盘
