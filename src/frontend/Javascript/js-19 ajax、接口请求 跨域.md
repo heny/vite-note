@@ -825,6 +825,7 @@ this.$axios.get('/api/movie/index')   //带上前缀，连接到访问的地址
 host文件位置：C:\Windows\System32\drivers\etc\hosts
 也可以安装[SwitchHosts](https://oldj.github.io/SwitchHosts/)使用；
 host修改格式如下：
+
 ```bash
 10.107.18.124  a.com
 ```
@@ -832,10 +833,20 @@ host修改格式如下：
 可以通过cmd输入ping a.com 查看访问的ip地址，确认是否代理生效
 
 **修改host不生效的原因**
+
 * 检查本地是否有其他代理工具，如科学工具
 * hosts文件内注释不能和代理在同一行
 * 尝试使用ipconfig /flushdns 刷新dns缓存
 * 最后也是最有效的解决三步骤：重启、重装、换电脑
+
+**端口提示被占用，查找不到端口号**
+
+```bash
+##### Local host #####
+127.0.0.1   localhost
+255.255.255.255 localhos
+::1     localhost
+```
 
 
 

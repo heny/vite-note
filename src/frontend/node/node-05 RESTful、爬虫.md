@@ -100,19 +100,15 @@
 
     其实我们定义的路由都可是中间件
 
-    app.get('/book')  app.post('/user')... 都是中间件
-
-
+    `app.get('/book')`  `app.post('/user')`... 都是中间件
 
 - 使用中间件特定的语法
-
     ```js
-app.use((req, res, next) => {
+    app.use((req, res, next) => {
         // 这里可以做一些处理
         next() // 必须调用next函数，否则不会往下面走了
     })
     ```
-    
     使用中间件和定义路由很相像，只要匹配成功并且send了，就不会再往下匹配 。
 
 
