@@ -7,7 +7,7 @@ async function build() {
   await exec(`git commit -m '${commit}'`)
   await exec('git push')
   exec(`
-    upload success, Please run exec to publish:
+    Upload successfully, please execute deployment command:
     yarn deploy
   `)
 }
