@@ -75,7 +75,7 @@
 3. `firstChild`：不能获取到换行；
 4. `firstElementChild`：带Element的不能识别，返回值undefined；
 
-        解决兼容办法：
+解决兼容办法：
 
 ```js
 var first = ul.firstElementchild ? ul.firstChild : firstElementChild;

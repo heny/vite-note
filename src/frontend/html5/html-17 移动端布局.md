@@ -310,7 +310,7 @@ function Resize(){
 举例：安卓端绑定方法到window对象上
 
 ```js
-window.ikang.getStatusBarHeight();
+window.*.getStatusBarHeight();
 ```
 
 ### ios端

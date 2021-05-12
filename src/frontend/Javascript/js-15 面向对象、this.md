@@ -517,7 +517,7 @@ obj2.name   // 'haha'
 function copyObj(obj){
     var clone = Object.create(obj)  //通过create继承
        //以某种方式来增强对象,这里添加了一个新方法;
-    clone.say = function(){console.log(hahaha)} 
+    clone.say = function(){console.log('hahaha')} 
     return clone   //返回这个对象
 }
 ```

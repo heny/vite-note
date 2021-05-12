@@ -103,13 +103,10 @@ const ajaxWithTime = (url,ms) => Promise.race([
 ### 静态方法
 
 * `Promise.resolve()`，主要是为了将现有的对象转为promise对象，括号里面传入需要转换的对象；
-
 * `Promise.reject()`
-
-* `Promise.all()`
-
-* `Promise.race()`
-
+* `Promise.all()` 全部为true则为true，否则为false
+* `Promise.race()` 相当于赛跑，只要一个成功或失败即可
+* `Promise.any()` 一个成功就成功，所有拒绝才拒绝
 * `Promise.try()`
 
 静态方法使用:
@@ -135,35 +132,21 @@ window.addEventListener("unhandledrejection", function(e){
 
 
 
-### 例子
-
-使用`promise+ajax`请求新闻和评论
+**可取消的Promise**
 
 ```js
-//使用promise方法+ajax方法获取数据
-function getDate(url){
-    var prom = new Promise((resolved,rejected)=>{ 
-        var ajax = new XMLHttpRequest();
-        ajax.open('get',url,true);
-        ajax.send();
-        ajax.onreadystatechange = ()=>{
-            if(ajax.readyState == 4){
-                if(ajax.status == 200){
-                    resolved(JSON.parse(ajax.responseText)); //执行成功的then方法，将数据替换出去
-                }
-            }
-        }
-    })
-    return prom;
+function timeout(delay) {
+  let cancel;
+  const wait = new Promise(resolve => {
+    const timer = setTimeout(() => resolve(false), delay);
+    cancel = () => {
+      clearTimeout(timer);
+      resolve(true);
+    };
+  });
+  wait.cancel = cancel;
+  return wait;
 }
-getDate('http://localhost:4000/news?id=3').then(({id,title,content,commentsUrl})=>{ 
-//将请求到的新闻解构
-    return commentsUrl;  //返回评论的地址
-}).then(data=>{
-    getDate('http://localhost:4000'+data).then(data2=>{
-        console.log(data2);   //得到评论的数据
-    })
-})
 ```
 
 

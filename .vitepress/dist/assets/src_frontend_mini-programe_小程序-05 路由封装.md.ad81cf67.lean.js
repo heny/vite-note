@@ -1,0 +1,1 @@
+import{o as n,c as s,d as a}from"./app.b352b1d4.js";const t='{"title":"小程序-05 路由封装","description":"","frontmatter":{},"headers":[{"level":2,"title":"一、路由封装","slug":"一、路由封装"}],"relativePath":"src/frontend/mini-programe/小程序-05 路由封装.md","lastUpdated":1615699077467}',p={},o=a('',6);p.render=function(a,t,p,e,c,l){return n(),s("div",null,[o])};export default p;export{t as __pageData};

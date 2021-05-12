@@ -338,13 +338,13 @@ export default function(){
 }
 ```
 **总结：**
-useState：传入我们所需的初始状态，返回一个常量状态以及改变状态的函数；
+`useState`：传入我们所需的初始状态，返回一个常量状态以及改变状态的函数；
 
-useEffect：第一个参数接受一个callback，每次组件更新都会执行这个callback，并且callback可以返回一个函数，该函数会在组件销毁前执行。如果useEffect内部有依赖外部的属性，并且希望依赖属性不改变就不重复执行useEffect的话，可以传入一个依赖数组作为第二个参数；
+`useEffect`：第一个参数接受一个callback，每次组件更新都会执行这个callback，并且callback可以返回一个函数，该函数会在组件销毁前执行。如果useEffect内部有依赖外部的属性，并且希望依赖属性不改变就不重复执行useEffect的话，可以传入一个依赖数组作为第二个参数；
 
-useRef：如果你需要有一个地方来存储变化的数据；
+`useRef`：如果你需要有一个地方来存储变化的数据；
 
-useCallback：如果你需要一个不会随着组件更新而重新创建的callback；
+`useCallback`：如果你需要一个不会随着组件更新而重新创建的callback；
 
 ## 十、自定义Hook
 通过自定义hook，可以将组件逻辑提取到可重用的函数中；

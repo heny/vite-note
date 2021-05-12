@@ -30,6 +30,19 @@
 
 
 ## 二、闭包
+
+闭包是在函数创建的时候，让函数打包带走的根据函数内的外部引用来过滤作用域链剩下的链。它是在函数创建的时候生成的作用域链的子集，是打包的外部环境。evel 因为没法分析内容，所以直接调用会把整个作用域打包（所以尽量不要用 eval，容易在闭包保存过多的无用变量），而不直接调用则没有闭包。
+
+闭包文章
+
+[JavaScript 的静态作用域链与“动态”闭包链](https://juejin.cn/post/6957913856488243237)
+
+静态作用域链：可以直观的分析代码得出作用域链；
+
+动态作用域链：和执行顺序有关，会在执行的时候动态创建不同函数，块的作用域的引用关系，没法静态分析
+
+
+
 ### 什么是闭包
 
 闭包是指有权访问另外一个函数作用域中的变量的函数；
@@ -181,7 +194,6 @@ for循环完之后在外面也能得到i的值，就是循环完之后的值；
 
 ## 四、Event Loop，javascript执行机制
 Event Loop即事件循环，是浏览器或Node的一种解决javaScript单线程运行时不会阻塞的一种机制，也是异步的原理；
-
 
 由于JS是单线程的，一些高耗时操作就带来了进程阻塞的问题，为了解决这个问题，js有两种任务的执行模式，分为同步模式和异步模式；
 在异步模式下，创建异步任务主要分为宏任务与微任务两种，宏任务是由宿主（浏览器、node）发起的，微任务由js自身发起的；
@@ -398,11 +410,9 @@ function throttle(){
 export function throttle(fn,wait){
   var pre = Date.now();
   return function(){
-      var context = this;
-      var args = arguments;
       var now = Date.now();
       if( now - pre >= wait){
-          fn.apply(context,args);
+          fn.apply(this,arguments);
           pre = Date.now();
       }
   }
@@ -546,22 +556,7 @@ User.prototype = {
     setName:function(){this.name=name}
 }
 ```
-● 写一个 mul 函数，使用方法如下
-```js
-console.log(mul(2)(3)(4)) //24
-console.log(mul(4)(3)(4)) //48
-```
-● 创建 ajax 的过程。
-
-● ajax 请求的时候 get 和 post 方式的区别，什么时候用 post。
-
-● ajax 请求时，如何解释 json 数据。
-
 ● 同步和异步的区别 ?
-
-● 常见的 http 状态码？
-
-● eval 的作用是？
 
 ● js 哪些操作会造成内存泄露？
 
