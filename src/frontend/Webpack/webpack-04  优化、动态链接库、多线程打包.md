@@ -2,7 +2,7 @@
 ## 一、分析包内容
 用于查看哪个包占用内容多大
 1. 安装：`webpack-bundle-analyzer`
-```cmd
+```bash
 npm install webpack-bundle-analyzer -S
 // or
 yarn add -D webpack-bundle-analyzer

@@ -1,8 +1,11 @@
 const shell = require('shelljs');
-const { resolve } = require('./utils');
+const path = require('path')
 const { frontendLinks, sidebar } = require('./utils/createSideBar');
 const createREADME = require('./utils/createREADME')
 
+const resolve = (...args) => {
+  return path.resolve(__dirname, ...args)
+}
 
 // 生成首页README.md的目录
 createREADME('frontend')

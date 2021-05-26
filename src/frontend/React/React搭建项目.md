@@ -37,7 +37,7 @@ git add .
 git common -m 'description'
 ```
 2. 打开cmd运行：
-```cmd
+```bash
 npm run eject
 yarn add stylus stylus-loader
 ```

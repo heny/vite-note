@@ -6,7 +6,7 @@
 
 `@babel/preset-env`   // 转化模块,转化成标准、js语法
 
-```cmd
+```bash
 yarn add babel-loader @babel/core @babel/preset-env -D
 ```
 

@@ -1,1 +1,0 @@
-import{o as e,c as o,d as i}from"./app.b352b1d4.js";const t='{"title":"tsconfig配置","description":"","frontmatter":{},"relativePath":"src/frontend/Typescript/tsconfig.md","lastUpdated":1618240491970}',l={},c=i('',3);l.render=function(i,t,l,d,r,s){return e(),o("div",null,[c])};export default l;export{t as __pageData};
