@@ -173,3 +173,15 @@ recast.run(function (ast, printSource) {
 })
 ```
 
+
+
+## 类型示例
+
+![image.png](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/e0870a372ff146a2b6298b25dedef1e2~tplv-k3u1fbpfcp-zoom-1.image)
+
+
+
+## AST文章推荐
+
+* [像玩 jQuery 一样玩 AST](https://juejin.cn/post/6923936548027105293)
+* [阿里妈妈出的新工具，给批量修改项目代码减轻了痛苦](https://juejin.cn/post/6938601548192677918)

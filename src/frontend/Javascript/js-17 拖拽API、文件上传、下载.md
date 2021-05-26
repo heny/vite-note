@@ -362,8 +362,8 @@ document.body.appendChild(script)
 
 
 
-
 ## 五、下载
+
 1. 创建a标签，之后给a标签添加download属性；
 ```js
 <a href='./1.docs' download='文件.docs' >下载</a>
@@ -372,53 +372,111 @@ document.body.appendChild(script)
 
 如果是txt文件和img文件，则谷歌浏览器会直接打开，而不是下载
 
-如果是服务器方式运行网页，则无论是img还是txt都会直接进行下载操作
+如果是服务器方式运行网页，文件在项目文件夹中，则无论是img还是txt都会直接进行下载操作
 
-2. 后端下载链接如果提示非法下载，需要修改content-type
+2. 配合后端下载也可以让后端给响应头添加：
+
+   ```js
+   header('Content-type: image/jpeg'); 
+   header("Content-Disposition: attachment; filename='download.jpg'"); 
+   ```
+
+   
+
+3. 后端下载链接如果提示非法下载office，需要修改content-type，
 
 [https://blog.csdn.net/topc2000/article/details/79793057](https://blog.csdn.net/topc2000/article/details/79793057)
 
 
 
-3. 解决浏览器直接打开下载问题
+4. 前后端分离下载，前端自己处理下载
 
-   ```js
-   function doSave(value, name, type) {
-     var blob
-     name = name || ''
-     if (typeof window.Blob == "function") {
-       blob = new Blob([value], { type: type })
-     } else {
-       var BlobBuilder =
-         window.BlobBuilder ||
-         window.MozBlobBuilder ||
-         window.WebKitBlobBuilder ||
-         window.MSBlobBuilder
-       var bb = new BlobBuilder()
-       bb.append(value)
-       blob = bb.getBlob(type)
-     }
-     var URL = window.URL || window.webkitURL
-     var bloburl = URL.createObjectURL(blob)
-     var anchor = document.createElement("a")
-     if ("download" in anchor) {
-       anchor.style.visibility = "hidden"
-       anchor.href = bloburl
-       anchor.download = name
-       document.body.appendChild(anchor)
-       var evt = document.createEvent("MouseEvents")
-       evt.initEvent("click", true, true)
-       anchor.dispatchEvent(evt)
-       document.body.removeChild(anchor)
-     } else if (navigator.msSaveBlob) {
-       navigator.msSaveBlob(blob, name)
-     } else {
-       window.location.href = bloburl
-     }
-   }
-   ```
+   * 流的形式：
 
-   
+     ```js
+     function downLoad(blob) {
+         let a = document.createElement('a')
+         a.href = URL.createObjectURL(blob)
+         a.download = true
+         a.click()
+         a = null;
+     }
+     ```
+
+   * url 形式
+
+     ```js
+     function urlToBase64(url) {
+         return new Promise(resolve => {
+             let canvas = document.createElement('canvas')
+             let ctx = canvas.getContext('2d')
+             let img = new Image()
+             img.setAttribute('crossOrigin', 'Anonymous')
+             img.onload = () => {
+                 ctx.width = img.width
+                 ctx.height = img.height
+                 ctx.drawImage(img, 0, 0)
+                 let base64 = canvas.toDataURL('image/png')
+                 resolve(base64)
+                 canvas = null;
+             }
+             img.src = url;
+         })
+     }
+     function base64ToFile(base64, fileName) {
+         let arr = base64.split(',')
+         let mime = arr[0].match(/:(.*?);/)[1]
+         let bstr = atob(arr[1])
+         let n = bstr.length
+         let u8arr = new Uint8Array(n)
+         while(n--) {
+             u8arr[n] = bstr.charCodeAt(n)
+         }
+         return new File([u8arr], fileName, {type: mime})
+     }
+     ```
+
+     
+
+5. 解决浏览器直接打开下载问题（兼容IE）
+
+```js
+function doSave(value, name, type) {
+  var blob
+  name = name || ''
+  if (typeof window.Blob == "function") {
+    blob = new Blob([value], { type: type })
+  } else {
+    var BlobBuilder =
+      window.BlobBuilder ||
+      window.MozBlobBuilder ||
+      window.WebKitBlobBuilder ||
+      window.MSBlobBuilder
+    var bb = new BlobBuilder()
+    bb.append(value)
+    blob = bb.getBlob(type)
+  }
+  var URL = window.URL || window.webkitURL
+  var bloburl = URL.createObjectURL(blob)
+  var anchor = document.createElement("a")
+  if ("download" in anchor) {
+    anchor.style.visibility = "hidden"
+    anchor.href = bloburl
+    anchor.download = name
+    document.body.appendChild(anchor)
+    var evt = document.createEvent("MouseEvents")
+    evt.initEvent("click", true, true)
+    anchor.dispatchEvent(evt)
+    document.body.removeChild(anchor)
+  } else if (navigator.msSaveBlob) {
+    navigator.msSaveBlob(blob, name)
+  } else {
+    window.location.href = bloburl
+  }
+}
+```
+
+
 
 
 

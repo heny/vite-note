@@ -68,8 +68,8 @@ PC端测试：点击NetWork，之后点击offline，可以测试；
 加密汉字：`escape`
 
 解密：`unescape`
-
-
+编码ASCII to Base64:  atob
+解码Base64 to ASCII:  btoa
 
 ## 五、history
 `history`：历史页面，拥有的方法如下：
