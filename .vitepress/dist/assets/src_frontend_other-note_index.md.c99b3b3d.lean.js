@@ -1,0 +1,1 @@
+import{o as a,c as e,d as h}from"./app.e9024871.js";const p='{"title":"目录","description":"","frontmatter":{},"headers":[{"level":2,"title":"目录","slug":"目录"}],"relativePath":"src/frontend/other-note/index.md","lastUpdated":1626530098096}',t={},r=h('',23);t.render=function(h,p,t,l,m,f){return a(),e("div",null,[r])};export default t;export{p as __pageData};

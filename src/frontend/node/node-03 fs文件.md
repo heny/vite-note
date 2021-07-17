@@ -128,7 +128,7 @@ fs.open('6.txt','r',(err,fd)=>{
 * `option`：默认为r；
 * `callback`：两个参数：err,data;
 
-readFile加入一个对象：{encoding:'utf-8'}，可以不用.toString()来获取文件内容；
+readFile加入一个对象：`{encoding:'utf-8'}`，可以不用.toString()来获取文件内容；
 
 
 
@@ -442,6 +442,10 @@ fs.writeFile('./files','hello',(err)=>{
 插件安装：[node-fs-extra](https://github.com/jprichardson/node-fs-extra)
 
 支持的使用方式：
+
+为什么使用它：
+
+* copy 文件方便， 不再需要判断文件夹和目录，没有直接新建
 
 ```js
 const fs = require('fs-extra')

@@ -228,3 +228,36 @@ git仓库地址：[https://github.com/SBoudrias/Inquirer.js](https://github.com/
 安装：`yarn add inquirer`
 
 文档：[https://blog.csdn.net/qq_26733915/article/details/80461257](https://blog.csdn.net/qq_26733915/article/details/80461257)
+
+
+
+## 添加脚手架命令
+
+可以自定义输入命令；
+
+安装：yarn add commander
+
+官方文档：[https://github.com/tj/commander.js/blob/master/Readme_zh-CN.md](https://github.com/tj/commander.js/blob/master/Readme_zh-CN.md)
+
+
+
+## 获取文件列表路径
+
+安装：`yarn add globby`
+
+通过fs-extra更方便的递归复制文件夹，例子：
+
+```js
+const fs = require('fs-extra')
+const glob = require('globby')
+
+function toDest(file) {
+  return file.replace(/^src\//, 'dist/')
+}
+
+// 下面例子排除了.ts文件和package.json, 获取其中所有文件路径组成的数组，之后直接使用fs.copy到本地
+glob.sync('template/**/!(*.ts|package.json)').forEach((file) => {
+  fs.copy(file, toDest(file))
+})
+```
+

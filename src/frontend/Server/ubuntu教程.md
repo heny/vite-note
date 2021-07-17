@@ -13,7 +13,7 @@ sudo apt update && sudo apt upgrade -y
 * 搭建静态网站：`/data/html/` 放置静态文件
 * 配置nginx：`/data/config/nginx/conf.d/`
 * 配置之后重启docker：`docker restart data_nginx_1`
-* 查看错误日志：
+* 查看错误日志： 
   * `docker logs data_nginx_1`
   * `tail /data/log/nginx/error.log`
 * 配置网站的root根路径：`/usr/share/nginx/html` 开头，文件放在`/data/html`下
