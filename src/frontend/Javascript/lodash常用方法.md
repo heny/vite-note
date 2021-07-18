@@ -182,5 +182,3 @@ addSquare(1,2) // 9
 ```
 
 
-
-## Object函数
