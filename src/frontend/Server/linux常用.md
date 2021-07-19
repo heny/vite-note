@@ -180,30 +180,6 @@ scp -r * root@39.107.82.176:/home
 
 
 
-## 解决scp不需要输入密码直接上传
-
-1. 在linux输入
-```bash
-ssh-keygen -t rsa
-cd /root/.ssh
-```
-2. 在本地执行以下命令，并一路回车创建ssh密钥
-```bash
-ssh-keygen -t rsa
-```
-之后到`C:\Users\Administrator\.ssh`，输入以下命令
-```bash
-scp id_rsa.pub root@39.107.82.176
-```
-3. 文件上传之后到linux输入命令
-```bash
-cd /root/.ssh
-cat id_rsa.pub >> authorized_keys
-```
-4. 已经可以测试不输入密码直接上传了
-
-
-
 ## 本地直接打包加上传
 
 ```bash
@@ -221,6 +197,40 @@ cd /www/wwwroot/chart && ls
 # 解压
 tar -xvf build.gz
 ```
+
+
+
+## 解决scp不需要输入密码直接上传
+
+1. 在linux输入
+
+```bash
+ssh-keygen -t rsa
+cd /root/.ssh
+```
+
+2. 在本地执行以下命令，并一路回车创建ssh密钥
+
+```bash
+ssh-keygen -t rsa
+```
+
+之后到`C:\Users\Administrator\.ssh`，输入以下命令，复制到你的ssh目录下
+
+```bash
+scp id_rsa.pub root@39.107.82.176:/root/.ssh
+```
+
+3. 文件上传之后到linux输入命令
+
+```bash
+cd /root/.ssh
+cat id_rsa.pub >> authorized_keys
+```
+
+4. 已经可以测试不输入密码直接上传了
+
+
 
 
 
