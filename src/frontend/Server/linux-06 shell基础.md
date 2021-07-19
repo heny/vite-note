@@ -378,3 +378,33 @@ sort -t ":" -k 3,3 /etc/passwd
 * `-w`：  只统计单词数
 * `-m`：  只统计字符数
 
+
+
+### 判断字符串是否包含
+
+1. 利用字符串运算符
+
+   ```bash
+   strA="helloworld"
+   strB="low"
+   if [[ $strA =~ $strB ]]
+   then
+     echo "包含"
+   else
+     echo "不包含"
+   fi
+   ```
+
+2. 利用通配符
+
+   ```bash
+   A="helloworld"
+   B="low"
+   if [[ $A == *$B* ]]
+   then
+     echo "包含"
+   else
+     echo "不包含"
+   fi
+   ```
+
