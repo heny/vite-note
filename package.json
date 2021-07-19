@@ -11,7 +11,7 @@
     "serve": "vitepress serve ./",
     "s": "vitepress serve ./",
     "p": "node scripts/publish.js",
-    "deploy": "ssh root@39.107.82.176 'sh /data/deploy_sh/vite-note.sh'"
+    "deploy": "ssh root@1.15.21.6 'sh ~/docker-nginx/deploy_sh/vite-note.sh'"
   },
   "devDependencies": {
     "console-color-mr": "^2.0.1",

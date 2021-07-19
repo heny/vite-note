@@ -270,17 +270,15 @@ server {
 
 
 
-配置https之后需要放开443端口
+### nginx不生效问题排查
 
-查看443端口状态：
+1. 配置https之后需要放开443端口，首先排查安全组是否放开端口号
 
-1. ` netstat -ano -p tcp | find "443" >nul 2>nul && echo 443端口已开启 || echo 443端口未开启`
-2. `lsof -i:443`   如果有的话则表示开启了
-3. `telnet 1.1.1.1 443` 如果能连接成功表示通了
-
-
-
-注意：如果是docker启动的nginx，docker需要配置443；
+2. 查看443端口状态：
+   1. ` netstat -ano -p tcp | find "443" >nul 2>nul && echo 443端口已开启 || echo 443端口未开启`
+   2. `lsof -i:443`   如果有的话则表示开启了
+   3. `telnet 1.1.1.1 443` 如果能连接成功表示通了
+3. 如果是docker启动的nginx，docker需要配置443；
 
 
 

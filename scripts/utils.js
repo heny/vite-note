@@ -6,7 +6,7 @@ const dayjs = require('dayjs');
 exports.exec = function exec(cmd) {
   return new Promise((resolve, reject) => {
     console.log(
-      `[${log('heny', 'red')}/${log(dayjs().format('HH:mm:ss'))}]:`, 
+      `[${log('heny')}/${log(dayjs().format('HH:mm:ss'))}]:`, 
       log(cmd, 'green')
     )
     if(shelljs.exec(cmd).code !== 0) {
