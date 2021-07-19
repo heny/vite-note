@@ -252,6 +252,8 @@ Event Loop执行顺序如下：
 * 当执行完所有微任务后， 如有必要会渲染页面
 * 然后开始下一轮Event Loop，执行宏任务中的异步代码，也就是setTimeout中的回调函数
 
+![image](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/2baaf009636748c491898aafeceddb32~tplv-k3u1fbpfcp-watermark.image)
+
 
 
 理解：

@@ -29,6 +29,120 @@
 
 
 
+## 安装docker并部署nginx
+
+使用docker部署nginx的好处：nginx可以随便创建，不用担心配置出错
+
+### 安装docker
+
+1. 修改镜像源为阿里源：`vim /etc/apt/sources.list`
+
+   ```bash
+   deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+   deb http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ bionic main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ bionic-security main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ bionic-updates main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ bionic-proposed main restricted universe multiverse
+   deb-src http://mirrors.aliyun.com/ubuntu/ bionic-backports main restricted universe multiverse
+   ```
+
+2. 更新软件索引：
+
+   ```bash
+   apt-get update
+   ```
+
+3. 安装依赖
+
+   ```bash
+   sudo apt install apt-transport-https ca-certificates curl software-properties-common
+   ```
+
+4. 安装GPG证书
+
+   ```bash
+   curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg | sudo apt-key add -
+   ```
+
+5. 添加docker软件信息
+
+   ```bash
+   sudo add-apt-repository "deb [arch=amd64] https://mirrors.aliyun.com/docker-ce/linux/ubuntu $(lsb_release -cs) stable"
+   ```
+
+6. 更新并安装docker-ce
+
+   ```bash
+   sudo apt-get  update
+   sudo apt-get  install docker-ce
+   ```
+
+7. 检测安装是否成功：`docker version`
+
+### 部署nginx
+
+1. 下载镜像：`docker pull nginx`
+
+2. 查看本地镜像：`docker images`
+
+3. 运行镜像并复制默认文件
+
+   ```bash
+   docker run --name mynginx -d nginx
+   # 创建主机挂载配置文件
+   mkdir -p ~/i/apps/nginx/{conf,conf.d,html,logs}
+   # 复制默认配置
+   docker cp mynginx:/etc/nginx/nginx.conf ~/docker-nginx/apps/nginx/conf/nginx.conf
+   docker cp mynginx:/etc/nginx/conf.d/default.conf ~/docker-nginx/apps/nginx/conf.d/default.conf
+   docker cp mynginx:/usr/share/nginx/html/index.html ~/docker-nginx/apps/nginx/html/index.html
+   ```
+
+   * usr/share/nginx/html/index.html    默认的入口文件，html文件可以放到html这个目录；
+   * logs  查看日志的文件，以后nginx错误日志可以直接在这里查看
+   * conf.d  配置conf文件的地方
+
+4. 停止删除容器：
+
+   ```bash
+   docker stop mynginx
+   docker rm -f mynginx
+   ```
+
+5. 生成启动文件，记得首先切换到docker-nginx目录（复制配置的目录）
+
+   ```bash
+   cat <<EOF > start.sh
+   #!/bin/bash
+   NGINX_DIR=`pwd`
+   docker stop mynginx
+   docker rm mynginx
+   docker run -d \\
+       --restart always \\
+       -p 80:80 \\
+       --name mynginx \\
+       -v \${NGINX_DIR}/html:/usr/share/nginx/html \\
+       -v \${NGINX_DIR}/conf/nginx.conf:/etc/nginx/nginx.conf \\
+       -v \${NGINX_DIR}/conf.d:/etc/nginx/conf.d \\
+       -v \${NGINX_DIR}/logs:/var/log/nginx \\
+       nginx
+   EOF
+   ```
+
+   如果需要映射其他文件，可以直接在-v后面添加参数即可
+
+   * `-d`  后台运行容器
+   * `--name` 指定容器名
+   * `-p ` 指定服务运行端口
+   * `-v` 映射目录或文件
+
+6. 启动nginx：`sh start.sh`
+
+
+
 
 ## 本地直接连接linux
 

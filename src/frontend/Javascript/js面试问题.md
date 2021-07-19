@@ -78,13 +78,12 @@ add(1)(2)(4)(5) //12
 ```js
 function add(a){
     function sum(b){
-        a = a + b
-        return sum
+        return add(a + b)
     }
-    sum.toString = function(){
-        return a
+    sum.valueOf = sum.toString = function() {
+        return a;
     }
-    return sum
+    return sum;
 }
 ```
 

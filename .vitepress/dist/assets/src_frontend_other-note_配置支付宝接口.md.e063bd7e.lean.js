@@ -1,0 +1,1 @@
+import{o as E,c as t,d as i}from"./app.1237ae02.js";const e='{"title":"配置支付宝接口","description":"","frontmatter":{},"relativePath":"src/frontend/other-note/配置支付宝接口.md","lastUpdated":1615699077555}',p={},a=i('',25);p.render=function(i,e,p,n,A,l){return E(),t("div",null,[a])};export default p;export{e as __pageData};
