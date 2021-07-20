@@ -27,11 +27,11 @@ module.exports = {
 		['script', {}, shell.cat(resolve('./share/hm.js'))]
 	],
 	themeConfig:{
-		repo: 'heny/h-note',
-		repoLabel: 'GitHub',
+		repo: 'https://gitee.com/hnys/vite-note',
+		repoLabel: 'Gitee',
 		docsBranch: 'master',
 		editLinks: true,
-		editLinkText: '在GitHub上编辑此页',
+		editLinkText: '在Gitee上编辑此页',
 		lastUpdated: '上次更新：', // 前缀使用
 		algolia: {
 			// apiKey: '5afb4b8f5b191b92841aed8afa044013',

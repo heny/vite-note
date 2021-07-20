@@ -1,0 +1,1 @@
+import{o as e,c as r,d as t}from"./app.0bfd9210.js";const a='{"title":"未学知识","description":"","frontmatter":{},"relativePath":"src/frontend/other-note/未学知识.md","lastUpdated":1615699077554}',o={},n=t('',2);o.render=function(t,a,o,l,i,s){return e(),r("div",null,[n])};export default o;export{a as __pageData};

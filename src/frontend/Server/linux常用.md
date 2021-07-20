@@ -143,6 +143,92 @@
 
 
 
+## ranger
+
+> ranger 一个文件管理器，终端最好用的文件管理器，可以直接进github了解
+>
+> github：[https://github.com/ranger/ranger](https://github.com/ranger/ranger)
+
+### 安装ranger
+
+1. 更新存储库：`sudo apt-get update -y`
+
+2. 安装make：`sudo apt-get install make`
+
+3. 下载ranger资源库：
+
+   ```bash
+   git clone https://github.com/hut/ranger.git
+   ```
+
+4. 安装ranger，安装之后直接运行`ranger`即可查看
+
+   ```bash
+   cd ranger
+   sudo make install
+   ranger
+   ```
+
+5. 复制ranger配置文件
+
+   ```bash
+   ranger --copy-config=all
+   ```
+
+   复制之后去`~/.config/ranger`查看即可
+
+### ranger快捷键
+
+* ranger操作
+  * q    退出
+  * shift + s  进入当前目录(会退出当前ranger)
+  * zh     显示隐藏文件
+  * zp     打开文件预览
+  * zP     打开目录预览
+
+* 文件操作
+
+  * cw  重命名文件
+  * A   在当前名称基础上重命名
+  * yy   复制文件
+  * dd  剪切文件
+  * pp   粘贴文件
+  * dD  删除文件
+
+* 文件选择
+
+  * space  多选
+  * v    反选/全选
+  * /  搜索(tab切换下一个)
+  * du   显示大小
+
+* 书签
+
+  * m    新建书签    (按下之后随便按一个键保留当前书签名字)
+  * `     打开书签
+  * um    删除书签  (之后按书签名字即可)
+
+* 标签
+
+  * gn / ctrl + n   新建标签
+  * tab    切换标签
+  * gc     关闭标签
+
+* 文件排序
+
+  * on     根据文件名
+  * oc      根据改变时间
+  * os      根据文件大小
+  * ot       根据后缀名
+  * oa       根据访问时间
+  * om      根据修改进行排序
+
+  
+
+
+
+
+
 
 ## 本地直接连接linux
 
