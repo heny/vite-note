@@ -60,7 +60,7 @@ sh -c "$(curl -fsSL https://gitee.com/pocmon/ohmyzsh/raw/master/tools/install.sh
 
 终端输入：vim ~/.zshrc， 这里可以配置主题，可以去github找自己喜欢的主题，主题集地址：https://github.com/ohmyzsh/ohmyzsh/wiki/themes
 
-![img](https://cdn.nlark.com/yuque/0/2021/png/494449/1622012111154-29f2e0d2-8d79-4234-9358-b178a2e8c50a.png)
+![img](http://notecdn.heny.vip/images/mac%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7_01.png)
 
 
 
@@ -70,11 +70,11 @@ sh -c "$(curl -fsSL https://gitee.com/pocmon/ohmyzsh/raw/master/tools/install.sh
 
 下面的brew为代码高亮，代码没有输出完，显示的switchhost为代码补齐，只有输过的内容才会补齐
 
-![img](https://cdn.nlark.com/yuque/0/2021/png/494449/1622010955648-705acef7-137f-4bc6-9a29-c4e6b23ef016.png)
+![img](http://notecdn.heny.vip/images/mac%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7_02.png)
 
 1. 打开vim ~/.zshrc，编辑最后两行，将**高亮**跟**补齐**开起来，并修改source的文件夹为~/zsh-plugins，配置补齐之后可能不会显示出来，下面的可以将修改提示字符颜色打开
 
-![img](https://cdn.nlark.com/yuque/0/2021/png/494449/1622009162658-6a53735a-d3fa-4331-aa0b-eb9433dfa11f.png)
+![img](http://notecdn.heny.vip/images/mac%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7_03.png)
 
 
 
@@ -102,7 +102,7 @@ git clone git://github.com/altercation/solarized.git
 
 1. 依次进入：Profiles - colors - color presets ，选择solarized主题即可
 
-![img](https://cdn.nlark.com/yuque/0/2021/png/494449/1622011342628-c03aa58f-529f-42c1-ba83-6e9b86ea8d90.png)
+![img](http://notecdn.heny.vip/images/mac%E4%BD%BF%E7%94%A8%E6%8A%80%E5%B7%A7_04.png)
 
 
 
