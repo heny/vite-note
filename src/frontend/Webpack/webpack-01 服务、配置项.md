@@ -154,12 +154,22 @@ rules: [
 
 ```js
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin') // 当需要多个css文件时, 可以复制一份;
+const MiniCssExtractPlugin1 = require('mini-css-extract-plugin') // 当需要多个css文件时, 可以复制一份;
 module.exports = {
     module: {
         rules: [
-            {test: /\.css$/, use: [MiniCssExtractPlugin.loader, 'css-loader']},
-            {test: /\.scss$/, use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']}
+            {test: /\.css$/, use: [{
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false
+            }
+          }, 'css-loader']},
+            {test: /\.scss$/, use: [{
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              esModule: false
+            }
+          }, 'css-loader', 'sass-loader']}
         ]
     },
     plugins: [
@@ -170,6 +180,7 @@ module.exports = {
     ]
 }
 ```
+
 4. 自动添加兼容前缀
 
 （1）安装：`yarn add postcss-loader autoprefixer -D`
