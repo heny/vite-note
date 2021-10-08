@@ -202,6 +202,12 @@ app.use(bodyParser.urlencoded({extended:false}));
 
 使用postman测试接口：点击params---body----x-www-form-urlencoded；
 
+以上方法已废弃，直接使用express即可
+```js
+app.use(express.json())
+app.use(express.urlencoded({extended:false}));
+```
+
 
 
 ## 七、node修改自动重启  热更新
