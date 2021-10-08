@@ -221,24 +221,23 @@ MyPlugin.install = function (Vue, options) {
 
 ```js
 import {Message as message} from 'element-ui'
-Vue.prototype.$messageTip = new Proxy(function() {}, {
+Vue.prototype.$messageTip = new Proxy(() => {}, {
   get(target, property, receiver) {
-    let _this = this;
-    return function(msg) {
-      console.log("执行了");
-      _this.apply(target, _this, [msg, property]);
+    const that = this;
+    return function (msg) {
+      that.apply(target, that, [msg, property]);
     };
   },
-  apply(target, thisBing, [msg, status]) {
-    sessionStorage["flag"] = sessionStorage["flag"] || "true";
-    if (sessionStorage["flag"] === "false") return;
-    sessionStorage["flag"] = "false";
-    message[status || "success"](msg);
-    setTimeout(_ => {
-      sessionStorage["flag"] = "true";
-      delete sessionStorage["flag"];
+  apply(_target, _thisBing, [msg, status]) {
+    sessionStorage.ELEMENT_MESSAGE_FLAG = sessionStorage.ELEMENT_MESSAGE_FLAG || 'true';
+    if (sessionStorage.ELEMENT_MESSAGE_FLAG === 'false') return;
+    sessionStorage.ELEMENT_MESSAGE_FLAG = 'false';
+    message[status || 'success'](msg);
+    setTimeout((_) => {
+      sessionStorage.ELEMENT_MESSAGE_FLAG = 'true';
+      delete sessionStorage.ELEMENT_MESSAGE_FLAG;
     }, 1500);
-  }
+  },
 });
 ```
 
@@ -248,7 +247,7 @@ Vue.prototype.$messageTip = new Proxy(function() {}, {
   * ①$messageTip.info(消息或对象)
   * ②$messageTip(消息或对象，类型)
 
-**注意：** 在入口文件的生命周期删除delete sessionStorage['flag']，否则可能会有bug；
+**注意：** 在入口文件的生命周期删除delete sessionStorage['ELEMENT_MESSAGE_FLAG']，否则可能会有bug；
 
 
 
@@ -334,7 +333,7 @@ export default {
    			return store.userInfo
    		}
    	}
-}
+   }
    ```
    
 

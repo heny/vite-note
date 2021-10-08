@@ -276,7 +276,7 @@ function format(value){
 
 >  推荐使用dayjs，和moment用法一致，但是打包更小，moment打包之后200k，dayjs打包之后2k
 
-官方网站：[dayjs中文教程](https://day.js.org/docs/zh-CN/parse/parse)
+官方网站：[dayjs中文教程](https://dayjs.gitee.io/zh-CN/)
 
 支持链式调用
 

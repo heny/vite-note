@@ -658,6 +658,19 @@ console.log(params.name)
 ```
 
 
+
+## 路由404
+
+在webpack  devServer配置
+
+```js
+historyApiFallback: true // 解决404问题
+```
+
+
+
+
+
 ## 路由其他API
 
 ### Prompt

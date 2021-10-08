@@ -681,7 +681,18 @@ if(+new Date() - lastUpdate > 10000 || !fetchData.valid) {
 }
 ```
 
+
+
+## 执行字符串的语句
+
+1. eval
+2. new Function
+3. setTimeout
+
+
+
 ## 计算百分比
+
 参数1:是要计算百分比的数组
 参数2：是数组的下标
 参数3:要保留几位小数

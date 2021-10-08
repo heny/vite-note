@@ -225,3 +225,14 @@ body {
 
 
 
+## 浏览器自动填充密码颜色
+
+```css
+:-webkit-autofill{
+    box-shadow: 0 0 0 400px #fff inset; // 设置背景颜色
+    -webkit-text-fill-color: red; //设置字体颜色
+}
+```
+
+
+

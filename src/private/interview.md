@@ -307,6 +307,22 @@ Function.prototype.myBind = function(context, ...args) {
 resolve、reject、all、race、try
 
 
+## Vue和React的区别
+1. 监听数据变化实现的原理不同    
+     vue通过getter/setter劫持，react通过比较引用 
+2. 数据流不同    
+     vue通过v-model，react通过setState/onChange 
+3. HOC和mixin   
+     vue使用的mixin方式，react使用HOC的方式
+4. 组件通信的区别    
+     vue使用provide/inject的方式隔代传值，react使用context进行隔代 
+ 5. 模板渲染方式不同    
+      react使用的是jsx，vue使用的是拓展的html语法 
+  6. vuex和redux不同    
+      vue使用dispatch和commit提交更新，this.$store直接获取，可以通过直接修改state值 
+      react使用dispatch  action的方式，需要使用connect连接组件才能获取，需要返回所有状态，不能直接返回
+
+
 
 
 ## Vue

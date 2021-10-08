@@ -389,7 +389,7 @@ import {CSSTransition} from 'react-transition-group'
 <CSSTransition
     in={flag}
     timeout={2000}
-    appear={true}
+    appear
     classNames='fade'
     unmountOnExit
     onEnter={el => el.style.color='red'}

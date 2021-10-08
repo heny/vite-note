@@ -68,6 +68,11 @@ PC端测试：点击NetWork，之后点击offline，可以测试；
 加密汉字：`escape`
 
 解密：`unescape`
+
+
+
+解码：
+
 编码ASCII to Base64:  atob
 解码Base64 to ASCII:  btoa
 

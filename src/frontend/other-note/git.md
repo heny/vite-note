@@ -29,6 +29,46 @@ ssh-keygen -t rsa -C 'heny@qq.com'   // 回车之后记得根据提示按下yes
 
 
 
+### 配置多个ssh
+
+1. 创建ssh key，名字随便写，后面地址记得修改为自己的.ssh地址，mac为~/.ssh，window为c盘下面的用户下面的.ssh
+
+   ```bash
+   ssh-keygen -t rsa -C "hny@q.com" -f ~/.ssh/id_rsa_gitlab
+   ```
+
+2. 创建一个config文件，没有后缀，编辑以下内容：
+
+   ```bash
+   # gitee
+   Host gitee.com
+   HostName gitee.com
+   PreferredAuthentications publickey
+   IdentityFile ~/.ssh/id_rsa.gitee
+   
+   # github
+   Host github.com
+   HostName github.com
+   PreferredAuthentications publickey
+   IdentityFile ~/.ssh/id_rsa.github
+   
+   # gitlab
+   Host gitlab.com
+   HostName gitlab.com
+   PreferredAuthentications publickey
+   IdentityFile ~/.ssh/id_rsa.gitlab
+   ```
+
+3. 最后进行测试连通性
+
+   ```bash
+   ssh -T git@gitlab.com
+   ```
+
+   
+
+
+
 ## 二、项目初始化
 
 1. 在git官网新建一个git仓库之后；
@@ -97,30 +137,6 @@ git tag -a v0.1 -m '部署包版本名'
 
 
 
-### commit 提交消息类型
-
-- build：主要目的是修改项目构建系统(例如 glup，webpack，rollup 的配置等)的提交
-- ci：主要目的是修改项目继续集成流程(例如 Travis，Jenkins，GitLab CI，Circle等)的提交
-- docs：文档更新
-- feat：新增功能
-- fix：bug 修复
-- perf：性能优化
-- refactor：重构代码(既没有新增功能，也没有修复 bug)
-- style：不影响程序逻辑的代码修改(修改空白字符，补全缺失的分号等)
-- test：新增测试用例或是更新现有测试
-- revert：回滚某个更早之前的提交
-- chore：不属于以上类型的其他类型
-
-
-
-### 重复上次提交信息
-
-`git commit --amend --no-edit`； 一般用于上次commit忘记修改的文件了；
-
-
-
-
-
 ### 清理本地分支
 
 ```bash
@@ -147,7 +163,71 @@ git branch | grep -v 'master' | xargs git branch -D
 
 
 
-### rebase
+### gitlab分支介绍
+
+所有分支针对`master`做比较，下图中，左边为落后`master`分支数量，右边为超前`master`分支数量；
+
+![image-20200426124513175](https://notecdn.heny.vip/images/git-12.png)
+
+
+
+
+
+### 删除中间的版本
+
+```bash
+git rebase -i commit-id
+```
+
+执行命令之后会弹出来一个vim编辑器，将要删除的版本的`pick`改为`drop`，之后保存，之后执行`git push -f -u`强制推送远程
+
+
+
+
+
+
+
+### 常见分支问题
+
+1. ignoring broken ref refs问题
+
+    * 找到.git目录下refs/remotes/origin目录（子模块的这个目录是在主模块的.git目录下，因为子模块没有.git目录）
+    * 删除里面的HEAD文件或者所有文件
+    * 然后运行git fetch –all
+
+
+
+## 四、commit
+
+### commit 提交消息类型
+
+- build：主要目的是修改项目构建系统(例如 glup，webpack，rollup 的配置等)的提交
+- ci：主要目的是修改项目继续集成流程(例如 Travis，Jenkins，GitLab CI，Circle等)的提交
+- docs：文档更新
+- feat：新增功能
+- fix：bug 修复
+- perf：性能优化
+- refactor：重构代码(既没有新增功能，也没有修复 bug)
+- style：不影响程序逻辑的代码修改(修改空白字符，补全缺失的分号等)
+- test：新增测试用例或是更新现有测试
+- revert：回滚某个更早之前的提交
+- chore：不属于以上类型的其他类型
+
+
+
+### 重复上次提交信息
+
+`git commit --amend --no-edit`； 一般用于上次commit忘记修改的文件了；
+
+
+
+
+
+
+
+## 四、常用指令
+
+### git rebase
 
 > git rebase会将当前分支的提交复制到指定的分支之上；
 
@@ -182,52 +262,9 @@ rebase冲突之后：`git rebase --continue`；因为之前的rebase其实只完
 
 
 
-**删除中间的版本**
-
-```bash
-git rebase -i commit-id
-```
-
-执行命令之后会弹出来一个vim编辑器，将要删除的版本的`pick`改为`drop`，之后保存，之后执行`git push -f -u`强制推送远程
 
 
-
-
-
-
-
-### 常见分支问题
-
-1. 在非目的分支上做了修改，想切换回目的分支
-
-（1）无论有没有添加到暂存区都行（暂存区就是有commit代码）
-
-```bash
-git checkout -b new_branch # 建立临时分支, 这样改动会被带到新分支
-git stash # 保存在栈区
-git checkout 目标分支
-git pull # 将代码拉下来, 避免解决冲突
-git stash pop # 将栈区内容取出放到当前分支
-```
-（2）已提交到本地仓库
-
-```bash
-git reset HEAD^ # 撤销最近一次提交
-```
-2. ignoring broken ref refs问题
-   * 找到.git目录下refs/remotes/origin目录（子模块的这个目录是在主模块的.git目录下，因为子模块没有.git目录）
-   * 删除里面的HEAD文件或者所有文件
-   * 然后运行git fetch –all
-   
-3. 分支介绍
-
-   所有分支针对`master`做比较，下图中，左边为落后`master`分支数量，右边为超前`master`分支数量；
-
-   ![image-20200426124513175](https://notecdn.heny.vip/images/git-12.png)
-
-
-
-## 四、暂存操作
+### git stash
 1. 为什么需要暂时：
    * （1）当我们写代码时，发现写错分支了，此时需要将代码保存到暂存区，切换到正确的分支再拉下来
    * （2）当我们修改了一些文件时，想查看修改的文件是否造成了其他问题，可以先保存在暂存区，测试完再拉下来
@@ -252,6 +289,27 @@ git stash pop # 拉下来
 
 
 注意：新增的文件，直接执行`stash`是不会被存储的，如果有新增文件的时候，需要首先执行git add添加新文件到git库中，不需要提交和`commit`，然后再执行`git stash`即可；
+
+
+
+### git cherry-pick
+
+如果需要合并所有的内容，直接使用merge即可，如果只需要部分内容，则使用`git cherry-pick`，需要切换到想要cherry-pick的分支
+
+* 合并单个：`git cherry-pick commitId`  如果跟的是分支名，表示合并分支最新提交
+* 合并多个：`git cherry-pick commitIdA commitIdB`
+* 合并连续不包含A：`git cherry-pick commitIdA..commitIdB`
+* 合并连续包含A：`git cherry-pick commitIdA^..commitIdB`
+
+**其他操作**
+
+* 如果合并过程中发生冲突，待解决冲突之后，执行`git add .`，之后执行`git cherry-pick --continue`
+* 冲突之后放弃合并：`git cherry-pick --abort`
+* 冲突之后直接退出：`git cherry-pick --quit`
+
+
+
+参考地址：[阮一峰 git cherry-pick 教程](http://www.ruanyifeng.com/blog/2020/04/git-cherry-pick.html)
 
 
 
@@ -301,6 +359,28 @@ git pull  # 重新拉取代码
 
 
 
+### 添加多个仓库地址
+
+配置远程仓库：`git remote add origin url`
+
+如果不行重命名也可以：`git remote add originOther url`
+
+一次推送到所有仓库：`git push --all` 
+
+**set-url **
+
+设置新的url地址：`git remote set-url origin url`
+
+添加一个新的url地址：`git remote set-url --add origin url`
+
+删除一个url地址：`git remote set-url --delete origin url`
+
+使用set-url添加的新的地址，在push时会同时push两个
+
+
+
+
+
 ### 切换远程仓库地址
 
 ```bash
@@ -327,12 +407,17 @@ git push --mirror git地址  # 直接push到新的项目仓库
 ## 七、git常见问题
 ### 描述出错怎么修改描述
 
-1. `git commit -m --amend -m '新的记录'`
+**第一种方法：**`git commit --amend`，之后直接修改描述保存即可
+
+**第二种方法：**
+
 2. 通过git log找到上一个提交的commit_id
 
 ![image](https://notecdn.heny.vip/images/git-02.png)
 
-3. 通过：git reset --soft commit_id，执行一遍，之后就可以重新git commit了；
+2. 通过：git reset --soft commit_id，执行一遍，之后就可以重新git commit了；
+
+
 
 ### 项目名字被修改，地址被更换
 
@@ -345,6 +430,8 @@ git remote rm origin # 删除跟踪远程
 git remote add origin url # 重新配置远程地址
 ```
 
+
+
 ### 放弃本地修改
 
 没有`git add .`的情况
@@ -356,6 +443,43 @@ git remote add origin url # 重新配置远程地址
 
 * 放弃单个文件：`git reset HEAD readme.md`
 * 放弃所有：`git reset HEAD .`
+
+
+
+### 修改错分支
+
+1. 没有提交的情况
+
+   * 无论有没有添加到暂存区都行（暂存区就是有commit代码）
+
+     ```bash
+     git checkout -b new_branch # 建立临时分支, 这样改动会被带到新分支
+     git stash # 保存在栈区
+     git checkout 目标分支
+     git pull # 将代码拉下来, 避免解决冲突
+     git stash pop # 将栈区内容取出放到当前分支
+     ```
+
+2. 已提交
+
+   * 当前分支也需要内容
+
+     ```bash
+     git checkout targetBranch
+     git cherry-pick commitId
+     ```
+
+   * 当前分支不需要内容
+
+     ```bash
+     git reset HEAD^ # 撤销最近一次提交
+     ```
+
+     
+
+   
+
+
 
 
 
@@ -519,3 +643,4 @@ X: 未知状态(很可能是遇到git的bug了，你可以向git提交bug report
 ## 参考链接
 
 * [您必须知道的Git分支开发规范](https://www.cnblogs.com/hezhiying/p/9292314.html)
+
