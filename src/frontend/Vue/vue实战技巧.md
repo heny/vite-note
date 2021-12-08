@@ -150,9 +150,8 @@ MyPlugin.install = function (Vue, options) {
    ```vue
    <template>
      <div class=''>
-       <el-dialog :visible.sync='visible' :show-close='false'>
+       <el-dialog :visible.sync='visible'>
          <template #title>
-           <svg-icon name='ic_question' class='ic_question' />
            <span class='deleteDia__title--txt'>{{title}}</span>
          </template>
          <slot />
@@ -197,7 +196,7 @@ MyPlugin.install = function (Vue, options) {
    
    </style>
    ```
-
+   
 2. 使用方法
 
    ```html
@@ -353,4 +352,8 @@ methods: {
 ```
 
 
+
+## 渲染字符串
+
+github地址：[https://github.com/alexjoverm/v-runtime-template](https://github.com/alexjoverm/v-runtime-template)
 

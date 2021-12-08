@@ -12,7 +12,7 @@
 * 单独导出：`export const name = 'bruce'`
 * 按需导出：`export {age, name, sex}`
 * 改名导出：`export {name as newName}`
-* 从文件导出：`export {} from './user'`（常用于index.js导入其他的文件并导出，不能默认导出,需要加{}）
+* 从文件导出：`export { default as User } from './user'`（常用于index.js导入其他的文件并导出，不能默认导出,需要加{}）
 
 
 

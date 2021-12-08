@@ -159,7 +159,7 @@ beforeMount、mounted
 
 beforeUpdate、updated
 
-beforeDestory、destoryed
+beforeDestroy、destroyed
 
 activeted、deactiveted
 

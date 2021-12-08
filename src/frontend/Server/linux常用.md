@@ -348,8 +348,82 @@ rm -rf build.gz
 
 
 
-
 ## node项目保持后台运行
+
+### pm2
+
+文档：[https://pm2.keymetrics.io/docs/usage/quick-start/](https://pm2.keymetrics.io/docs/usage/quick-start/)
+
+1. 全局安装：`npm install pm2@latest -g`
+
+2. 基本命令：
+
+   * 启动：`pm2 start app.js`
+   * 重启：`pm2 restart app_name`
+   * 停止：`pm2 stop app_name`
+   * 删除：`pm2 delete app_name` 
+   * 应用列表：`pm2 [list|ls|status]`
+   * 查看日志：`pm2 logs`
+   * 清空所有日志文件：`pm2 flush`
+   * 查看实时仪表板：`pm2 monit`
+   * web界面查看仪表板：`pm2 plus`  推荐使用
+
+3. pm2 支持的一些参数
+
+   ```bash
+   # 指定app_name, pm2一般通过app_name管理应用
+   --name <app_name> 
+   
+   # 往script脚本传递参数
+   -- arg1 arg2 arg3
+   
+   # 文件改变自动重启
+   --watch
+   # 忽略文件
+   --watch --ignore-watch="node_modules"
+   
+   # 指定日志文件
+   --log <log_path>
+   
+   # 日志以时间为前缀, 默认日志不带前缀
+   --time
+   ```
+
+   常用参数：` pm2 start app.js --time --name myService -- -p 8866`
+
+   在启动时建议直接指定appName，下次启动即可直接输入app_name启动
+
+4. 创建生态系统文件配置，下次直接启动文件可同时启动多个node应用
+
+   命令：`pm2 ecosystem`
+
+   执行之后会生成`ecosystem.config.js`文件：
+
+   ```bash
+   module.exports = {
+     apps : [{
+       name: "app",
+       script: "./app.js",
+       env: {
+         NODE_ENV: "development",
+       },
+       env_production: {
+         NODE_ENV: "production",
+       }
+     }, {
+        name: 'worker',
+        script: 'worker.js'
+     }]
+   }
+   ```
+
+   启动时：`pm2 start ecosystem.config.js`
+
+   
+
+### forever
+
+forever也是一种保持后台运行的插件，建议使用pm2就可以了，监听更方便
 
 1. 全局安装：`npm install forever -g`
 

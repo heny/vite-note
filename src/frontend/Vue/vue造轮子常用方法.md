@@ -102,7 +102,7 @@ const env = process.env.NODE_ENV
 module.exports = {
     publicPath: '/', // 部署路径 以当前目录
     outputDir: 'dist', // 输出文件目录(默认值dist)
-    lintOnSave: 'warning', // eslint是否在保存的时候检查
+    lintOnSave: 'warning', // eslint是否在保存的时候检查, eslint出错不会导致编译失败
     chainWebpack: config => {
         // 配置别名
         config.resolve.alias
@@ -565,7 +565,7 @@ component: () => import('src/views/home')
 1. 使用webpackChunkName定义懒加载的名字
 
    ```js
-   import(/* webpackChunkName: home*/ 'src/views/home')
+   import(/* webpackChunkName: "home"*/ 'src/views/home')
    ```
 
 2. 使用[request]变量，可以解决循环import的找不到名字

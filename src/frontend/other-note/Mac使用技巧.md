@@ -16,7 +16,7 @@
 
 使用国内的cdn地址安装
 
-```
+```bash
 /bin/zsh -c "$(curl -fsSL https://gitee.com/cunkai/HomebrewCN/raw/master/Homebrew.sh)"
 ```
 
@@ -28,7 +28,7 @@
 
 ### 安装git
 
-```
+```bash
 brew install git
 ```
 
@@ -87,13 +87,11 @@ git clone https://github.com/zsh-users/zsh-autosuggestions.git
 
 
 
-### 
-
 #### 配置solarized主题
 
 1. 克隆主题
 
-```
+```bash
 git clone git://github.com/altercation/solarized.git
 ```
 
@@ -128,7 +126,7 @@ set background=dark
 colorscheme solarized
 ```
 
-## 
+
 
 ### 配置nvm
 
@@ -136,22 +134,43 @@ nvm用来管理node版本
 
 1. 安装nvm
 
-```bash
-brew install nvm
-```
+   ```bash
+   export NVM_DIR="$HOME/.nvm" && (
+     git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
+     cd "$NVM_DIR"
+     git checkout `git describe --abbrev=0 --tags --match "v[0-9]*" $(git rev-list --tags --max-count=1)`
+   ) && \. "$NVM_DIR/nvm.sh"
+   ```
 
-1. 打开访达，输入 command + shift + g ， 输入/usr/local/Cellar，找到nvm目录，将nvm里面所有的内容复制到~/.nvm 里面，如果没有~/.nvm文件夹可以直接创建
+3. 配置vim ~/.zshrc，将下面内容添加进去即可
 
+   ```bash
+   export NVM_DIR="$HOME/.nvm"
+   [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+   [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+   ```
 
+4. 切换源
 
-1. 配置vim ~/.zshrc，将下面内容添加进去即可
+   ```bash
+   export NVM_NODEJS_ORG_MIRROR=http://npm.taobao.org/mirrors/node
+   export NVM_IOJS_ORG_MIRROR=http://npm.taobao.org/mirrors/iojs
+   ```
 
-```bash
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh" # This loads nvm
-```
+5. 更新配置文件或者重启终端都可以生效
 
-1. 重启终端即可；
+   ```bash
+   # 更新配置文件
+   source ~/.zshrc
+   ```
+
+   配置文件根据终端不同使用的文件也不同
+
+   bash： `source ~/.bashrc`
+
+   zsh：`source ~/.zshrc`
+
+   ksh：`. ~/.profile`
 
 
 

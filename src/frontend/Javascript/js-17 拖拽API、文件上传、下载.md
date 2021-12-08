@@ -362,6 +362,10 @@ document.body.appendChild(script)
 
 
 
+拖拽组件库：`react-dnd`
+
+
+
 ## 五、下载
 
 1. 创建a标签，之后给a标签添加download属性；
@@ -485,7 +489,7 @@ function doSave(value, name, type) {
 ### 使用原生
 
 ```js
-const copyFun = text => {
+function copyText(text) {
   let textArea = document.createElement('textarea')
   textArea.value = text
   document.body.appendChild(textArea)
@@ -495,6 +499,32 @@ const copyFun = text => {
   // 复制成功
 }
 ```
+
+
+
+### 另一种方法
+
+[https://github.com/feross/clipboard-copy](https://github.com/feross/clipboard-copy)
+
+```js
+function copyText(text) {
+    var span = document.createElement('span')
+    span.textContent = text
+    document.body.appendChild(span)
+    
+    var selection = window.document.getSelection()
+    var range = window.document.createRange()
+    range.selectNode(span)
+    
+    selection.removeAllRanges()
+    selection.addRange(range)
+    window.document.execCommand('copy')
+    
+    document.body.removeChild(span)
+}
+```
+
+
 
 
 
@@ -670,5 +700,4 @@ github地址： [https://github.com/WangYuLue/image-conversion](https://github.c
 ## 九、h5唤起客户端
 
 地址：[https://github.com/suanmei/callapp-lib](https://github.com/suanmei/callapp-lib)
-
 
