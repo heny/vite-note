@@ -247,6 +247,10 @@ Array.from({length: 3}).reduce(async (promise, i, index) => {
     }, 1000)
   })
 }, Promise.resolve())
+
+[...promise].reduce((promise, next) => promise.then(() => {
+    // here start fetch
+}), Promise.resolve())
 ```
 
 
@@ -304,5 +308,4 @@ yield表达式只能generator函数使用，yield*函数名，可以遍历另外
 generator结合ajax
 
 ![image](https://notecdn.heny.vip/images/es6-04%20解决异步问题-03.png)
-
 

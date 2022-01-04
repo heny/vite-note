@@ -1,4 +1,4 @@
-import DefaultTheme from '../theme-default'
+import DefaultTheme from 'vitepress/dist/client/theme-default'
 import Comment from './components/Comment.vue';
 
 import './styles/index.css'

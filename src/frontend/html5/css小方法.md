@@ -947,3 +947,32 @@ methods: {
     background-color: red;
 }
 ```
+
+
+
+## 仅在IE下生效样式
+
+**小于IE9以下样式**
+
+```html
+<!--[if IE]>
+  <link rel="stylesheet" type="text/css" href="all-ie-only.css" />
+<![endif]-->
+```
+
+**IE10或IE11**
+
+```css
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+     /* IE10+ CSS styles go here */
+}
+```
+
+**微软Edge12可用**
+
+```css
+@supports (-ms-accelerator:true) {
+  /* IE Edge 12+ CSS styles go here */
+}
+```
+

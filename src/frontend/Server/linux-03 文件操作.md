@@ -231,4 +231,6 @@ tar -zcvf build.gz --exclude=node_modules *
     `grep -iv [指定字串] [文件]`     -i不区别大小写 -v排队指定字串
 
     `grep Vue app.js` 在app.js中查找Vue字符串;
+    
+    文档：[linux中grep命令的用法](https://www.cnblogs.com/flyor/p/6411140.html)
 

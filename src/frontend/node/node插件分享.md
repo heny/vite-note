@@ -221,7 +221,9 @@ async function cloneGit(href) {
 
 
 
-## 与用户交互键盘输入的库 Inquirer
+## 与用户交互键盘输入的库
+
+**[Inquirer](https://www.npmjs.com/package/inquirer)**
 
 git仓库地址：[https://github.com/SBoudrias/Inquirer.js](https://github.com/SBoudrias/Inquirer.js)
 
@@ -231,25 +233,56 @@ git仓库地址：[https://github.com/SBoudrias/Inquirer.js](https://github.com/
 
 
 
+**[prompts](https://www.npmjs.com/package/prompts)**
+
+地址：[prompts](https://www.npmjs.com/package/prompts)
+
+安装：`yarn add prompts`
+
+demo地址：[https://github.com/terkelg/prompts/blob/master/example.js](https://github.com/terkelg/prompts/blob/master/example.js)
+
+
+
+
+
 ## 添加脚手架命令
+
+**[commander](https://www.npmjs.com/package/commander)**
 
 可以自定义输入命令；
 
-安装：yarn add commander
+安装：`yarn add commander`
 
 官方文档：[https://github.com/tj/commander.js/blob/master/Readme_zh-CN.md](https://github.com/tj/commander.js/blob/master/Readme_zh-CN.md)
 
 
 
+**[minimist](https://www.npmjs.com/package/minimist)**
+
+解析`process.argv`工具
+
+安装：`yarn add minimist`
+
+文档：[minimist](https://www.npmjs.com/package/minimist)
+
+```js
+var argv = require('minimist')(process.argv.slice(2));
+console.log(argv);
+```
+
+
+
+
+
 ## 获取文件列表路径
 
-安装：`yarn add globby`
+安装：`yarn add fast-glob` 
 
 通过fs-extra更方便的递归复制文件夹，例子：
 
 ```js
 const fs = require('fs-extra')
-const glob = require('globby')
+const glob = require('fast-glob')
 
 function toDest(file) {
   return file.replace(/^src\//, 'dist/')
@@ -259,5 +292,23 @@ function toDest(file) {
 glob.sync('template/**/!(*.ts|package.json)').forEach((file) => {
   fs.copy(file, toDest(file))
 })
+```
+
+或者使用`globby`
+
+
+
+## 控制台输出颜色
+
+**[chalk](https://www.npmjs.com/package/chalk)**
+
+```js
+```
+
+
+
+**[kolorist](https://www.npmjs.com/package/kolorist)**
+
+```js
 ```
 

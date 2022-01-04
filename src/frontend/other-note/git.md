@@ -231,7 +231,7 @@ git rebase -i commit-id
 
 > git rebase会将当前分支的提交复制到指定的分支之上；
 
-`git rebase master`    将一个分支的修改融入到另一个分支；
+`git rebase master`    将master分支的commit合并到当前分支上
 
 rebase可以保留一个漂亮的、线性的git历史记录；
 
@@ -261,6 +261,41 @@ rebase冲突之后：`git rebase --continue`；因为之前的rebase其实只完
 参考文献：[Git rebase使用](https://www.jianshu.com/p/f7ed3dd0d2d8)
 
 
+
+**不关心内容，自己合并冲突，递归解决**
+
+```bash
+git rebase -s recursive -X theirs <branch>
+```
+
+之后rebase冲突，只需要执行以下命令继续解决：
+
+```bash
+git add .
+git rebase --continue
+```
+
+
+
+**产生分叉的条件**
+
+1. 当push时，提示需要拉代码，这时pull之后再push，就会产生分叉，解决办法就是pull之后执行`git rebase`之后再提交即可
+2. 基于master拉的dev分支，master提交了新的代码之后再合并dev分支，这时master有个单独的commit，就会产生分叉了，解决办法就是当merge分支代码时，如果出现分叉，尽量使用rebase，而不是使用merge
+
+
+
+**分叉时rebase的使用**
+
+当出现分叉时，哪个分支代码落后，就在哪个分支rebase最新的分支
+
+如果代码发生冲突，则会在rebase时，让你解决，
+
+* 冲突解决没有更改：`git rebase --skip`
+* 冲突解决有更改：使用`git add .` and `git rebase --continue`
+
+冲突解决完成之后，并使用 `git push -f`强制推送，此时的强制推送是安全的；
+
+如果没有出现分叉，使用merge或者rebase都是一样的
 
 
 

@@ -11,6 +11,7 @@ const resolve = (...args) => {
 createREADME('frontend')
 
 module.exports = {
+	base: '/',
 	title: '前端学习圈',
 	description: 'vitePress生成的博客网站',
 	head: [

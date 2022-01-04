@@ -208,3 +208,72 @@ type Obj = typeof obj; // {name: string, age: number}
 
 常用的映射类型：`Readonly`、`Partial`、`Pick`、`Record`、`ReturnType`
 
+
+
+## 常量对象
+
+```ts
+const obj = <const>{ name: 'hny' };
+// or
+const obj = {name: 'hny'} as const;
+
+// 这样定义之后类型为常量
+const arr = ['uat', 'pre'] as const;
+```
+
+
+
+
+
+## 值转类型
+
+### 数组转联合类型
+
+```ts
+const arr = <const>['uat', 'pre', 'prod'];
+type Keys = typeof arr[number]; // 'uat' | 'pre' | 'prod'
+```
+
+
+
+### 数组对象键转联合
+
+```ts
+const obj = [
+  { name: 'uat' },
+  { name: 'sit' },
+] as const;
+
+type Obj = typeof obj[number]['name']; // 'uat' | 'sit'
+```
+
+
+
+### 对象键转联合
+
+```ts
+const obj = {
+    env: 'uat',
+    build: 'sit'
+}
+
+type Obj = keyof typeof obj; // 'env' | 'build'
+```
+
+
+
+### 对象键值转联合
+
+```ts
+const obj = {
+  env: 'uat',
+  build: 'sit'
+} as const;
+
+type Obj = typeof obj[keyof typeof obj]; // 'uat' | 'sit'
+```
+
+
+
+
+
