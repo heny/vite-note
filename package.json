@@ -12,7 +12,7 @@
     "s": "vitepress serve ./",
     "push": "node scripts/publish.js",
     "deploy": "ssh root@1.15.21.6 'sh ~/docker-nginx/deploy_sh/vite-note.sh'",
-    "p": "yarn push -y && yarn deploy"
+    "p": "yarn build && yarn deploy"
   },
   "devDependencies": {
     "console-color-mr": "^2.0.1",
