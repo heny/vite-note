@@ -135,6 +135,21 @@ app.use((err,req,res,next)=>{
 
 
 
+## 获取本地语言
+
+根据本地语言不同，返回对应的语言，比如：zh-CN、en-US
+
+安装：`yarn add os-locale@5.0.0`
+
+```js
+const osLocale = require('os-locale');
+const locale = osLocale.sync();
+```
+
+
+
+
+
 ## shelljs
 
 > Shelljs是Node.js下的脚本语言解析器，具有丰富且强大的底层操作(Windows/Linux/OS X)权限。Shelljs本质就是基于node的一层命令封装插件，让前端开发者可以不依赖linux也不依赖类似于cmder的转换工具，而是直接在我们最熟悉不过的javascript代码中编写shell命令实现功能。
@@ -257,6 +272,8 @@ demo地址：[https://github.com/terkelg/prompts/blob/master/example.js](https:/
 
 
 
+
+
 **[minimist](https://www.npmjs.com/package/minimist)**
 
 解析`process.argv`工具
@@ -300,15 +317,40 @@ glob.sync('template/**/!(*.ts|package.json)').forEach((file) => {
 
 ## 控制台输出颜色
 
-**[chalk](https://www.npmjs.com/package/chalk)**
+* **[chalk](https://www.npmjs.com/package/chalk)**
+* **[kolorist](https://www.npmjs.com/package/kolorist)**
+
+不依赖插件也可以自己手动写
 
 ```js
+const colors = {
+  black: '30',
+  red: '31',
+  green: '32',
+  yellow: '33',
+  blue: '34',
+  magenta: '35',
+  cyan: '36',
+  white: '37',
+  default: '36',
+}
+function log(str, color){
+    const n = colors[color] || colors.default;
+    return `\x1b[${n}m${str}\x1b[0m`;
+}
+console.log(log('hello', 'yello'), log('yes', 'red'))
 ```
 
 
 
-**[kolorist](https://www.npmjs.com/package/kolorist)**
+## 控制台输出进度
 
-```js
-```
+* [ora](https://github.com/sindresorhus/ora)
+* [progress](https://www.npmjs.com/package/progress)
+
+
+
+
+
+
 

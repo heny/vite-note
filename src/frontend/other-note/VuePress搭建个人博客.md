@@ -225,7 +225,7 @@ Danger zone, do not proceed
 
 代码块中的行高亮
 
-```markdow
+```markdown
 ​``` js{4}  //第四行高亮
 ```
 
