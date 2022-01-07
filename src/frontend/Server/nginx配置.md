@@ -12,6 +12,7 @@ server {
     
     # 监听请求路径
     location / {
+        # return 503; # 可以直接指定返回的code
         # 查找目录
         root /source;
         # 默认查找

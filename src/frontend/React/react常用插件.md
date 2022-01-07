@@ -425,4 +425,5 @@ import {CSSTransition} from 'react-transition-group'
 * [SVG图标库](https://github.com/FortAwesome/react-fontawesome)
 * [图片裁剪工具](https://github.com/react-cropper/react-cropper) 方便框选大小，头像经常使用
 * [memoize-one](https://github.com/alexreardon/memoize-one) 对于react函数组件特别方便，记忆函数相同参数时，将直接返回上一次的执行结果
+* [mitt](https://github.com/developit/mitt) eventBus 事件监听
 

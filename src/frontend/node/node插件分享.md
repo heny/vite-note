@@ -350,6 +350,19 @@ console.log(log('hello', 'yello'), log('yes', 'red'))
 
 
 
+## 模板工具
+
+* [nunjucks](https://mozilla.github.io/nunjucks/)
+* [ejs](https://ejs.bootcss.com/)
+
+
+
+## 监听文件变更
+
+* [chokidar](https://github.com/paulmillr/chokidar)
+
+
+
 
 
 

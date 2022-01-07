@@ -1,5 +1,5 @@
 {
-  "name": "vitepress-starter",
+  "name": "vite-note",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -10,18 +10,13 @@
     "b": "vitepress build ./",
     "serve": "vitepress serve ./",
     "s": "vitepress serve ./",
-    "push": "node scripts/publish.js",
     "deploy": "ssh root@1.15.21.6 'sh ~/docker-nginx/deploy_sh/vite-note.sh'",
-    "p": "yarn build && git-auto push"
-  },
-  "devDependencies": {
-    "console-color-mr": "^2.0.1",
-    "inquirer": "^7.3.3",
-    "ora": "^5.3.0",
-    "shelljs": "^0.8.4"
+    "push": "npm run build && git-auto push"
   },
   "dependencies": {
-    "dayjs": "^1.10.4",
     "vitepress": "github:heny/vitepress"
+  },
+  "devDependencies": {
+    "shelljs": "^0.8.5"
   }
 }
