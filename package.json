@@ -11,7 +11,7 @@
     "serve": "vitepress serve ./",
     "s": "vitepress serve ./",
     "deploy": "ssh root@1.15.21.6 'sh ~/docker-nginx/deploy_sh/vite-note.sh'",
-    "push": "npm run build && git-auto push"
+    "push": "npm run build && git-auto push -m 'update'"
   },
   "dependencies": {
     "vitepress": "github:heny/vitepress"
