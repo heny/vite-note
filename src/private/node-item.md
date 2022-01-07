@@ -1,5 +1,8 @@
 # node项目实例
 博客项目简介：基于Node.js+Express+Mongodb+Mongoose开发
+
+test
+
 ## 一、创建文件夹：
 
 项目目录：my_blog
