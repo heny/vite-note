@@ -57,6 +57,22 @@
 
 
 
+**插件自动安装**
+
+在 UMD 构建中，插件开发者使用 `Vue.use` 来自动安装插件是一个通用的做法。例如，官方的 `vue-router` 插件是这样在浏览器环境中自行安装的：
+
+```js
+var inBrowser = typeof window !== 'undefined'
+/* … */
+if (inBrowser && window.Vue) {
+  window.Vue.use(VueRouter)
+}
+```
+
+
+
+
+
 ## 二、发布到npm
 
 ### npm初始化

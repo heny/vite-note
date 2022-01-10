@@ -20,7 +20,11 @@ npm install -g @vue/cli
 vue create hello-vue
 ```
 
-vscode建议安装 [Volar](https://github.com/johnsoncodehk/volar)
+vscode安装插件： [Volar](https://github.com/johnsoncodehk/volar)
+
+vue2使用的Vetur需要禁用或者卸载掉，否则会有很多未使用的变量出现
+
+
 
 
 
@@ -90,6 +94,67 @@ createApp({
 }) 
 ```
 
+### nextTick
+
+```js
+import { createApp, nextTick } from 'vue'
+
+const app = createApp({
+  setup() {
+    const message = ref('Hello!')
+    const changeMessage = async newMessage => {
+      message.value = newMessage
+      await nextTick()
+      console.log('Now DOM is updated')
+    }
+  }
+})
+```
+
+
+
+### resolveComponent
+
+只能在`render`或`setup`函数中使用
+
+按照名字，解析组件，如果没有找到，则返回参数名字
+
+```js
+const app = createApp({})
+app.component('MyComponent', {
+  /* ... */
+})
+```
+
+```js
+import { resolveComponent } from 'vue'
+render() {
+  const MyComponent = resolveComponent('MyComponent')
+  return h(MyComponent)
+}
+```
+
+
+
+### resolveDirective
+
+解析一个directive，找不到返回`undefined`
+
+```js
+const app = createApp({})
+app.directive('highlight', {})
+```
+
+```js
+import { resolveDirective } from 'vue'
+render () {
+  const highlightDirective = resolveDirective('highlight')
+}
+```
+
+
+
+
 
 ### mergeProps
 
@@ -140,7 +205,9 @@ export default defineComponent({
 
 #### emits
 
-可以是数组也可以是对象，对象可以是一个函数，可以验证参数
+可以是数组也可以是对象
+
+当值为对象时，是一个函数，可以验证参数
 
 ```js
 const app = createApp({})
@@ -191,6 +258,20 @@ export default {
 * 新增`renderTracked` 组件第一次渲染时调用
 * 新增`renderTriggered` 当虚拟DOM重新渲染触发时调用
 
+组件上的@hook也修改为vnode，并支持驼峰
+
+```vue
+<!-- 2.x -->
+<child-component @hook:updated="onUpdated">
+
+<!-- 3.x -->
+<child-component @vnode-updated="onUpdated">
+```
+
+
+
+
+
 ### 指令
 
 #### v-pre
@@ -218,111 +299,6 @@ vue3新增的标签，to必须传入有效的查询选择器或HTMLElement
 	<teleport to="body"></teleport>
 </template>
 ```
-
-
-
-## 响应式API
-
-### reactive
-
-返回对象的响应式副本，返回的proxy是不等于原始对象的，`reactive`传入对象；
-
-`reactive`将解包所有深层的refs，同时维持ref的响应性
-
-```js
-const count = ref(1)
-const obj = reactive({ count })
-
-// ref 会被解包
-console.log(obj.count === count.value) // true
-
-// 它会更新 `obj.count`
-count.value++
-console.log(count.value) // 2
-console.log(obj.count) // 2
-
-// 它也会更新 `count` ref
-obj.count++
-console.log(obj.count) // 3
-console.log(count.value) // 3
-```
-
-### readonly
-
-```js
-const original = reactive({ count: 0 })
-const copy = readonly(original)
-
-// 警告
-copy.count++ 
-```
-
-`readonly`代理ref之后，也不需要解包
-
-```js
-const raw = {count: ref(123)}
-const copy = readonly(raw)
-console.log(raw.count.value) // 123
-console.log(copy.count) // 123
-```
-
-### isProxy
-
-检查对象是否由`reactive`或`readonly`创建的proxy
-
-### isReactive
-
-检查是否由`reactive`创建的
-
-如果对象是由`readonly`的普通对象创建的，则返回false，如果是`reactive`对象创建的`readonly`，则返回true
-
-### isReadonly
-
-检查对象是否由`readonly`创建的
-
-### toRaw
-
-返回`reactive`或`readonly`代理的原始对象
-
-```js
-const foo = {}
-const reactiveFoo = reactive(foo)
-
-console.log(toRaw(reactiveFoo) === foo) // true
-```
-
-### markRaw
-
-标记一个对象，使其永远不会转换为proxy
-
-```js
-const foo = markRaw({})
-console.log(isReactive(reactive(foo))) // false
-
-const bar = reactive({foo})
-console.log(isReactive(bar.foo)) // false
-```
-
-### shallowReactive
-
-创建响应式对象，但是**深层对象不被响应式转换**
-
-```js
-const state = shallowReactive({
-    foo: 1,
-    nested: { bar: 2 }
-})
-// 可以被响应
-state.foo++
-// 不被响应
-state.nested.bar++
-```
-
-如果foo使用ref创建的，需要使用.value访问，不会被解构
-
-### shallowReadonly
-
-与`shallowReactive`一致，创建只读的proxy，**深层proxy无法创建只读**
 
 
 
@@ -438,6 +414,117 @@ triggerRef(shallow)
 ### triggerRef
 
 手动执行与`shallowRef`关联的任何作用
+
+
+
+## Reactive
+
+### reactive
+
+返回对象的响应式副本，返回的proxy是不等于原始对象的，`reactive`传入对象；
+
+`reactive`将解包所有深层的refs，同时维持ref的响应性
+
+```js
+const count = ref(1)
+const obj = reactive({ count })
+
+// ref 会被解包
+console.log(obj.count === count.value) // true
+
+// 它会更新 `obj.count`
+count.value++
+console.log(count.value) // 2
+console.log(obj.count) // 2
+
+// 它也会更新 `count` ref
+obj.count++
+console.log(obj.count) // 3
+console.log(count.value) // 3
+```
+
+### readonly
+
+`readonly`可以传入ref对象，也可以传入普通对象
+
+```js
+const original = reactive({ count: 0 })
+const copy = readonly(original)
+
+// 警告
+copy.count++ 
+```
+
+`readonly`代理ref之后，也会直接解包
+
+```js
+const raw = {count: ref(123)}
+const copy = readonly(raw)
+console.log(raw.count.value) // 123
+console.log(copy.count) // 123
+```
+
+### isProxy
+
+检查对象是否由`reactive`或`readonly`创建的proxy
+
+### isReactive
+
+检查是否由`reactive`创建的
+
+如果对象是由`readonly`的普通对象创建的，则返回false，如果是`reactive`对象创建的`readonly`，则返回true
+
+### isReadonly
+
+检查对象是否由`readonly`创建的
+
+### toRaw
+
+返回`reactive`或`readonly`代理的原始对象
+
+```js
+const foo = {}
+const reactiveFoo = reactive(foo)
+
+console.log(toRaw(reactiveFoo) === foo) // true
+```
+
+### markRaw
+
+标记一个对象，使其永远不会转换为proxy
+
+```js
+const foo = markRaw({})
+console.log(isReactive(reactive(foo))) // false
+
+const bar = reactive({foo})
+console.log(isReactive(bar.foo)) // false
+```
+
+### shallowReactive
+
+创建响应式对象，但是**深层对象不被响应式转换**
+
+```js
+const state = shallowReactive({
+    foo: 1,
+    nested: { bar: 2 }
+})
+// 可以被响应
+state.foo++
+// 不被响应
+state.nested.bar++
+```
+
+如果foo使用ref创建的，需要使用.value访问，不会被解构
+
+### shallowReadonly
+
+与`shallowReactive`一致，创建只读的proxy，**深层proxy无法创建只读**，可以被更改
+
+
+
+
 
 
 
@@ -666,7 +753,7 @@ export default {
 }
 ```
 
-生命周期没有`onBeforeCreate`、`onCreated`，因为在setup执行的函数，是围绕这两个生命周期运行的，可以直接使用setup
+组合式API的生命周期中没有`onBeforeCreate`、`onCreated`，因为在setup执行的函数，是围绕这两个生命周期运行的，可以直接使用setup
 
 ### Provide / Inject
 
@@ -702,7 +789,7 @@ export default {
         provide('geolocation', readonly(geolocation))
         provide('updateLocation', updateLocation)
     }
-}
+} 
 ```
 
 ### getCurrentInstance
@@ -777,9 +864,32 @@ const vMyDirective = {
 </template>
 ```
 
+### 命名空间组件
+
+可以使用带点的组件标记，例如`<Button.Group>`来引用嵌套在对象属性中的组件
+
+```js
+import Form from './form'
+import Input from './form-input'
+import Label from './form-label'
+const Form = Object.assign(Form, {Input, Label})
+```
+
+```vue
+<script setup>
+import * as Form from './form-components'
+</script>
+
+<template>
+  <Form.Input>
+    <Form.Label>label</Form.Label>
+  </Form.Input>
+</template>
+```
 
 
-### 其他属性
+
+### 其他选项
 
 `props` --> `defineProps`
 
@@ -790,6 +900,44 @@ const vMyDirective = {
 `attrs`  --> `useAttrs`
 
 `slots` --> `useSlots`
+
+
+
+**仅限Typescript**
+
+props和emits都可以传递字面量类型的纯类型语法作为参数给`defineProps`和`defineEmits`
+
+```tsx
+const props = defineProps<{
+  foo: string
+  bar?: number
+}>()
+
+const emit = defineEmits<{
+  (e: 'change', id: number): void
+  (e: 'update', value: string): void
+}>()
+```
+
+
+
+**使用类型声明时的默认props值**
+
+需要借助函数来声明默认值
+
+```ts
+interface Props {
+  msg?: string
+  labels?: string[]
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  msg: 'hello',
+  labels: () => ['one', 'two']
+})
+```
+
+
 
 
 
@@ -836,13 +984,19 @@ name会根据文件名字来推断，如果递归组件调用自己，可以直�
 
 ```vue
 <style scoped>
-    // 深度选择器
+    /* 深度选择器 */
+    ::v-deep(.foo) {}
+    /* 缩写 */
 	.a :deep(.b) {}
     
-    // 插槽选择器
+    /* 插槽选择器 */
+    ::v-slotted(.foo) {}
+    /* 缩写 */
     :slotted(div) {}
     
-    // 全局选择器, vue2版本是重新创建script标签
+    /* 全局选择器, vue2版本是重新创建script标签 */
+    ::v-global(.foo) {}
+    /* 缩写 */
     :global(.red) {}
 </style>
 ```
@@ -858,7 +1012,18 @@ name会根据文件名字来推断，如果递归组件调用自己，可以直�
 </template>
 ```
 
-module也可以直接等于一个名字，就不用`$style`获取了
+module也可以直接等于一个名字
+
+```vue
+<style module="parent">
+    .red{}
+</style>
+<template>
+	<div :class="parent.red"></div>
+</template>
+```
+
+
 
 ### 组合式API
 
@@ -871,6 +1036,8 @@ useCssModule()
 // 命名, 返回 <style module="classes"> 中的类
 useCssModule('classes')
 ```
+
+
 
 ### 状态css
 
