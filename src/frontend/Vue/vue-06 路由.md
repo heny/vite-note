@@ -392,5 +392,5 @@ router.addRoutes([]) // 数组填写路由对象即可;
 
 注意：使用history需要对后端进行配置
 
-配置地址：[vue路由官网]([https://router.vuejs.org/zh/guide/essentials/history-mode.html#%E5%90%8E%E7%AB%AF%E9%85%8D%E7%BD%AE%E4%BE%8B%E5%AD%90](https://router.vuejs.org/zh/guide/essentials/history-mode.html#后端配置例子))
+配置地址：[vue路由官网](https://router.vuejs.org/zh/guide/essentials/history-mode.html#后端配置例子)
 

@@ -289,7 +289,7 @@ function Resize(){
 ### chrome直接调试
 
 1. 手机使用数据线连接至电脑
-2. 浏览器输入地址：[chrome://inspect](chrome://inspect/#devices)
+2. 浏览器输入地址：chrome://inspect/#devices
 3. 手机安装chrome移动版浏览器，并输入地址，即可以调试；
 4. 出现的地址中，点击`devices`直接就可以调试了；
 

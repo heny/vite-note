@@ -1,4 +1,4 @@
-const shell = require('shelljs');
+const fs = require('fs')
 const path = require('path')
 const { frontendLinks, sidebar } = require('./utils/createSideBar');
 const createREADME = require('./utils/createREADME')
@@ -25,7 +25,7 @@ module.exports = {
 		['link', { rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#3eaf7c' }],
 		['meta', { name: 'msapplication-TileImage', content: '/icons/msapplication-icon-144x144.png' }],
 		['meta', { name: 'msapplication-TileColor', content: '#000000' }],
-		['script', {}, shell.cat(resolve('./share/hm.js'))]
+		['script', {}, fs.readFileSync(resolve('./share/hm.js'), 'utf-8')]
 	],
 	themeConfig:{
 		repo: 'https://gitee.com/hnys/vite-note',
