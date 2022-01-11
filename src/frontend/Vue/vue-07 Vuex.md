@@ -1,6 +1,6 @@
 # Vue-07 Vuex
 
-## 一、Vuex
+## Vuex
 
 ### 概念
 
@@ -18,7 +18,7 @@ vuex的数据修改后在页面刷新之后就没有了，如果是请求数据�
 
 
 
-## 二、安装
+## 安装
 
 1. 安装：yarn add vuex
 
@@ -51,13 +51,9 @@ vuex的数据修改后在页面刷新之后就没有了，如果是请求数据�
 
    在template标签里面访问，不需要加this；
 
-**store的对象所拥有的属性**
-
-* 
 
 
-
-## 三、Vuex成员介绍
+## Vuex成员介绍
 
 ### State
 
@@ -242,7 +238,7 @@ action函数接受一个与store实例具有相同方法和属性的`context`对
 
 
 
-## 四、插件开发
+## 插件开发
 
 > Vuex.Store对象中，接收一个plugins属性，值是一个数组，里面放置的都是函数
 
@@ -325,7 +321,7 @@ computed: {
 
 
 
-## 五、vuex数据持久化
+## vuex数据持久化
 
 1. 安装：`npm i vuex-persistedstate`
 
@@ -378,5 +374,89 @@ computed: {
    }
    ```
 
-   
+
+
+
+## Vue3
+
+几乎所有的 Vuex 4 API 都与 Vuex 3 保持不变。
+
+### 安装
+
+```js
+import { createStore } from 'vuex'
+
+export const store = createStore({
+  state () {
+    return {
+      count: 1
+    }
+  }
+})
+```
+
+```js
+import { createApp } from 'vue'
+import { store } from './store'
+import App from './App.vue'
+
+const app = createApp(App)
+
+app.use(store)
+
+app.mount('#app')
+```
+
+### 组合式API
+
+#### 访问State和Getter
+
+为了访问 state 和 getter，需要创建 `computed` 引用以保留响应性，这与在选项式 API 中创建计算属性等效。
+
+```js
+import { computed } from 'vue'
+import { useStore } from 'vuex'
+
+export default {
+  setup () {
+    const store = useStore()
+
+    return {
+      // 在 computed 函数中访问 state
+      count: computed(() => store.state.count),
+
+      // 在 computed 函数中访问 getter
+      double: computed(() => store.getters.double)
+    }
+  }
+}
+```
+
+#### 访问Mutation和Action
+
+要使用 mutation 和 action 时，只需要在 `setup` 钩子函数中调用 `commit` 和 `dispatch` 函数。
+
+```js
+import { useStore } from 'vuex'
+
+export default {
+  setup () {
+    const store = useStore()
+
+    return {
+      // 使用 mutation
+      increment: () => store.commit('increment'),
+
+      // 使用 action
+      asyncIncrement: () => store.dispatch('asyncIncrement')
+    }
+  }
+}
+```
+
+
+
+### Vue3例子
+
+[https://github.com/vuejs/vuex/tree/4.0/examples](https://github.com/vuejs/vuex/tree/4.0/examples)
 
