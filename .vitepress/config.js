@@ -10,20 +10,22 @@ const resolve = (...args) => {
 // 生成首页README.md的目录
 createREADME('frontend')
 
+const baseUrl = process.argv.includes('--gitee') ? '/vite-note/' : '/';
+
 module.exports = {
-	base: '/',
+	base: baseUrl,
 	title: '前端学习圈',
 	description: 'vitePress生成的博客网站',
 	head: [
 		['link', { rel: 'icon', type: "image/x-icon", href: 'https://notecdn.heny.vip/favicon.ico' }],
-		['link', { rel: 'manifest', href: '/manifest.json' }],
+		['link', { rel: 'manifest', href: `${baseUrl}manifest.json` }],
 		['meta', { name: 'theme-color', content: '#3eaf7c' }],
 		['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
 		['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0'}],
 		['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
-		['link', { rel: 'apple-touch-icon', href: '/icons/apple-touch-icon-152x152.png' }],
-		['link', { rel: 'mask-icon', href: '/icons/safari-pinned-tab.svg', color: '#3eaf7c' }],
-		['meta', { name: 'msapplication-TileImage', content: '/icons/msapplication-icon-144x144.png' }],
+		['link', { rel: 'apple-touch-icon', href: `${baseUrl}icons/apple-touch-icon-152x152.png` }],
+		['link', { rel: 'mask-icon', href: `${baseUrl}icons/safari-pinned-tab.svg`, color: '#3eaf7c' }],
+		['meta', { name: 'msapplication-TileImage', content: `${baseUrl}icons/msapplication-icon-144x144.png` }],
 		['meta', { name: 'msapplication-TileColor', content: '#000000' }],
 		['script', {}, fs.readFileSync(resolve('./share/hm.js'), 'utf-8')]
 	],
