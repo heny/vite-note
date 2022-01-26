@@ -148,9 +148,30 @@ const locale = osLocale.sync();
 
 
 
+## node中util包
+
+**promisify**
+
+将node中的回调函数方式改为promise的方式使用
+
+```js
+const fs = require('fs')
+const { promisify } = require('util')
+const sleep = promisify(setTimeout)
+const stat = promisify(fs.stat)
+
+void async function(){
+    await sleep(1000);
+    const stats = await stat('.');
+    console.log(stats)
+}()
+```
 
 
-## shelljs
+
+## 将命令发送到控制台
+
+### shelljs
 
 > Shelljs是Node.js下的脚本语言解析器，具有丰富且强大的底层操作(Windows/Linux/OS X)权限。Shelljs本质就是基于node的一层命令封装插件，让前端开发者可以不依赖linux也不依赖类似于cmder的转换工具，而是直接在我们最熟悉不过的javascript代码中编写shell命令实现功能。
 
@@ -201,9 +222,15 @@ if (shell.exec('git commit -am "Auto-commit"').code !== 0){
 
 
 
+### execa
+
+输出内容支持颜色
+
+
+
 ## rimraf 删除
 
-与rm -rf 不同的是，rm仅支持linux，rimraf还支持window和linux
+与rm -rf 不同的是，rm对window支持不友好，像cmd、powershell命令行都不支持
 
 使用方式：`rimraf -rf ./node_modules`；
 
@@ -306,7 +333,7 @@ function toDest(file) {
 }
 
 // 下面例子排除了.ts文件和package.json, 获取其中所有文件路径组成的数组，之后直接使用fs.copy到本地
-glob.sync('template/**/!(*.ts|package.json)').forEach((file) => {
+glob.sync('template/**/!(*.ts|package.json)', {onlyFiles: false}).forEach((file) => {
   fs.copy(file, toDest(file))
 })
 ```
@@ -347,6 +374,13 @@ console.log(log('hello', 'yello'), log('yes', 'red'))
 
 * [ora](https://github.com/sindresorhus/ora)
 * [progress](https://www.npmjs.com/package/progress)
+* [listr](https://npm.im/listr)  更友好的promise任务列表进度展示
+
+
+
+## 控制台输出盒子
+
+* [boxen](https://github.com/sindresorhus/boxen)
 
 
 
@@ -362,6 +396,22 @@ console.log(log('hello', 'yello'), log('yes', 'red'))
 * [chokidar](https://github.com/paulmillr/chokidar)
 
 
+
+## 文字转拼音
+
+* [pinyin](https://npm.im/pinyin)
+
+
+
+## 设置别名
+
+* [module-alias](https://www.npmjs.com/package/module-alias)
+
+
+
+## 版本号管理工具
+
+* [semver](https://npm.im/semver)
 
 
 

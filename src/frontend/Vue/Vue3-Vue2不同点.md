@@ -1,6 +1,6 @@
 # Vue3-Vue2不同点
 
-本节只讲在[Vue3-API](./Vue3-API.md)没有的内容
+本节只讲在Vue3-API没有的内容
 
 ## 片段
 

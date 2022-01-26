@@ -16,3 +16,5 @@ c.exec('start http://localhost:3000') // 执行该条命令
 
 当前工作根目录：`process.cwd()`；
 
+获取用户根目录：`require('os').homedir()`
+
