@@ -23,11 +23,11 @@ stages:
           - git remote rm origin
           - git remote add origin git@gitee.com:hnys/vite-note.git
           - git remote -v
-          - npm install
+          - npm i
           - npm run build -- --gitee
           - git add .
           - git commit -m 'update'
-          - git push
+          - git push --set-upstream origin master
 permissions:
   - role: admin
     members:
