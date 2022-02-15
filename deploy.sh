@@ -5,7 +5,9 @@ set -e
 
 echox () {
   echo -e "\e[1;34m $1 \e[0m"
-  [ ! $2 ] && eval $1
+  if [ ! $2 ];then
+    eval $1
+  fi
 }
 
 echox "开始部署github" 1
@@ -28,6 +30,6 @@ echox '开始部署gitee' 1
 
 echox 'cd ../../'
 
-echox 'npm run build --gitee'
+echox 'npm run build -- --gitee'
 
 echox 'git-auto push -m "deploy" '
