@@ -21,9 +21,9 @@ stages:
         nodeVersion: 14.16.0
         commands:
           - git remote rm origin
-          - git remote add origin git@gitee.com:hnys/vite-note.git
+          - git remote add origin https://gitee.com/hnys/vite-note.git
           - git remote -v
-          - npm i
+          - npm ci
           - npm run build -- --gitee
           - git add .
           - git commit -m 'update'
