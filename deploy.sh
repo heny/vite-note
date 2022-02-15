@@ -4,7 +4,8 @@
 set -e
 
 echox () {
-  echo -e "\e[1;34m $1 \e[0m"
+  date=`date '+%Y-%m-%d %H:%M:%S'`
+  echo -e "\e[1;35m[$date]\e[0m \e[1;34m$1\e[0m"
   if [ ! $2 ];then
     eval $1
   fi
