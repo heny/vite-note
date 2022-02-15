@@ -550,6 +550,19 @@ requireAll(context).forEach(({ default: item }) => {
 
 
 
+在使用vite搭建的项目时，不要使用require.context，而是使用该方法
+
+```js
+const files = import.meta.globEager('../views/**/*.vue')
+console.log(files) // {[path]: module}
+```
+
+
+
+
+
+
+
 ## 路由懒加载
 
 使用import可以懒加载

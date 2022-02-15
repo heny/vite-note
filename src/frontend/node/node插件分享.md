@@ -1,8 +1,17 @@
 # node插件分享
 
+## 随机数生成
+
+* uuid
+* [nanoid](https://github.com/ai/nanoid)：比uuid速度更快
+
+
+
+
+
 ## 接收上传文件
 
-1. 有上传文件必需修改form表头格式：enctype='multipart/form-data'，原生ajax或fetch的post不需要设置Content-Type；
+1. 有上传文件必需修改form表头格式：`enctype='multipart/form-data'`，原生ajax或fetch的post不需要设置Content-Type；
 2. 接收文件下载：formidable插件
 
 ```js
@@ -412,6 +421,12 @@ console.log(log('hello', 'yello'), log('yes', 'red'))
 ## 版本号管理工具
 
 * [semver](https://npm.im/semver)
+
+
+
+## 页面进度条插件
+
+* [nprogress](https://github.com/rstacruz/nprogress)
 
 
 

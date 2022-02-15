@@ -182,3 +182,44 @@ addSquare(1,2) // 9
 ```
 
 
+
+## Object
+
+### _.at
+
+```js
+var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
+ 
+_.at(object, ['a[0].b.c', 'a[1]']);
+// => [3, 4]
+```
+
+### _get
+
+```js
+var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ 
+_.get(object, 'a[0].b.c');
+// => 3
+ 
+_.get(object, ['a', '0', 'b', 'c']);
+// => 3
+ 
+_.get(object, 'a.b.c', 'default');
+// => 'default'
+```
+
+### _.set
+
+```js
+var object = { 'a': [{ 'b': { 'c': 3 } }] };
+ 
+_.set(object, 'a[0].b.c', 4);
+console.log(object.a[0].b.c);
+// => 4
+ 
+_.set(object, ['x', '0', 'y', 'z'], 5);
+console.log(object.x[0].y.z);
+// => 5
+```
+

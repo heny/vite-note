@@ -456,6 +456,12 @@ export default {
 
 
 
+### Pinia
+
+Vue3中，更建议使用[pinia](https://github.com/vuejs/pinia)，使用方法更简单 
+
+
+
 ### Vue3例子
 
 [https://github.com/vuejs/vuex/tree/4.0/examples](https://github.com/vuejs/vuex/tree/4.0/examples)

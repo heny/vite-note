@@ -482,6 +482,18 @@ function doSave(value, name, type) {
 
 
 
+6. 使用插件下载
+
+   1. 安装`npm i -g file-saver`
+   2. 引入下载
+
+   ```js
+   import { saveAs } from 'file-saver'
+   saveAs(url, fileName)
+   ```
+
+   
+
 
 
 ## 六、复制

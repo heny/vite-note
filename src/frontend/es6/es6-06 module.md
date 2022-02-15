@@ -113,3 +113,16 @@ requireAll(context).forEach(({ default: item }) => {
 ```
 （2）之后在global文件夹下面创建文件即可；
 
+
+
+## 三、import.meta.globEager
+
+在使用vite搭建的项目时，不要使用require.context，而是使用该方法
+
+```js
+const files = import.meta.globEager('../views/**/*.vue')
+console.log(files) // {[path]: module}
+```
+
+
+
