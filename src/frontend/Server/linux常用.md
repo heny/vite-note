@@ -628,3 +628,9 @@ nohup ./code-server --host 0.0.0.0 --port 8080 --auth password &
 ```
 
 之后可以直接访问了，然后部署nginx即可；
+
+
+
+## 本地vscode直接访问服务器
+
+下载remote-ssh插件即可
