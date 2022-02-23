@@ -84,7 +84,25 @@ let obj = [
 _.map(obj,'name') // ['hh','hen']
 ```
 
-5. orderBy
+5. forEach or each
+
+   each是forEach的别名
+
+   ```js
+   _.forEach([1, 2], function(value) {
+     console.log(value);
+   });
+   // => Logs `1` then `2`.
+    
+   _.forEach({ 'a': 1, 'b': 2 }, function(value, key) {
+     console.log(key);
+   });
+   // => Logs 'a' then 'b' (iteration order is not guaranteed).
+   ```
+
+   
+
+6. orderBy
 ```js
 var users = [
   { 'user': 'fred',   'age': 48 },
@@ -185,7 +203,7 @@ addSquare(1,2) // 9
 
 ## Object
 
-### _.at
+### _.at 
 
 ```js
 var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
@@ -194,7 +212,7 @@ _.at(object, ['a[0].b.c', 'a[1]']);
 // => [3, 4]
 ```
 
-### _get
+### _get  根据path获取值
 
 ```js
 var object = { 'a': [{ 'b': { 'c': 3 } }] };
@@ -209,7 +227,7 @@ _.get(object, 'a.b.c', 'default');
 // => 'default'
 ```
 
-### _.set
+### _.set  设置一个值
 
 ```js
 var object = { 'a': [{ 'b': { 'c': 3 } }] };
@@ -221,5 +239,38 @@ console.log(object.a[0].b.c);
 _.set(object, ['x', '0', 'y', 'z'], 5);
 console.log(object.x[0].y.z);
 // => 5
+```
+
+### _.omit 剔除不要的键值
+
+```js
+var object = { 'a': 1, 'b': '2', 'c': 3 };
+ 
+_.omit(object, ['a', 'c']);
+// => { 'b': '2' }
+```
+
+### _.pick 保留只要的键值
+
+```js
+var object = { 'a': 1, 'b': '2', 'c': 3 };
+ 
+_.pick(object, ['a', 'c']);
+// => { 'a': 1, 'c': 3 }
+```
+
+### _.merge 合并值
+
+```js
+var object = {
+  'a': [{ 'b': 2 }, { 'd': 4 }]
+};
+ 
+var other = {
+  'a': [{ 'c': 3 }, { 'e': 5 }]
+};
+ 
+_.merge(object, other);
+// => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
 ```
 

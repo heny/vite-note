@@ -2,7 +2,7 @@
 
 ## es6大纲
 
-![image-20200602224917632](https://notecdn.heny.vip/images/image-20200602224917632.png)
+![image-20200602224917632](https://notecdn.hrhe.cn/images/image-20200602224917632.png)
 
 ## 一、严格模式：
 

@@ -483,7 +483,7 @@ class ScrollingList extends React.Component {
 
 在线地址：[https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
-![image-20200822002140599](https://notecdn.heny.vip/images/image-20200822002140599.png)
+![image-20200822002140599](https://notecdn.hrhe.cn/images/image-20200822002140599.png)
 
 ### getSnapshotBeforeUpdate
 
@@ -554,7 +554,7 @@ class ScrollingList extends React.Component {
 
 在线地址：[https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/](https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/)
 
-![image-20200822002140599](https://notecdn.heny.vip/images/image-20200822002140599.png)
+![image-20200822002140599](https://notecdn.hrhe.cn/images/image-20200822002140599.png)
 
 
 

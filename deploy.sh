@@ -11,9 +11,17 @@ echox () {
   fi
 }
 
-echox "开始部署github" 1
+echox '开始构建' 1
 
 echox 'npm run build'
+
+echox 'git-auto push -m "deploy" '
+
+echox '开始部署服务器' 1
+
+echox 'npm run deploy'
+
+echox "开始部署github" 1
 
 echox 'cd .vitepress/dist'
 

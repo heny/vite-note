@@ -264,3 +264,32 @@ css: {
 },
 ```
 
+
+
+## 封装hooks取全局数据
+
+1. 创建 useGlobal.ts 文件
+
+```ts
+import { getCurrentInstance } from 'vue'
+function useGlobal() {
+    const instance = getCurrentInstance() as unknown as ICurrentInstance;
+    return instance.appContext.config.globalProperties;
+}
+export default useGLobal;
+```
+
+2. 全局定义类型有更好的提示
+
+```ts
+interface ICurrentInstance extends ComponentInternalInstance {
+    appContext: {
+      config: { globalProperties: IGlobal };
+    };
+}
+
+interface IGlobal {
+    // ...
+}
+```
+

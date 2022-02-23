@@ -759,10 +759,12 @@ export default {
 
 ```js
 import { provide, inject } from 'vue'
+const dataSymbol = Symbol();
+
 export default {
     setup() {
-        provide('data', { name: '' })
-        const data = inject('data', defaultValue)
+        provide(dataSymbol, { name: '' })
+        const data = inject(dataSymbol, defaultValue)
     }
 }
 ```

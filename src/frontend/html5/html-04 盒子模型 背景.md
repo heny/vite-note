@@ -189,7 +189,7 @@ margin:左右管用，上下不管用，
 }
 ```
 
-![image](https://notecdn.heny.vip/images/css小方法-09.png)
+![image](https://notecdn.hrhe.cn/images/css小方法-09.png)
 
 解析：
 

@@ -7,7 +7,7 @@
 
 ## TS大纲
 
-![image-20200602223954793](https://notecdn.heny.vip/images/image-20200602223954793.png)
+![image-20200602223954793](https://notecdn.hrhe.cn/images/image-20200602223954793.png)
 
 
 
