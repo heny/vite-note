@@ -10,7 +10,8 @@ const resolve = (...args) => {
 // 生成首页README.md的目录
 createREADME('frontend')
 
-const BASE_URL = process.argv.includes('--gitee') ? '/vite-note/' : '/';
+// const BASE_URL = process.argv.includes('--gitee') ? '/vite-note/' : '/';
+const BASE_URL = 'https://web.hrhe.cn/';
 
 module.exports = {
 	base: BASE_URL,

@@ -11,6 +11,22 @@ echox () {
   fi
 }
 
+buildGithub () {
+  echox "开始部署github" 1
+
+  echox 'cd .vitepress/dist'
+
+  echox 'git init'
+
+  echox 'git add .'
+
+  echox 'git commit -m "deploy"'
+
+  echox 'git branch -m main'
+
+  echox 'git push -f git@github.com:heny/heny.github.io.git main'
+}
+
 echox '开始构建' 1
 
 echox 'npm run build'
@@ -21,24 +37,4 @@ echox '开始部署服务器' 1
 
 echox 'npm run deploy'
 
-echox "开始部署github" 1
-
-echox 'cd .vitepress/dist'
-
-echox 'git init'
-
-echox 'git add .'
-
-echox 'git commit -m "deploy"'
-
-echox 'git branch -m main'
-
-echox 'git push -f git@github.com:heny/heny.github.io.git main'
-
-echox '开始部署gitee' 1
-
-echox 'cd ../../'
-
-echox 'npm run build -- --gitee'
-
-echox 'git-auto push -m "deploy" '
+buildGithub
