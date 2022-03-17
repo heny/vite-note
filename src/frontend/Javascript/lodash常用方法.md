@@ -48,8 +48,10 @@ _.flattenDeep([1, [2, [3, [4]], 5]]);
 // => [1, 2, 3, 4, 5]
 ```
 
-
 ## 集合
+
+可以使用`_.iteratee`结合使用
+
 1. `find`、`every`、`filter`、`findLast`、`some`
 
 以上函数用法雷同
@@ -177,6 +179,12 @@ _.isEqualWith(array, other, customizer);
 
 
 
+## 常用is方法
+
+* `isFunction`  判断是还是函数
+
+
+
 ## Lang方法
 
 1. clone 浅拷贝
@@ -203,7 +211,7 @@ addSquare(1,2) // 9
 
 ## Object
 
-### _.at 
+### _.at 根据path获取值
 
 ```js
 var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };

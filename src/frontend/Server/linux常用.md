@@ -94,11 +94,11 @@
    ```bash
    docker run --name mynginx -d nginx
    # 创建主机挂载配置文件
-   mkdir -p ~/i/apps/nginx/{conf,conf.d,html,logs}
+   mkdir -p ~/docker-nginx/{conf,conf.d,html,logs}
    # 复制默认配置
-   docker cp mynginx:/etc/nginx/nginx.conf ~/docker-nginx/apps/nginx/conf/nginx.conf
-   docker cp mynginx:/etc/nginx/conf.d/default.conf ~/docker-nginx/apps/nginx/conf.d/default.conf
-   docker cp mynginx:/usr/share/nginx/html/index.html ~/docker-nginx/apps/nginx/html/index.html
+   docker cp mynginx:/etc/nginx/nginx.conf ~/docker-nginx/conf/nginx.conf
+   docker cp mynginx:/etc/nginx/conf.d/default.conf ~/docker-nginx/conf.d/default.conf
+   docker cp mynginx:/usr/share/nginx/html/index.html ~/docker-nginx/html/index.html
    ```
 
    * usr/share/nginx/html/index.html    默认的入口文件，html文件可以放到html这个目录；
@@ -140,6 +140,13 @@
    * `-v` 映射目录或文件
 
 6. 启动nginx：`sh start.sh`
+
+
+
+## docker常用命令
+
+* `docker ps` 查看docker容器列表
+* `docker-compose up -d jenkins`  更新jenkins的配置
 
 
 
@@ -550,11 +557,6 @@ forever也是一种保持后台运行的插件，建议使用pm2就可以了，�
 
 
 
-
-## docker常用命令
-
-* `docker ps` 查看docker容器列表
-* `docker-compose up -d jenkins`  更新jenkins的配置
 
 
 

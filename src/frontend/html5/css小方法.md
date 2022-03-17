@@ -2,7 +2,7 @@
 
 ## 小方法
 1. 鼠标变手型：cursor:pointer;
-![image](https://notecdn.hrhe.cn/images/css小方法-01.png)
+  ![image](https://notecdn.hrhe.cn/images/css小方法-01.png)
 2. 鼠标手型变禁用的：not-allowed
 3. 文本框蓝色边框取消掉：outline:none; 或 outline:0;
 4. 修改边框的颜色：caret-color: red;
@@ -10,36 +10,40 @@
 6. 隐藏元素不占位：display:none;
 7. 隐藏复选单选框默认样式：-webkit-appearance:none;
 8. qq截图可以直接取色，按住ctrl键可以查看16进制的颜色；
-9. 快速复制网页内容：打开f12控制面板，输入document.body.contentEditable = true，则可以直接编辑页面块内容；
-10. 禁止谷歌翻译一段内容：添加类名class='notranslate'
-11. 快速找到开机启动：shell:startup
-1. 作图的时候从上到下，从左到右
-2. 取行高，从字的头部开始到下一行的头部，几行字就乘几行，算文字行高值，一行文字直接算高度就是行高。
-3. 内联块回车会引起多一个空格的情况，删除回车即可解决
-4. 字体高度等于行高，就可以解决文字上下的高度。
-5. 给盒子设置padding值，在有设置宽高的时候，设置多少padding值需要减去对应的宽高值，给盒子设置margin值不需要修改对应的宽高。
-6. a标签里面设置内容，只有选中内容才会出现手型，不设置内容表示整个框都会出现手型。
-7. auto左右自动对齐，不能上下自动对齐，可以设置多个值，可以设置：margin: 20px auto 0；
-8. 可以给盒子设置margin-top:-1px; 压上面的盒子1px；
-9. 重复使用率高的，常用自己的一个代号字母加下划线组成一个名字。
-10. 书写时考虑提高样式重复使用率。
-11. 充分利用自身html属性及样式继承原理减少代码量。
-12. 背景图片尽可能使用sprite技术，减少http请求
-13. 给a标签写#top，可以直接回到顶部
-14. 网站后缀加favicon.ico获取网站logo图标；
+9. 快速复制网页内容：打开f12控制面板，输入以下两种方法都可
+   * `document.body.contentEditable = true`
+   * `document.designMode = 'on'`
+10. 禁止谷歌翻译一段内容：添加类名`class='notranslate'`
+11. 快速找到开机启动：`shell:startup`
+12. 作图的时候从上到下，从左到右
+13. 取行高，从字的头部开始到下一行的头部，几行字就乘几行，算文字行高值，一行文字直接算高度就是行高。
+14. 内联块回车会引起多一个空格的情况，删除回车即可解决
+15. 字体高度等于行高，就可以解决文字上下的高度。
+16. 给盒子设置padding值，在有设置宽高的时候，设置多少padding值需要减去对应的宽高值，给盒子设置margin值不需要修改对应的宽高。
+17. a标签里面设置内容，只有选中内容才会出现手型，不设置内容表示整个框都会出现手型。
+18. auto左右自动对齐，不能上下自动对齐，可以设置多个值，可以设置：margin: 20px auto 0；
+19. 可以给盒子设置margin-top:-1px; 压上面的盒子1px；
+20. 重复使用率高的，常用自己的一个代号字母加下划线组成一个名字。
+21. 书写时考虑提高样式重复使用率。
+22. 充分利用自身html属性及样式继承原理减少代码量。
+23. 背景图片尽可能使用sprite技术，减少http请求
+24. 给a标签写#top，可以直接回到顶部
+25. 网站后缀加favicon.ico获取网站logo图标；
 26. 在设置line-height时尽量使用em单位，这样只需要修改font-size即可；
 
 
 
 ## 快速解决github翻译问题
-document.querySelectorAll('pre').forEach(item=>item.classList.add('notranslate'))
+
+在浏览器开发者工具输入以下内容并回车
+
+`document.querySelectorAll('pre').forEach(item=>item.classList.add('notranslate'))`
 
 
 
 ## 元素不可点击
 
-
-pointer-events: auto/none
+`pointer-events: auto/none`
 
 当设置为none时，元素不可被点击；
 
@@ -71,13 +75,7 @@ width: calc((6.25%*4) + (2.08333333%*3));
 
 ## 快捷键
 
-alt+ctrl   改变屏幕的方向
-
-
-
-## 好看的颜色
-
-深蓝色：deepskyblue；
+alt+ctrl+方向键   改变屏幕的方向
 
 
 
@@ -107,10 +105,6 @@ alt+ctrl   改变屏幕的方向
 之后给a标签设置，text-indent为负值，overflow:hidden隐藏文字,给a标签设置背景图片logo图；
 
 text-indent 隐藏链接里面的文字，overflow:hidden，最好写上，避免用户缩小网页也能看见
-
-
-
-
 
 
 

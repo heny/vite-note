@@ -299,6 +299,12 @@ git rebase --continue
 
 
 
+**rebase时冲突过多**
+
+检查是否有同一个message重复多次，将重复的message使用`git rebase -i`，之后drop掉重复message的commitId，这样就不会出现冲突了
+
+
+
 ### git stash
 1. 为什么需要暂时：
    * （1）当我们写代码时，发现写错分支了，此时需要将代码保存到暂存区，切换到正确的分支再拉下来
