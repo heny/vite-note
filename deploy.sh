@@ -11,6 +11,16 @@ echox () {
   fi
 }
 
+buildGitee () {
+  echox '开始部署gitee' 1
+
+  echox 'cd ../../'
+
+  echox 'npm run build -- --gitee'
+
+  echox 'git-auto push -m "deploy" '
+}
+
 buildGithub () {
   echox "开始部署github" 1
 
@@ -38,3 +48,5 @@ echox '开始部署服务器' 1
 echox 'npm run deploy'
 
 buildGithub
+
+buildGitee
