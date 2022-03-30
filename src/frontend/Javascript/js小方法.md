@@ -450,6 +450,24 @@ function formatStatistics (num) {
 
 
 
+## 解决toFixed四舍五入的问题
+
+```js
+export function toFixed(value, precision) {
+  if (typeof value === 'undefined') return ''
+
+  return new Intl.NumberFormat(undefined, {
+    useGrouping: false,
+    minimumFractionDigits: precision,
+    maximumFractionDigits: precision,
+  }).format(value)
+}
+```
+
+
+
+
+
 ## arguments.callee
 
 属性包含当前正在执行的函数

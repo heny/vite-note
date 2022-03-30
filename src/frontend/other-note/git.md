@@ -65,7 +65,10 @@ ssh-keygen -t rsa -C 'heny@qq.com'   // 回车之后记得根据提示按下yes
    ssh -T git@gitlab.com
    ```
 
-   
+
+**注意**
+
+1. 配置ssh后，拉项目仍然提示无权限，查看是否有`known_hosts`文件存在`.ssh`里面，如果没有的话在拉项目会提示生成，输入yes即可生成，如果回车则不会生成
 
 
 
@@ -576,6 +579,14 @@ git log --format='%aN' | sort -u | while read name; do echo -en "$name\t"; git l
 ### 打造自己的git bash
 
 [https://blog.csdn.net/Dancer__Sky/article/details/81632640](https://blog.csdn.net/Dancer__Sky/article/details/81632640)
+
+
+
+## 常用git命令
+
+- 获取最后一个commitId： `git log -1 --pretty=%H`
+- 获取当前远程比本地多几个commit：`git rev-list --count --left-only @{u}...HEAD`
+- 获取当前分支：`git rev-parse --abbrev-ref HEAD`
 
 
 

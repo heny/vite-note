@@ -186,7 +186,6 @@ sourceMap介绍
        timeout: 10000, // 超时
        withCredentials: true, // 允许cookie跨域
        baseURL: '', // 配置请求host
-       paramsSerializer: params 
    })
    
    let loading = null
@@ -205,7 +204,6 @@ sourceMap介绍
            if(loading) loading.close()
            // ... 在这里处理统一code问题
            return response.data
-   
        },
        error => {
            if(loading) loading.close()
