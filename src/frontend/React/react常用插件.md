@@ -427,3 +427,71 @@ import {CSSTransition} from 'react-transition-group'
 * [memoize-one](https://github.com/alexreardon/memoize-one) 对于react函数组件特别方便，记忆函数相同参数时，将直接返回上一次的执行结果
 * [mitt](https://github.com/developit/mitt) eventBus 事件监听
 
+
+
+## react-query
+
+常用的工具函数
+
+### useQuery
+
+https://react-query.tanstack.com/reference/useQuery
+
+以下列出常用的功能，更多高级功能请查阅官方文档
+
+```js
+import { useQuery } from 'react-query'
+
+const fetchUsers = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  return res.json();
+};
+
+export default function(){
+    //  填写的监听值改变会重新触发请求
+    // 以下演示常用的功能
+    const {
+        data,
+        isLoading,
+        refetch, // 手动查询
+    } = useQuery(['fetchKey' ...deps], fetchUsers, {
+        enabled: true, // 是否自动发起请求
+        retry: true, // 失败是否重新尝试 boolean | number， 填写number表示重新尝试次数
+        onSuccess: ()=>{}, // 成功回调
+        onError: () => {}, // 失败回调
+        select: (data) => data, // 重新格式化返回的data
+        initialData: [], // 初始值
+    })
+}
+```
+
+### useMutation
+
+```js
+import { useMutation } from 'react-query'
+
+const fetchUsers = async () => {
+  const res = await fetch("https://jsonplaceholder.typicode.com/users");
+  return res.json();
+};
+
+export defualt function(){
+    const { mutateAsync, isLoading } = useMutation(
+    	(params) => {
+            return fetchUsers(params)
+        },
+        {
+            onSuccess(data, variables, context){
+                // ...成功之后的操作
+            }
+        }
+    )
+    
+    async function fetch() {
+        await mutateAsync({...});
+    }
+}
+```
+
+
+

@@ -5,6 +5,7 @@ sidebar: auto
 ## 一、配置ssh
 1. 设置user name和email
 ```bash
+# 如果需要配置当前项目，则不用加--global
 git config --global user.name 'heny'
 git config --global user.email 'heny@qq.com'
 ```
