@@ -297,7 +297,7 @@ git rebase --continue
 * 冲突解决没有更改：`git rebase --skip`
 * 冲突解决有更改：使用`git add .` and `git rebase --continue`
 
-冲突解决完成之后，并使用 `git push -f`强制推送，此时的强制推送是安全的；
+冲突解决完成之后，由于本地的分支与远程不一致，会让pull，这时使用 `git push -f`强制推送，强制推送之前尽量检查下之前的commit代码是否存在；
 
 如果没有出现分叉，使用merge或者rebase都是一样的
 

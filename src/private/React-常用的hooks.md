@@ -148,6 +148,128 @@ export default useFetch;
 
 
 
+### 封装request
+
+```ts
+// template`/user/detail/${'id'}`
+export function template(strings, ...keys) {
+  return {
+    toStringURL: (dict) => {
+      const result = [strings[0]];
+      keys.forEach((key, i) => {
+        const value = dict[key];
+        result.push(value, strings[i + 1]);
+      });
+      return result.join('');
+    },
+
+    getKeys: () => keys,
+  };
+}
+
+// 过滤 0 null ‘’ false 等值
+function filterFalsy(obj) {
+  if (!obj) {
+    return null;
+  }
+
+  const resultObject = {
+    ...obj,
+  };
+
+  Object.keys(resultObject).forEach((key) => {
+    !resultObject[key] && delete resultObject[key];
+  });
+  return resultObject;
+}
+
+// url使用template写
+export default function fetchJson(url, options) {
+  if (typeof url === 'object') {
+    const keys = url.getKeys();
+    url = url.toStringURL(option.params);
+    // lodash omit
+    option.params = _.omit(option.params, keys);
+  }
+  
+  const method = (option.method || 'get').toUpperCase();
+  const paramString = queryString.stringify(filterFalsy(option.params));
+  const api = method === 'GET' ? `${url}?${isExport ? paramString : encodeURI(paramString)}` : url;
+    
+    
+  const defaultOption = {
+    url: api,
+    method,
+    headers: {
+      'content-type': 'application/json',
+    },
+    extraOption: {
+      // 对于这几个方法都需要提醒
+      notify: !!['POST', 'PUT', 'PATCH'].includes(method),
+    },
+    // 不让axios拦截错误status code
+    validateStatus: () => true,
+  };
+	
+   return axios(_.merge(defaultOption, {
+       data: option.body,
+       ..._.omit(option, 'params')
+   }))
+    .then(checkResponseCode)
+    .catch(checkResponseCode)
+    .then(checkDataStatus);
+}
+
+function checkResponseCode(response) {
+    const isRespNormal = !!response.status;
+
+    const code = isRespNormal ? response.status : _.get(response, 'response.status');
+      const data = isRespNormal ? response.data : _.get(response, 'response.data');
+      
+    switch(code) {
+        case 200:
+            return Promise.resolve({
+                status: 'success',
+                message: data.message,
+                page: data.page,
+                data,
+                response
+            })
+        case 400:
+            return Promise.resolve({
+                status: 'invalid',
+                message: data.message,
+                response
+            })
+        // ...
+    }
+}
+
+function checkDataStatus(response) {
+    const config = _.get(data, 'response.config');
+    switch(data.status) {
+        case 200: {
+          // 如果某个 Action 不需要消息提醒，设置 extraOption.notify=false 就可以了;
+          const isNotify = _.get(config, 'extraOption.notify');
+          isNotify && Alert.success('操作成功');
+
+          return Promise.resolve(data);
+        }
+        case 400: {
+			alert(data.message || '操作失败');
+            return Promise.resolve(data);
+        }
+         // ...
+        default: {
+            return Promise.reject(data)
+        }
+    }
+}
+
+```
+
+
+
 ### 封装请求方法
 
 ```ts
@@ -158,7 +280,7 @@ export function fetchHookCB(cb) {
 }
 
 export function requestCallback(api, config, callback) {
-  axios(api, config).then(fetchHookCB(callback));
+  fetchJson(api, config).then(fetchHookCB(callback));
 }
 ```
 
@@ -176,7 +298,7 @@ interface FetchType {
 function useDetail(otherParams) {
     const fetchMap = useMemo(() => ({
         [FetchType.GET_DETAIL]: (params, cb) => {
-            requestCallback('...', {params: {...params, ...otherParams}})
+            requestCallback(template`/detail/${'id'}`, {params: {...params, ...otherParams}})
         }
     }), [])
     return fetchMap;
@@ -216,6 +338,26 @@ function Detail() {
         })
     }, [])
     console.log(detail.data, detail.loading)
+}
+```
+
+
+
+### 使用useFetchInterceptor
+
+```tsx
+import {useFetchInterceptor, FetchContext} from './useFetch'
+function App() {
+    const interceptor = useFetchInterceptor((type, params, callback, next) => {
+	switch(type) {
+        case FetchType.GET_DETAIL:
+        	Promise.then(callback);
+            break;
+        default:
+            next(params, callback);
+    }
+})
+    return <FetchContext.Provider value={interceptor}>{children}</FetchContext.Provider>
 }
 ```
 
