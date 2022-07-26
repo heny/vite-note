@@ -195,7 +195,7 @@ class PrivateRoute extends React.Component {
 />
 ```
 #### Outlet  
-> v6新增标签
+> v6新增标签，用于嵌套路由
 
 ```jsx
 function App() {

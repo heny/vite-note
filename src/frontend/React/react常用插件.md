@@ -107,7 +107,7 @@ module.exports = {
 ### 禁止检查eslint
 
 ```js
-// 单行注释
+// 单行注释，放在行尾
 // eslint-disable-line
 
 //多行注释
@@ -120,6 +120,8 @@ componentDidMount: {
 // 文件注释
 /* eslint-disable */
 ```
+
+更多禁止检测查看：[https://eslint.bootcss.com/docs/user-guide/configuring](https://eslint.bootcss.com/docs/user-guide/configuring)
 
 
 
@@ -144,6 +146,197 @@ componentDidMount: {
    ```
 
 2. 之后在入口文件直接引入该文件即可，mock会拦截到请求，并输出结果
+
+
+
+## 使用msw + faker.js
+
+* [msw](https://mswjs.io/)
+* [faker](https://fakerjs.dev/)
+
+### 配置msw
+
+1. 创建msw `npx msw init public/ -S `，会在public文件夹下生成mockServiceWorker.js文件
+
+2. 创建src/mocks/browser.js 文件
+
+   ```js
+   import { setupWorker } from 'msw';
+   import * as handlers from './handlers';
+   
+   export const worker = setupWorker(...Object.values(handlers));
+   ```
+
+   创建src/mocks/handlers文件
+
+   ```js
+   import { rest } from 'msw';
+   
+   export const getLogin = rest.get('/login', (req, res, ctx) => {
+     return res(
+       ctx.json({
+         username: 'heny',
+         firstName: 'John'
+       })
+     )
+   });
+   ```
+
+3. 在入口文件引入browser并启动
+
+   ```js
+   // 注意判断开发环境才启动
+   if(process.env.NODE_ENV === 'development') {
+       const {worker} = require('./mocks/browser')
+       worker.start()
+   }
+   ```
+
+### 配置数据模型
+
+1. 安装依赖 `npm i @mswjs/data @faker-js/faker -D`
+
+2. 创建models.js
+
+   ```js
+   import { primaryKey } from '@mswjs/data'
+   import { faker } from '@faker-js/faker'
+   
+   export const StudentModel = {
+     id: primaryKey(() => faker.random.numeric(16).toString()),
+     firstName: () => faker.name.firstName(),
+     lastName: () => faker.name.lastName(),
+     age: () => faker.datatype.number({ min: 18, max: 69 }),
+     email: () => faker.internet.email(),
+     phone: () => faker.phone.phoneNumber(('+7 (###) ###-##-##')),
+     city: () => faker.address.cityName(),
+     company: () => faker.company.companyName(),
+     avatar: () => faker.image.avatar(),
+     information: () => faker.lorem.words(10),
+   }
+   ```
+
+3. 创建db.js
+
+   ```js
+   import { factory } from '@mswjs/data'
+   import { StudentModel } from './models'
+   
+   export const db = factory({
+     student: StudentModel
+   })
+   ```
+
+4. 修改handlers
+
+   ```js
+   import { rest } from 'msw';
+   import { db } from './db'
+   
+   export const getLogin = rest.get('/login', (req, res, ctx) => {
+     return res(ctx.json(db.student.create()))
+   });
+   ```
+
+
+### 简单封装
+
+前面的配置已经完成了，这个教程是用于项目封装一个更方便的
+
+1. 创建mocks/brower.ts
+
+   ```ts
+   import { setupWorker } from 'msw';
+   import handlers from './handlers';
+   import { flattenDeep } from 'lodash'
+   
+   /**
+    * { obj: {val: 1}, obj2: {val: 2}}  ==> 1,2
+    */
+   export const worker = setupWorker(
+     ...flattenDeep(
+       Object.values(handlers).map(i => [...Object.values(i)])
+     )
+   );
+   ```
+
+2. 创建mocks/db.ts
+
+   ```ts
+   import _ from 'lodash';
+   import { factory } from '@mswjs/data'
+   import { FactoryAPI } from '@mswjs/data/lib/glossary'
+   
+   const r = require.context('./models', true, /models\.ts/);
+   
+   const db = r.keys().reduce((acc, key) => {
+     const dbName = key.match(/\/(.*)\/models/);
+     if (!dbName) return acc;
+     return {
+       ...acc,
+       [_.camelCase(dbName[1])]: r(key),
+     }
+   }, {})
+   
+   // db注册不能嵌套，扁平化注册db
+   const flatDbs = Object.keys(db).reduce((acc, key) => {
+     Object.keys(db[key]).forEach(cKey => {
+       // 获取名字为：文件夹名+models名字
+       acc[key + cKey] = db[key][cKey]
+     })
+     return acc;
+   }, {})
+   
+   export default factory(flatDbs) as FactoryAPI<Record<string, any>>;
+   ```
+
+3. 创建mocks/handlers.ts
+
+   ```ts
+   import _ from 'lodash';
+   
+   const r = require.context('./models', true, /index\.ts/);
+   const handlers = r.keys().reduce((acc, key) => {
+     const handleName = key.match(/\/(.*)\/index/);
+     if (!handleName) return acc;
+     return {
+       ...acc,
+       [_.camelCase(handleName[1])]: r(key),
+     }
+   }, {})
+   
+   export default handlers;
+   ```
+
+4. 前面三个文件夹创建之后一定可以写接口了
+
+   创建mocks/models/Detail/models.ts
+
+   ```ts
+   import { primaryKey } from '@mswjs/data'
+   import { faker } from '@faker-js/faker'
+   
+   export const Student = {
+     id: primaryKey(() => faker.random.numeric(16).toString()),
+     firstName: () => faker.name.firstName(),
+     lastName: () => faker.name.lastName()
+   }
+   ```
+
+   创建mocks/models/Detail/index.ts
+
+   ```ts
+   import { rest } from 'msw';
+   import dbs from '@mocks/db'
+   
+   export const getLogin = rest.get('/login', (req, res, ctx) => {
+     return res(ctx.json(dbs.trackingStudent.create()))
+   });
+   ```
+
+   
+
+
 
 
 
@@ -426,12 +619,94 @@ import {CSSTransition} from 'react-transition-group'
 * [图片裁剪工具](https://github.com/react-cropper/react-cropper) 方便框选大小，头像经常使用
 * [memoize-one](https://github.com/alexreardon/memoize-one) 对于react函数组件特别方便，记忆函数相同参数时，将直接返回上一次的执行结果
 * [mitt](https://github.com/developit/mitt) eventBus 事件监听
+* [yup](https://github.com/jquense/yup) 表单参数校验
+* [formik](https://formik.org/) 表单校验工具
+
+
+
+## Yup配合formik校验表单
+
+地址：[https://codesandbox.io/s/github/formik/formik/tree/master/examples/with-material-ui?file=/index.js:0-1817](https://codesandbox.io/s/github/formik/formik/tree/master/examples/with-material-ui?file=/index.js:0-1817)
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+
+const validationSchema = yup.object({
+  email: yup
+    .string('Enter your email')
+    .email('Enter a valid email')
+    .required('Email is required'),
+  password: yup
+    .string('Enter your password')
+    .min(8, 'Password should be of minimum 8 characters length')
+    .required('Password is required'),
+});
+
+const WithMaterialUI = () => {
+  const formik = useFormik({
+    initialValues: {
+      email: 'foobar@example.com',
+      password: 'foobar',
+    },
+    validationSchema: validationSchema,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
+
+  return (
+    <div>
+      <form onSubmit={formik.handleSubmit}>
+        <TextField
+          fullWidth
+          id="email"
+          name="email"
+          label="Email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
+        />
+        <TextField
+          fullWidth
+          id="password"
+          name="password"
+          label="Password"
+          type="password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+        />
+        <Button color="primary" variant="contained" fullWidth type="submit">
+          Submit
+        </Button>
+      </form>
+    </div>
+  );
+};
+
+ReactDOM.render(<WithMaterialUI />, document.getElementById('root'));
+```
+
+
+
+
 
 
 
 ## react-query
 
+react-query v3 版本文档：[https://react-query-v3.tanstack.com/quick-start](https://react-query-v3.tanstack.com/quick-start)
+
 常用的工具函数
+
+get请求用useQuery，其他请求用useMutation
 
 ### useQuery
 
@@ -467,31 +742,32 @@ export default function(){
 
 ### useMutation
 
-```js
+其他请求使用useMutation
+
+```jsx
 import { useMutation } from 'react-query'
 
-const fetchUsers = async () => {
-  const res = await fetch("https://jsonplaceholder.typicode.com/users");
-  return res.json();
-};
-
 export defualt function(){
-    const { mutateAsync, isLoading } = useMutation(
-    	(params) => {
-            return fetchUsers(params)
-        },
-        {
-            onSuccess(data, variables, context){
-                // ...成功之后的操作
-            }
-        }
-    )
-    
-    async function fetch() {
-        await mutateAsync({...});
-    }
+  // Access the client
+  const queryClient = useQueryClient()
+
+  // Queries
+  const query = useQuery(['todos'], getTodos)
+
+  // Mutations
+  const mutation = useMutation(postTodo, {
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries(['todos'])
+    },
+  })
+  return <button onClick={()=>mutation.mutate({title: '1234'})}></button>
 }
 ```
 
 
 
+## Echarts 插件
+
+* [echarts-wordcloud](https://github.com/ecomfe/echarts-wordcloud)   使用词云
+* [echarts-for-react](https://github.com/hustcc/echarts-for-react) 简单的封装echarts，react直接使用

@@ -125,7 +125,7 @@ Block Formatting Context：指页面中的一个渲染区域，并且拥有一�
 
 4）清除浮动 
 
-5) margin塌陷问题 
+5）margin塌陷问题 
 
 
 

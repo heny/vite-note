@@ -804,3 +804,26 @@ function getPropByPath (obj, path, strict) {
 };
 ```
 
+
+
+## 获取Y轴最大值
+
+```js
+/**
+ * echarts 获取y轴最大值
+ * @returns
+ */
+export function yAxisMax(maxValue, splitNumber = 5) {
+  if (Number.isNaN(maxValue / 1) || maxValue / 1 < 10) {
+    return 10;
+  }
+  const max = Math.ceil(maxValue);
+  const itemValue = `${Math.ceil(max / splitNumber)}`;
+  const mins = Math.ceil(+itemValue / 10 ** (itemValue.length - 1));
+  const item = mins * 10 ** (itemValue.length - 1);
+  // item 需要是5的整数倍
+  const res = Math.ceil(item / splitNumber) * splitNumber * splitNumber;
+  return res;
+}
+```
+

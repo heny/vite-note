@@ -520,11 +520,35 @@ git remote add origin url # 重新配置远程地址
      git reset HEAD^ # 撤销最近一次提交
      ```
 
-     
-
    
 
 
+3. 已提交
+
+   ```bash
+   # 撤回这次提交，但保留改动的内容
+   git reset HEAD~ --soft
+   git stash
+   # 现在切到正确的那个分支去
+   git checkout name-of-the-correct-branch
+   git stash pop
+   git add . # 或者你可以添加指定的文件
+   git commit -m "your message here";
+   # 现在你的改动就在正确的分支上啦
+   ```
+
+   第二种方法
+
+   ```bash
+   git checkout name-of-the-correct-branch
+   # 抓取 master 分支上最新的那个 commit
+   git cherry-pick master
+   # 然后删掉 master 上的那个 commit
+   git checkout master
+   git reset HEAD~ --hard
+   ```
+
+   
 
 
 

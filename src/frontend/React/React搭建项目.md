@@ -34,7 +34,7 @@ assets、common、components、router
 ```bash
 git init
 git add .
-git common -m 'description'
+git commit -m 'description'
 ```
 2. 打开cmd运行：
 ```bash
@@ -173,27 +173,6 @@ process.env.PORT = 3006
 ```
 
 
-
-## 给React挂载内容，方便组件不引入直接调用
-
-1. index.js，修改入口文件
-```jsx
-import React from 'react'
-import ReactDOM from 'react-dom'
-import App from './App'
-React.Component.message = 'hhhh' // 直接类组件使用this.message添加
-// or：
-React.$message = 'hhh' // 组件引入即可;
-
-ReactDOM.render(<App/>,document.getElementById('root'))
-```
-2. 在组件中使用
-```jsx
-import React, {message} from 'react'
-export default ()=>{
-    return (<div>{message}</div>)
-}
-```
 
 
 
@@ -393,6 +372,118 @@ module.exports = override(
 ![image](https://notecdn.hrhe.cn/images/react-08_React搭建项目-02.png)
 
 2. 之后运行npm run build；
+
+
+
+## 添加脚手架规范文件
+
+### 添加prettier
+
+```bash
+npm install --save-dev --save-exact prettier
+
+# 创建空配置文件
+echo {}> .prettierrc.json
+
+# 创建.prettierignore，并写入配置
+# Ignore artifacts:
+build
+coverage
+
+# 使用以下命令格式化代码
+npx prettier --write .
+
+# 校验是否运行了prettier
+npx prettier --check .
+```
+
+如果有eslint或其他的linter，eslint需要安装`eslint-config-prettier`相互配合
+
+stylelint有类似的stylelint-config-prettier
+
+
+
+## 添加eslint
+
+```bash
+npx eslint --init
+```
+
+关于eslint遇到的一些问题可以看：[https://www.jianshu.com/p/eaa94b26cf97](https://www.jianshu.com/p/eaa94b26cf97)
+
+
+
+## 添加stylelint
+
+```bash
+npm install --save-dev stylelint stylelint-config-standard stylelint-config-prettier
+```
+
+创建`.stylelintrc.json`
+
+```json
+{
+  "extends": ["stylelint-config-standard", "stylelint-config-prettier"]
+}
+```
+
+
+
+### 添加commitlint
+
+```bash
+npm install --save-dev @commitlint/config-conventional @commitlint/cli
+
+# 添加配置文件
+echo "module.exports = {extends: ['@commitlint/config-conventional']}" > commitlint.config.js
+```
+
+
+
+### 添加lint-staged
+
+```bash
+npm install --save-dev lint-staged
+```
+
+packagejson添加Lint-staged
+
+```json
+{
+  "lint-staged": {
+    "**/*.{ts,tsx}": "eslint . --cache --fix",
+    "**/*.{css,less}": "stylelint --fix",
+    "**/*": "prettier --write --ignore-unknown"
+  }
+}
+```
+
+
+
+### 添加husky
+
+```bash
+# 安装
+pnpm add husky -D
+
+# package.json添加脚本
+# "prepare": "husky install"
+
+# 运行husky安装
+pnpm husky
+
+# 创建commit-msg
+npx husky add .husky/commit-msg
+# 打开.husky/commit-msg，替换undefined为npx --no -- commitlint --edit "$1"
+
+# 创建pre-commit
+npx husky add .husky/pre-commit
+# 打开.husky/pre-commit，替换undefined为 npx lint-staged
+```
+
+
+
+
 
 
 
@@ -617,4 +708,3 @@ function Person() {
     console.log(state);
 }
 ```
-
