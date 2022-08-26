@@ -70,6 +70,16 @@ img {
 
 
 
+**将图像颜色全部变白**
+
+```css
+filter: grayscale(1) contrast(0) brightness(2);
+```
+
+
+
+
+
 ### 使用场景
 
 * 一般在图片鼠标划过之后增加亮度，使用`brightness`函数

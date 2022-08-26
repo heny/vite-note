@@ -46,9 +46,9 @@ vscode快捷键
 
 * 创建svg画布：SVG
 
-* 浏览器画布：svg viewer
+* 浏览画布：Svg Preview
 
-* 颜色高亮：vs color picker
+* 输入#选颜色：vs color picker
 
 * 跳转到css类名样式：css peek 
 
@@ -113,6 +113,8 @@ vscode快捷键
   ```
 
 * Browser Preview：vscode嵌套浏览器，方便debugger使用
+
+* polacode-2022  生成漂亮的截图软件
 
 
 

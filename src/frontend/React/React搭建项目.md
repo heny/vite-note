@@ -652,6 +652,8 @@ function createBaseContext() {
     return ctxConst;
   }
   return [ctx, useBaseContext];
+  // ts记得加as const保证类型
+  // return [ctx, useBaseContext] as const;
 }
 
 const [Context, useBaseContext] = createBaseContext();

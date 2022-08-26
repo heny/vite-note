@@ -129,3 +129,56 @@ function asyncToGenerator(generatorFunc) {
 
 来源：[手写async await的最简实现（20行）](https://juejin.im/post/5e79e841f265da5726612b6e)
 
+
+
+## Promise.all 简易版
+
+```js
+Promise.all = function (iterators) {
+  return new Promise((resolve, reject) => {
+    if (!iterators || iterators.length === 0) {
+      resolve([]);
+    } else {
+      let count = 0; // 计数器，用于判断所有任务是否执行完成
+      let result = []; // 结果数组
+      for (let i = 0; i < iterators.length; i++) {
+        // 考虑到iterators[i]可能是普通对象，则统一包装为Promise对象
+        Promise.resolve(iterators[i]).then(
+          (data) => {
+            result[i] = data; // 按顺序保存对应的结果
+            // 当所有任务都执行完成后，再统一返回结果
+            if (++count === iterators.length) {
+              resolve(result);
+            }
+          },
+          (err) => {
+            reject(err); // 任何一个Promise对象执行失败，则调用reject()方法
+            return;
+          }
+        );
+      }
+    }
+  });
+};
+```
+
+
+
+## Promise.race 简易版
+
+```js
+Promise.race = function (iterators) {
+  return new Promise((resolve, reject) => {
+    for (const iter of iterators) {
+      Promise.resolve(iter)
+        .then((res) => {
+          resolve(res);
+        })
+        .catch((e) => {
+          reject(e);
+        });
+    }
+  });
+};
+```
+

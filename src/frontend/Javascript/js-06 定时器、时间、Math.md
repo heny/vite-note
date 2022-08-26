@@ -476,3 +476,37 @@ Math.max.apply(Math, [3,53,2,12])
 
 
 
+### 数字精度解决
+
+```js
+// 按照有效数字位数进行四舍五入，默认6位有效数字
+function signFigures(num, rank = 6) {
+  if (!num) return num;
+  const sign = num / Math.abs(num);
+  const number = num * sign;
+  const temp = rank - 1 - Math.floor(Math.log10(number));
+
+  let ans;
+  if (temp > 0) {
+    ans = parseFloat(number.toFixed(temp));
+  }
+
+  else if (temp < 0) {
+    ans = Math.round(number / Math.pow(10, temp)) * temp;
+  }
+
+  else {
+    ans = Math.round(number);
+  }
+  return (ans * sign);
+}
+
+signFigures(0.1 + 0.2) // 0.3
+signFigures(0.56 * 100) // 56
+signFigures(0.57 * 100) // 57
+```
+
+
+
+
+

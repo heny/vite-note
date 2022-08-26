@@ -45,7 +45,7 @@ Nosql当中
 
 图形化工具：Studio 3T
 
-无限试用： [https://www.lanzous.com/i4jycdc](https://www.lanzous.com/i4jycdc)
+无限试用： [https://www.lanzoui.com/i4jycdc](https://www.lanzoui.com/i4jycdc)
 
 
 

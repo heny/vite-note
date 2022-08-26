@@ -46,7 +46,7 @@ Immutable Data 就是一旦创建，就不能再被更改的数据。对 Immutab
 ### fromJS
 
 作用：将一个js数据转换为Immutable类型的数据
-用法：`fromJS(value, converter)`
+用法：`fromJS(value, converter?)`
 
 
 

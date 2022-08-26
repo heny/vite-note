@@ -222,7 +222,8 @@ function Resize(){
 
 
 ## 五、使用插件自动转换px
-1. 搜索安装：`postcss-px2rem`
+1. `postcss-px2rem` 将px转换成rem
+1. `postcss-px-to-viewport`  将px转换成vw
 
 
 

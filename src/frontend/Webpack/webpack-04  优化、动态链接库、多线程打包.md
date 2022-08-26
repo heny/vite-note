@@ -165,3 +165,65 @@ import引入的代码在生产环境下，会自动去除掉没用的代码，�
 
 
 
+## 压缩js
+
+文档：[https://webpack.js.org/plugins/terser-webpack-plugin/](https://webpack.js.org/plugins/terser-webpack-plugin/)
+
+```bash
+npm i terser-webpack-plugin -D
+```
+
+```js
+const TerserPlugin = require('terser-webpack-plugin');
+module.exports = {
+    optimization: {
+        minimizer: [
+            new TerserPlugin({
+                terserOptions: {
+                  format: {
+                    comments: false,
+                  },
+                  compress: {
+                    drop_console: true,
+                  },
+                },
+                extractComments: false,
+              }),
+        ]
+    }
+}
+```
+
+
+
+## 使用cssnano优化
+
+文档：[https://webpack.js.org/plugins/css-minimizer-webpack-plugin/](https://webpack.js.org/plugins/css-minimizer-webpack-plugin/)
+
+```bash
+npm i css-minimizer-webpack-plugin -D
+```
+
+```js
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+module.exports = {
+    optimization: {
+        minimizer: [
+          new CssMinimizerPlugin({
+            minimizerOptions: {
+              preset: [
+                'advanced',
+                {
+                  // zindex 不优化
+                  zindex: false,
+                },
+              ],
+            },
+          }),
+        ]
+    }
+}
+```
+
+
+

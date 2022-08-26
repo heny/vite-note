@@ -1,5 +1,5 @@
 # Webpack-02 处理js、暴露全局变量
-## 一、处理js
+## 处理js
 1. 安装`babel`、`babel-loader`
 
 `@babel/core`    // babel核心模块，
@@ -75,29 +75,106 @@ require('@babel/polyfill);
 
 
 
-## 二、安装eslint
+## babel配置ts
 
-（1）yarn add eslint eslint-loader -D
-
-（2）修改rules
-```js
-rules: [
-    {
-        // loader规则可以写多少, 与babel得分开一个对象
-        test: /\.js$/,
-        use: {
-            loader: 'eslint-loader'
-        },
-        enforce: 'pre', // 强制在其他的loader之前执行
-        exclude: /node_modules/   // 所有解析js都会找node_modules
-    }
-]
+```bash
+npm i @babel/{cli,core,preset-env,preset-react,preset-typescript} babel-loader -D
 ```
-（3）到eslint官网下载`.eslintrc.json`文件放到项目根目录；
+
+@babel/preset-react 处理react-jsx
+
+@babel/preset-typescript  处理ts语言
+
+**配置.babelrc**
+
+```json
+{
+  "plugins": ["lodash"],
+  "presets": [
+    ["@babel/env", { "targets": { "node": 6 } }],
+    "@babel/preset-react",
+    "@babel/typescript"
+  ]
+}
+```
+
+**配置webpack**
+
+```js
+module.exports = {
+    module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            use: 'babel-loader',
+            exclude: /node_modules/
+          },
+        ]
+    }
+}
+```
 
 
 
-## 三、暴露全局变量
+
+
+## babel 按需引入lodash
+
+```bash
+npm i @babel/{cli,core,preset-env} babel-loader babel-plugin-lodash lodash-webpack-plugin -D
+```
+
+配置.babelrc
+
+```json
+{
+  "plugins": ["lodash"]
+}
+```
+
+配置webpack
+
+```js
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+
+module.exports = {
+    module: {
+        rules: [
+          {
+            test: /\.tsx?$/,
+            use: 'babel-loader',
+            exclude: /node_modules/
+          },
+        ]
+    },
+    plugins: [
+        new LodashModuleReplacementPlugin(),
+    ]
+}
+```
+
+
+
+
+
+## 安装eslint
+
+`eslint-loader`已弃用，可以使用`eslint-webpack-plugin`
+
+```bash
+npm i eslint-webpack-plugin -D
+```
+
+```js
+const ESLintPlugin = require('eslint-webpack-plugin');
+module.exports = {
+    plugins: [new ESLintPlugin(options)],
+}
+```
+
+
+
+## 暴露全局变量
 
 
 loader类型：
@@ -138,7 +215,7 @@ module.exports = {
 
 
 
-## 四、打包图片
+## 打包图片
 
 1. 解析js的img
 
@@ -193,7 +270,7 @@ rules: [{
 
 
 
-## 五、打包文件分类
+## 打包文件分类
 
 1. 在loader里面配置，在输出的文件名可以直接加一个路径，如：'css/1.css'，
 2. 给所有的css或img添加统一的引入地址

@@ -125,6 +125,228 @@ componentDidMount: {
 
 
 
+## styled-components
+
+样式插件，通过组件的形式写样式
+
+样式例子
+
+```tsx
+import styled from 'styled-components'
+
+const Button = styled.button`
+  display: inline-block;
+  background: ${props => props.primary ? "palevioletred" : "white"};
+  color: ${props => props.primary ? "white" : "palevioletred"};
+  
+  ${({theme}) => theme.media.md} {
+  	max-width: 100%;
+  }
+  
+  &:focus {
+  	background: #000;
+  }
+`;
+
+const TomatoButton = styled(Button)<{show?: boolean}>`
+  color: tomato;
+  border-color: tomato;
+  ${({show, theme}) => 
+	show
+		? `${theme.media.md} {
+			padding: 0 16px;
+		}`
+		: `
+			padding: 0 10px;
+			${theme.media.md} {
+				border: 1px solid gray;
+			}
+		`
+   }
+`;
+
+<Button primary></Button>
+```
+
+```ts
+const Thing = styled.div.attrs(() => ({tabIndex: 0}))`
+  &:hover {
+    color: red; // <Thing> when hovered
+  }
+`
+```
+
+
+
+&&表示 优先级提升
+
+```tsx
+const Thing = styled.div`
+   && {
+     color: blue;
+   }
+ `
+
+// 全局样式
+ const GlobalStyle = createGlobalStyle`
+   div${Thing} {
+     color: red;
+   }
+ `
+
+ render(
+   <React.Fragment>
+     <!-- 只需要平行放即可，不需要包裹children -->
+     <GlobalStyle />
+     <Thing>
+       I'm blue, da ba dee da ba daa
+     </Thing>
+   </React.Fragment>
+ )
+```
+
+aniamations
+
+```ts
+// Create the keyframes
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+// Here we create a component that will rotate everything we pass in over two seconds
+const Rotate = styled.div`
+  display: inline-block;
+  animation: ${rotate} 2s linear infinite;
+  padding: 2rem 1rem;
+  font-size: 1.2rem;
+`;
+
+render(
+  <Rotate>&lt; 💅🏾 &gt;</Rotate>
+);
+```
+
+主题：[https://styled-components.com/docs/advanced](https://styled-components.com/docs/advanced)
+
+```tsx
+// Define our button, but with the use of props.theme this time
+const Button = styled.button`
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border-radius: 3px;
+
+  /* Color the border and text with theme.main */
+  color: ${props => props.theme.main};
+  border: 2px solid ${props => props.theme.main};
+`;
+
+// We are passing a default theme for Buttons that arent wrapped in the ThemeProvider
+Button.defaultProps = {
+  theme: {
+    main: "palevioletred"
+  }
+}
+
+// Define what props.theme will look like
+const theme = {
+  main: "mediumseagreen"
+};
+
+render(
+  <div>
+    <Button>Normal</Button>
+
+    <ThemeProvider theme={theme}>
+      <Button>Themed</Button>
+    </ThemeProvider>
+  </div>
+);
+```
+
+获取theme
+
+```ts
+// class 组件
+import { withTheme } from 'styled-components'
+
+class MyComponent extends React.Component {
+  render() {
+    console.log('Current theme: ', this.props.theme)
+    // ...
+  }
+}
+
+export default withTheme(MyComponent)
+
+// 函数组件
+import { useTheme } from 'styled-components'
+
+const MyComponent = () => {
+  const theme = useTheme()
+
+  console.log('Current theme: ', theme)
+  // ...
+}
+```
+
+
+
+
+
+## css in js
+
+官网：[https://emotion.sh/docs/introduction](https://emotion.sh/docs/introduction)
+
+安装：`yarn add @emotion/core`
+
+简单的例子：
+
+```jsx
+/** @jsx jsx */
+import {css, jsx} from '@emotion/core'
+const color = 'white'
+render(
+	<div css={css`
+		padding: 32px;
+		color: black;
+		&:hover {
+			color: ${color};
+		}
+        button {}  // 后代
+	`}>
+        hover to change color
+    </div>
+)
+```
+
+
+
+也可以写在一个对象里面，之后使用变量
+
+```jsx
+import {css} from 'emotion'
+const styles = {
+    root: css`
+        font-size: 30px;
+        &:hover {}
+    `
+}
+function App(){
+    return <h1 className={styles.root} />
+}
+```
+
+
+
+
+
 ## mock接口请求
 
 文档地址：[mock](https://github.com/nuysoft/Mock/wiki/Mock.mock())
@@ -512,55 +734,6 @@ import {Link} from 'react-scroll'
 
 
 
-## css in js
-
-官网：[https://emotion.sh/docs/introduction](https://emotion.sh/docs/introduction)
-
-安装：`yarn add @emotion/core`
-
-简单的例子：
-
-```jsx
-/** @jsx jsx */
-import {css, jsx} from '@emotion/core'
-const color = 'white'
-render(
-	<div css={css`
-		padding: 32px;
-		color: black;
-		&:hover {
-			color: ${color};
-		}
-        button {}  // 后代
-	`}>
-        hover to change color
-    </div>
-)
-```
-
-
-
-也可以写在一个对象里面，之后使用变量
-
-```jsx
-import {css} from 'emotion'
-const styles = {
-    root: css`
-        font-size: 30px;
-        &:hover {}
-    `
-}
-function App(){
-    return <h1 className={styles.root} />
-}
-```
-
-
-
-
-
-
-
 ## React动画
 
 1. 安装：`npm i react-transition-group`
@@ -628,7 +801,7 @@ import {CSSTransition} from 'react-transition-group'
 
 地址：[https://codesandbox.io/s/github/formik/formik/tree/master/examples/with-material-ui?file=/index.js:0-1817](https://codesandbox.io/s/github/formik/formik/tree/master/examples/with-material-ui?file=/index.js:0-1817)
 
-```js
+```jsx
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { useFormik } from 'formik';
@@ -769,5 +942,138 @@ export defualt function(){
 
 ## Echarts 插件
 
-* [echarts-wordcloud](https://github.com/ecomfe/echarts-wordcloud)   使用词云
 * [echarts-for-react](https://github.com/hustcc/echarts-for-react) 简单的封装echarts，react直接使用
+* [echarts-wordcloud](https://github.com/ecomfe/echarts-wordcloud)   使用词云
+
+
+
+## 生成二维码
+
+```bash
+npm install qrcode.react
+```
+
+```js
+import ReactDOM from 'react-dom';
+import {QRCodeSVG} from 'qrcode.react';
+
+ReactDOM.render(
+  <QRCodeSVG value="https://reactjs.org/" />,
+  document.getElementById('mountNode')
+);
+```
+
+
+
+## @ebay/nice-modal-react
+
+官方文档：[https://github.com/eBay/nice-modal-react](https://github.com/eBay/nice-modal-react)
+
+model的hook钩子
+
+```jsx
+import NiceModal from '@ebay/nice-modal-react';
+ReactDOM.render(
+  <React.StrictMode>
+    <NiceModal.Provider>
+      <App />
+    </NiceModal.Provider>
+  </React.StrictMode>,
+  document.getElementById('root'),
+);
+```
+
+搭配其他的modal使用
+
+```jsx
+import { Modal } from 'antd';
+import NiceModal, { useModal } from '@ebay/nice-modal-react';
+
+export default NiceModal.create(({ name }) => {
+  // Use a hook to manage the modal state
+  const modal = useModal();
+  return (
+    <Modal
+      title="Hello Antd"
+      onOk={() => modal.hide()}
+      visible={modal.visible}
+      onCancel={() => modal.hide()}
+      afterClose={() => modal.remove()}
+    >
+      Hello {name}!
+    </Modal>
+  );
+});
+```
+
+
+
+注册使用
+
+```jsx
+import NiceModal from '@ebay/nice-modal-react';
+import MyAntdModal from './my-antd-modal'; // created by above code
+
+// If use by id, need to register the modal component.
+// Normally you create a modals.js file in your project
+// and register all modals there.
+NiceModal.register('my-antd-modal', MyAntdModal);
+
+function App() {
+  const showAntdModal = () => {
+    // Show a modal with arguments passed to the component as props
+    NiceModal.show('my-antd-modal', { name: 'Nate' })
+  };
+  return (
+    <div className="app">
+      <h1>Nice Modal Examples</h1>
+      <div className="demo-buttons">
+        <button onClick={showAntdModal}>Antd Modal</button>
+      </div>
+    </div>
+  );
+}
+```
+
+不用注册
+
+```jsx
+import NiceModal, { useModal } from '@ebay/nice-modal-react';
+import MyAntdModal from './my-antd-modal'; // created by above code
+
+function App() {
+  const showAntdModal = () => {
+    // Show a modal with arguments passed to the component as props
+    NiceModal.show('my-antd-modal')
+  };
+  return (
+    <div className="app">
+      <h1>Nice Modal Examples</h1>
+      <div className="demo-buttons">
+        <button onClick={showAntdModal}>Antd Modal</button>
+      </div>
+      <MyAntdModal id="my-antd-modal" name="Nate" />
+    </div>
+  );
+}
+```
+
+其他方式
+
+```tsx
+import NiceModal, { useModal } from '@ebay/nice-modal-react';
+import MyAntdModal from './my-antd-modal'; // created by above code
+
+NiceModal.register('my-antd-modal', MyAntdModal);
+//...
+// if use with id, need to register it first
+const modal = useModal('my-antd-modal');
+// or if with component, no need to register
+const modal = useModal(MyAntdModal);
+
+//...
+modal.show({ name: 'Nate' }); // show the modal
+modal.hide(); // hide the modal
+//...
+```
+
