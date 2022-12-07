@@ -6,7 +6,7 @@
 
 只执行一次，不用加单位，单位是毫秒；
 
-清楚Timeout定时器：clearTimeout(定时器);
+清除Timeout定时器：clearTimeout(定时器);
 
 
 

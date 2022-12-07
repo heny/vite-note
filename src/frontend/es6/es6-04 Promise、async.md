@@ -108,6 +108,7 @@ const ajaxWithTime = (url,ms) => Promise.race([
 * `Promise.race()` 相当于赛跑，只要一个成功或失败即可
 * `Promise.any()` 一个成功就成功，所有拒绝才拒绝
 * `Promise.try()`
+* `Promise.allSettled`  无论状态，都正常按顺序返回执行promise的结果
 
 静态方法使用:
 ```js

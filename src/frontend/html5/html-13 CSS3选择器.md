@@ -261,9 +261,16 @@ content属性可以使用attr()函数，取元素的属性名；
 6. `inset`   可选，把盒子外阴影（outset）设置为内阴影
 7. 多个阴影用逗号隔开。
 
-阴影样式: x轴 y轴 模糊值 颜色（在内部）
+阴影样式: x轴 y轴 模糊值 颜色 在内部(可选)
 
-`box-shadow: 0px 0px 10px black (inset)`; 
+```css
+/* 利用在内部添加带颜色边框 */
+box-shadow: 18px 0px 0px black inset;
+```
+
+
+
+
 
 文字的阴影：`text-shadow`   
 

@@ -373,7 +373,7 @@ const t = type => Function.prototype.call.bind(Object.prototype.toString)(type).
 
 ### constructor判断（扩展）
 ```js
-console.log({}.constructor === Array)  // true
+console.log({}.constructor === Object)  // true
 通过constructor判断的，Math.constructor === Math       //false，在javascript中，没有Math的构造函数，Math的构造函数在Object上，可以使用toString.call来判断；
 ```
 
@@ -453,7 +453,15 @@ function create(){
     //一般new一个函数,函数可以填写return,如果return了就得将函数返回值保存并返回,函数必须是对象,上面第2点已经讲过;
 }
 
-// 实例
+// or
+function create(fn, ...args) {
+  const obj = new Object();
+  obj.__proto__ = fn.prototype;
+  const result = fn.apply(obj, args)
+  return result instanceof Object ? result : obj;
+}
+
+// 使用实例
 function fn(age){this.age = age}
 let obj1 = create(fn,18)  // fn{age:18}
 let obj2 = new fn(18)  //fn{age:18}
@@ -525,7 +533,7 @@ a+=2 为 a=a+2;
 
 !表达式：  表达式1的结果是true，整个结果为false
 
-                表达式1的结果是false，整个结果为true；
+​					表达式1的结果是false，整个结果为true；
 
 (!"")为true  空字符串为假，取非就为真
 

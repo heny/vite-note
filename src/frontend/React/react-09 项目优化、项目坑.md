@@ -132,11 +132,7 @@ if(!this.state.list) return true // 则不会执行下面的;
 if(!arr.length) return true //true必须填写 否则报错;
 ```
 
-2. 不要操作innerHTML，在html代码里面填写三目运算符;
-
-3. 在做项目时，需要状态的东西要定义state，不然每次渲染会重新声明，无法保存
-
-4. 解决项目需要点击两次的问题（所有两次都可以通过定时器解决）
+2. 解决项目需要点击两次的问题（所有两次都可以通过定时器解决）
 
 原因：是因为第一次没有拿到数据就去渲染了，所以数据不是最新的，延时一下就解决了；
 
@@ -165,7 +161,11 @@ const inputFocus = e => {
 父元素.addEventListener('focusin', inputFocus, false)
 ```
 
-6. 解决 `Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method` 报红
+
+
+### 解决内存泄露
+
+ `Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in the componentWillUnmount method` 报红
 
 原因：在willMount中有setState的事件，
 ```jsx
@@ -217,42 +217,25 @@ window.callback = function () {}
 
 
 
-## 三、ant mobile的示例
+### 不能用作JSX组件
 
-下拉刷新
+参考链接：[解决React中遇到的 “xxxx”不能用作 JSX 组件 问题](https://juejin.cn/post/7089463577634930718)
 
-```jsx
-import {PullToRefresh, ListView} from 'antd-mobile'
-class App extends React.Component (){
-    constructor(props){
-        super(props)
-        const dataSource = new ListView.DataSource({
-          rowHasChanged: (row1, row2) => row1 !== row2
-        });
-        this.pageNo = 0 // 当前页数 放this对象不放state里面，可以进行直接修改操作
-        this.isMore = true // 是否更多
-        this.state = {
-            dataSource,
-            refreshing: true,
-            isLoading: false
-        }
-    }
-    render(){
-        return (
-            <div>
-                <ListView
-                    dataSource={this.state.dataSource}
-                    onEndReachedThreshold={300} // 触发加载函数
-                    renderFooter={'ReactNode节点'} // 渲染底部，可以根据判断来渲染刷新时显示的内容
-                    renderRow={rowData => (<div>rowData.title</div>)} // 每行展示的节点
-                    pullToRefresh={<PullToRefresh/>} // 下拉组件
-                    onEndReached={this.onEndReached} // 加载时的组件, 当return则请求完毕结束
-                    pageSize={5} // 每次事件函数渲染的行数
+1. 在package.json添加如下
 
-                ></ListView>
-            </div>
-        )
-    }
-}
-```
+   ```json
+   "resolutions": {
+     "@types/react": "17.0.44"
+   },
+   ```
+
+2. 重新安装`@types/react`
+
+   ```bash
+   pnpm add @types/react@17.0.44
+   ```
+
+   
+
+   
 

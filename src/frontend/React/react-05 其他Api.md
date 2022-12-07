@@ -114,6 +114,29 @@ const About = lazy(()=>import(/*webpackChunkName:"about"*/))
 
 ![image](https://notecdn.hrhe.cn/images/react-04_其他Api，动画-02.png)
 
+这里补入大佬的方法
+
+```tsx
+// source: https://github.com/facebook/react/issues/14603
+function lazyImport<
+  T extends React.ComponentType<any>,
+  I extends { [K2 in K]: T },
+  K extends keyof I,
+>(
+  factory: () => Promise<I>,
+  name: K
+): I {
+  return Object.create({
+    [name]: React.lazy(() => factory().then(module => ({ default:  module[name] })))
+  });
+}
+
+// Usage
+const { Home } = lazyImport(() => import("./Home.component.tsx"), "Home");
+```
+
+
+
 5. Suspense无法捕获组件加载错误，可以使用componentDidCatch捕获，也可以使用静态方法getDerivedStateFromError捕获错误
 ```jsx
 class App extends Component {
@@ -135,7 +158,10 @@ class App extends Component {
 }
 ```
 
+
+
 ## 四、React.createPortal
+
 **将元素添加到root之外**
 
 一般使用 React 的组件都是挂到父组件的 this.props.children 上面，总是被最近的父组件所捕获，最终到 React 根组件上。

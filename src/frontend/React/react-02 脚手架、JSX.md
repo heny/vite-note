@@ -198,7 +198,7 @@ class Me extends React.Component {
 }
 ```
 
-
+react批处理机制在框架内部做了一次合并操作，以此来减少渲染的次数
 
 
 

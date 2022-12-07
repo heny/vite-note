@@ -54,80 +54,63 @@ SYN：同步序列编号(Synchronize Sequence Numbers)
 
 ## 缓存
 
-缓存分为前端缓存和后端缓存；
+### **强制缓存**
 
-网络发起请求就是三个步骤：请求，处理，响应；
+强制缓存是指客户端请求后，会先访问缓存数据库看缓存是否存在，如果存在直接返回，不存在则请求真的服务器，响应后再存入数据库；可以造成强制缓存的字段是cache-control和expires；
 
-处理为后端处理，前端为请求和响应；
-
-
-
-缓存主要包含memory cache和disk Cache；可以在network-size查看到，如果是大小多少k就是网络请求，如果是from memory cache或者from disk Cache和from ServiceWorker；
-
-优先级是，由上到下寻找，找到即返回，找不到则继续寻找；
-
-1. Service Worker
-2. Memory Cache
-3. Disk Cache
-4. 网络请求
-
-
-
-memory cache是内存中的缓存，disk cache是硬盘中的缓存，会先读内存，再读硬盘；几乎所有的网络请求资源都会被浏览器放进memory cache，但是关闭浏览器时，便会失效，失效之后则会访问disk cache；
-
-
-
-memory cache是浏览器为了加快读取缓存速度而进行的自身优化的行为，不受开发者控制，也不受协议头的约束；
-
-service worker是由开发者编写的额外的脚本，缓存独立；
-
-平时最熟悉的是disk cache，也http cache，http协议头都分为disk cache的范畴；
-
-
-
-### diskCache
-
-disk cache又分为强制缓存和协商缓存(比对缓存)；
-
-强制缓存是指客户端请求后，会先访问缓存数据库看缓存是否存在，如果存在直接返回，不存在则请求真的服务器，响应后再存入数据库；
-
-强制缓存直接减少请求次数，提升最大的缓存策略；可以造成强制缓存的字段是cache-control和expires；
-
-* expires    是表示缓存到期时间，是绝对的时间（当前时间+缓存时间）；
+* expires    是表示缓存到期时间，是绝对的时间（当前时间+缓存时间），http1.0的字段；
   1. expires由于是绝对时间，用户可以随意更改本地时间，达到缓存失效，或者由于时差的原因，也会导致失效；
   2. expires写法比较复杂，字符串多个空格或少个字母都会导致失效
 * cache-control  是http1.1中增加的字段，表示资源缓存的最大有效时间，在该时间内，客户端不需要向服务器发送请求；cache-control是相对时间；cache-control常用的值：
-  1. max-age：最大有效时间
+  1. max-age：最大有效时间，单位s
   2. must-revalidate：
   3. no-cache：需要使用对比缓存来验证缓存数据
   4. no-store：真正意义上的不要缓存，所有内容都不走缓存，包括强制和协商；
   5. public：所有的内容都可以被缓存（包括客户端和代理服务器，如CDN）；
   6. private：所有的内容只有客户端才可以缓存，代理服务器不能缓存。默认值；
 
-
-
-**对比缓存**
-
-需要进行比较判断是否可以使用缓存
-
-浏览器第一次请求数据时，服务器会将缓存标识与数据一起返回给客户端，客户端将二者备份至缓存数据库中。
-再次请求数据时，客户端将备份的缓存标识发送给服务器，服务器根据缓存标识进行判断，判断成功后，返回304状态码，通知客户端比较成功，可以使用缓存数据。
-
-Last-modified：服务器在响应请求时，告诉浏览器资源最后的修改时间；
-
-If-modified-Since：再次请求服务器时，通过此字段通知服务器上次请求时，服务器返回资源的最后修改时间，
-
-与最后修改时间作对比，如果大于，说明资源被修改过，返回200，如果小于或等于，则返回304
+一般设置：`cache-control:public,max-age=1000`
 
 
 
-Etag / If-None-Match（优先级高于Last-modified / If-modified-Since）
+### **协商缓存**
 
-Etag：服务器响应请求，告诉浏览器当前资源在服务器的唯一标识
+浏览器先请求缓存数据库，返回一个缓存标识。之后浏览器拿这个标识和服务器通讯。如果缓存未失效，则返回 HTTP 状态码 304 表示继续使用，于是客户端继续使用缓存；如果失效，则返回新的数据和缓存规则，浏览器响应数据后，再把规则写入到缓存数据库。
 
-If-None-Match：再次请求服务器，通知服务器客户端缓存数据；
+协商缓存主要涉及两组header字段：Etag和if-none-match，last-modified和if-modified-since
 
-如果服务器收到请求有If-None-Match字段，则进行对比，如果不同，则说明资源被更改，返回200，如果相同，则没有作更改，返回304
+**`Last-Modify`和`if-modified-since`**
+
+浏览器第一次请求一个资源的时候，服务器返回的header中会加上`Last-Modify`，`Last-Modify`是一个时间标识该资源的最后修改时间，例如`Last-Modify: Thu,31 Dec 2037 23:59:59 GMT`。
+
+当浏览器再次请求该资源时，request的请求头中会包含 `if-modified-since`，该值为缓存之前返回的`Last-Modify`。服务器收到`if-modified-since`后，根据资源的最后修改时间判断是否使用缓存。
+
+如果使用缓存，则返回304，**并且不会返回资源内容，并且不会返回Last-Modify。**
+
+
+
+**`Etag`和`If-None-Match`**
+
+`Etag`/`If-None-Match`存储的是文件唯一标识（一般是hash生成的），ETag可以保证每一个资源是唯一的，资源变化都会导致ETag变化。服务器根据浏览器上的`If-None-Match`值来判断是否命中缓存 。服务器同样进行比较，命中返回 304, 不命中返回新资源和 200。
+
+
+
+Etag的优先级要高于last-modify
+
+
+
+### **缓存的位置**
+
+* memory cache   内存中的缓存，首先查找内存之后再查找硬盘，关闭浏览器或tab时存储到硬盘里面
+* disk cache  硬盘缓存，会严格根据http头信息中的各类字段来判断哪些资源可以缓存，读取速度虽然比memory cache慢但是比网络请求快
+* service worker 与上述两种不同，前端可以自己使用service worker，通过f12 ==》 application  ==》 cache storage查找到，这个缓存是永久性的，关闭tab或浏览器下次打开依然存在，只有手动调用`cache.delete(resource)`或者容量超过限制才被清空
+
+缓存查找的优先级（由上到下查找）：
+
+1. service workder
+2. memory cache
+3. disk cache
+4. 网络请求
 
 
 
@@ -143,22 +126,18 @@ If-None-Match：再次请求服务器，通知服务器客户端缓存数据；
 
 
 
-缓存小结：
+**缓存的优点**
 
-当浏览器要请求资源时：
-
-1. 调用Service Worker的fetch事件响应
-2. 查看memory cache
-3. 查看disk cache。这里又细分：
-   1. 如果有强制缓存且未失效，则使用强制缓存，不请求服务器。这里状态码全部是200；
-   2. 如果有强制缓存但已失效，使用对比缓存，比较后确定304还是200
+* 减少冗余的数据传输
+* 减少服务器负担
+* 加快客户端加载网页的速度
 
 
 
-1. 发送网络请求，等等网络响应
-2. 把响应内容存入disk cache（如果http头信息可以存的话）
-3. 把响应内容的 **引用** 存入memory cache（无视HTTP头信息的配置）
-4. 把响应内容存入Service Worker的Cache Storage（如果Service Worker的脚本调用了cache.put()）
+参考文献：
+
+* [一文读懂前端缓存](https://juejin.cn/post/6844903747357769742)
+* [前端面试常见的浏览器缓存（强缓存、协商缓存），代码实操](https://juejin.cn/post/7083178636852854792)
 
 
 

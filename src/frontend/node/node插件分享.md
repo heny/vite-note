@@ -430,9 +430,28 @@ console.log(log('hello', 'yello'), log('yes', 'red'))
 
 
 
+## 定时任务
 
+```js
+const schedule = require('node-schedule');
 
+const rule = new schedule.RecurrenceRule();
+rule.minute = 42;
 
+const job = schedule.scheduleJob(rule, function(){
+  console.log('The answer to life, the universe, and everything!');
+});
+```
 
+8点推送消息
 
+```js
+/**
+ * second min hour day month week
+ * 当8点时推送
+ */
+schedule.scheduleJob('0 0 8 * * *', () => {
+  console.log('已推送');
+});
+```
 

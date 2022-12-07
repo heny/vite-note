@@ -152,7 +152,7 @@ let ele = (<ul>
 
 
 
-### 显示一个button按钮
+### createElement
 
 react将createElement方法暴露出来，可以使用以下两种方法：
 
@@ -188,7 +188,7 @@ cssmodule文件将css样式模块化：1.module.css；
 下面的例子使用模块化css，渲染时的class类名将是带hash值的，与其他的隔离，具有唯一性；
 
 ```jsx
-import style from './1.css'
+import style from './1.module.css'
 const Div = <div className={style.img}></div>
 ```
 
@@ -213,7 +213,7 @@ const Div = <div className={style.img}></div>
 
 * 在react中使用动态style样式时，必须使用驼峰命名法，
 
-* react会自动添加`px`后缀，其他后缀需要添加字符串组成；
+* 如果是px后缀可以直接写数字，react会自动添加`px`后缀，其他后缀需要添加字符串组成；
 * 由于使用变量需要对象包裹，style的值也是一个对象；
 
 ```jsx

@@ -298,3 +298,30 @@ Even.prototype.emit = function(eventname,...args){
 }
 ```
 
+es6
+
+```js
+class Event {
+  constructor() {
+    this.eventBus = {};
+  }
+  on(name, fn) {
+    if (this.eventBus[name]) {
+      this.eventBus[name].push(fn)
+    } else {
+      this.eventBus[name] = [fn]
+    }
+  }  
+  emit(name, ...args) {
+    if(this.eventBus[name]) {
+      this.eventBus[name].forEach(item => item(args))
+    }
+  }
+  off(name) {
+    if(this.eventBus[name]) {
+      delete this.eventBus[name]
+    }
+  }
+}
+```
+

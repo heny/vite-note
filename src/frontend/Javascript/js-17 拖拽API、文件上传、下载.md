@@ -500,6 +500,8 @@ function doSave(value, name, type) {
 
 ### 使用原生
 
+ie点击复制会到页面最底部，推荐使用第二种方法
+
 ```js
 function copyText(text) {
   let textArea = document.createElement('textarea')

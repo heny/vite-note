@@ -887,7 +887,7 @@ https://react-query.tanstack.com/reference/useQuery
 
 以下列出常用的功能，更多高级功能请查阅官方文档
 
-```js
+```tsx
 import { useQuery } from 'react-query'
 
 const fetchUsers = async () => {
@@ -902,7 +902,7 @@ export default function(){
         data,
         isLoading,
         refetch, // 手动查询
-    } = useQuery(['fetchKey' ...deps], fetchUsers, {
+    } = useQuery<ResponseData>(['fetchKey' ...deps], fetchUsers, {
         enabled: true, // 是否自动发起请求
         retry: true, // 失败是否重新尝试 boolean | number， 填写number表示重新尝试次数
         onSuccess: ()=>{}, // 成功回调
@@ -937,6 +937,33 @@ export defualt function(){
   return <button onClick={()=>mutation.mutate({title: '1234'})}></button>
 }
 ```
+
+简单使用例子
+
+```tsx
+function addPerson(data) {
+    return request.post('/person')
+}
+function useAddPerson() {
+    return useMutation(async (data: Data) => {
+        const { data } = await addPerson(data);
+        return data
+    })
+}
+function Person() {
+    const addPersonFetch = useAddPerson();
+    
+    const handleSubmit = useCallback(async function() {
+        await addPersonFetch.mutateAsync(data, {
+            onSuccess(rsp) {
+                console.log(rsp)
+            }
+        })
+    }, [])
+}
+```
+
+
 
 
 

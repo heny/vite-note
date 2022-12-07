@@ -245,6 +245,57 @@ let result = text.replace(/{{(.*?)}}/g,e=>{
 
 
 
+```js
+const template = 'My name is ${name}, age ${age}, I am a ${job.name}'
+const employee = {
+  name: 'fatfish',
+  age: 100,
+  job: {
+    name: 'front end development'
+  }
+}
+
+// ag: 1
+String.prototype.render = function (obj) {
+  const template = this
+  const variableRegex = /\$\{([^${}]+)\}/g
+  const getVariableValue = (variable) => {
+    // [ 'name' ]、[ 'age' ]、[ 'job', 'name' ]
+    variable = variable.split('.')
+    let variableValue = obj
+    while (variable.length) {
+      variableValue = variableValue[ variable.shift() ]
+    }
+    return variableValue
+  }
+  const renderStr = template.replace(variableRegex, ($0, variable) => {
+    return getVariableValue(variable)
+  })
+  return renderStr
+}
+
+// ag: 2
+String.prototype.render = function (obj) {
+  const template = this
+  // var { name, age, job } = obj
+  eval(`var {${Object.keys(obj).join(',')}} = obj`)
+  // `My name is ${name}, age ${age}, I am a ${job.name}`
+  const renderStr = eval('`' + template + '`')
+  return renderStr
+}
+
+// ag: 3
+String.prototype.render = function (obj) {
+  with(obj) {
+    return eval('`' + this + '`')
+  }
+}
+```
+
+参考：[面试官：你能实现一个 JavaScript 模板引擎吗？](https://javascript.plainenglish.io/interviewer-can-you-implement-a-javascript-template-engine-me-crap-e651bd831721)
+
+
+
 ## 交换数组指定位置
 
 `[1,2,3,4,5] ===> [5,2,3,4,1]`
@@ -340,6 +391,19 @@ function formatUrl(search, o={}){
 }
 // 传入match即可
 ```
+
+
+
+## 简单封装qs
+
+```js
+const qs = {
+  parse: str => Object.fromEntries(new URLSearchParams(str)),
+  stringify: obj => Object.keys(obj).reduce((pre,cur) => (pre+=`${cur}=${obj[cur]}&`,pre), '?').slice(0,-1)
+}
+```
+
+
 
 
 

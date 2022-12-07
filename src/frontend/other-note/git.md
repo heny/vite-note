@@ -113,6 +113,7 @@ git push
 * `git branch` 查看本地分支
 * `git branch -a` 查看所有分支
 * `git branch -vv` 查看本地分支写远程分支的对比
+* `git branch -m master main` 重命名分支
 * `git checkout <branch>` 切换到一个分支，本地没有的分支远程有的话也可以直接切换
 * `git checkout -b dev` 创建一个新分支
 * `git checkout -b dev origin/dev`  切换到一个新的分支，并追踪到远程分支上；

@@ -83,6 +83,8 @@
 
 7. 检测安装是否成功：`docker version`
 
+
+
 ### 部署nginx
 
 1. 下载镜像：`docker pull nginx`
@@ -143,10 +145,65 @@
 
 
 
+## docker-compose
+
+参考文章：[docker-compose教程（安装，使用, 快速入门）](https://blog.csdn.net/pushiqiang/article/details/78682323)
+
+1. 安装
+
+   ```bash
+   sudo pip install docker-compose
+   ```
+
+2. 创建docker-compose.yml文件
+
+   yml和yaml扩展名都正常工作
+
+   ```yaml
+   version: '3'
+   
+   services:
+   
+     nginx:
+       # docker名字
+       container_name: hnginx
+       # 使用的镜像, 可以从docker hub查找
+       image: nginx
+       # 重启策略
+       restart: always
+       # 指定开放端口
+       ports:
+         #本地80端口 映射到nginx镜像80端口
+         - 80:80
+         - 443:443
+       # 指定文件映射规则
+       volumes:
+         - /root/docker-nginx/html:/usr/share/nginx/html
+         - /root/docker-nginx/conf/nginx.conf:/etc/nginx/nginx.conf
+         - /root/docker-nginx/conf.d:/etc/nginx/conf.d
+         - /root/docker-nginx/logs:/var/log/nginx
+         - /root/docker-nginx/ssl:/etc/nginx/crt
+         - /etc/localtime:/etc/localtime:ro
+   ```
+
+3. docker-compose命令
+
+   * `docker-compose up` 前台运行
+   * `-f` 指定文件
+   * `-d` 后台运行
+
+
+
 ## docker常用命令
+
+镜像搜索地址 [https://hub.docker.com/](https://hub.docker.com/)
 
 * `docker ps` 查看docker容器列表
 * `docker-compose up -d jenkins`  更新jenkins的配置
+* `docker images` 查看本地镜像
+* `docker logs data_nginx_1` 查看镜像日志
+* `docker restart data_nginx_1` 重启docker
+* `docker exec -it hnginx bash` 进入nginx镜像
 
 
 
@@ -450,6 +507,31 @@ forever也是一种保持后台运行的插件，建议使用pm2就可以了，�
 
 6. 重新启动项目：forever restart 文件名（重新启动不需要再传入参数了）
 
+6. 查看日志：forever logs
+
+### screen
+
+screen是用来开一个新的窗口，可以退出后台，退出后台：ctrl + A，然后按D
+
+```bash
+#创建
+screen -S abc
+#恢复
+screen -r abc
+#查看有多少会话：
+screen -ls
+
+#如果不能恢复：先
+screen -d ###
+#再
+screen -r ###
+
+#删除 
+screen -S ### -X quit
+```
+
+
+
 
 
 
@@ -592,47 +674,135 @@ jenkins默认工作区：/var/lib/jenkins/workspace/
 
 ## 部署在线版VScode
 
+参考链接：[Linux安装code-server服务并使用systemctl管理](https://blog.csdn.net/rjszz1314/article/details/125171514)
+
 `code-server`官网链接：[https://github.com/cdr/code-server/releases](https://github.com/cdr/code-server/releases)
 
-### 拉取代码
-
-直接放linux后台拉取（可以输入ll即时查看文件大小）：
+查看架构方便下载
 
 ```bash
-wget -bc -t 20 https://www.ivdone.top/wordpress/pic/p662/code-server-3.2.0-linux-x86_64.tar.gz
-
-# 之后解压
-tar -zxvf code-server-3.2.0-linux-x86_64.tar.gz
-# 进入该目录
-cd code-server-3.2.0-linux-x86_64/
+# x86_64选amd64
+uname -m
 ```
 
-### 设置密码
+1. **下载之后进行解压**
 
-```bash
-# 设置web登录密码
-vi ~/.bashrc
-# 在该文件的末端导出环境变量，xxxxxx为你自己设置的登录密码，保存
-export PASSWORD="xxxxxx"
-# 更新环境变量
-source ~/.bashrc
-```
+   ```bash
+   # 解压
+   tar -zxvf code-server.....
+   ```
 
-### 运行
+2. **添加配置文件**
 
-```bash
-# 检查端口是否被占用，注意Linux防火墙要开放该端口
-lsof -i:8080
-# 前台运行，使能了登录密码
-./code-server --host 0.0.0.0 --port 8080 --auth password
-# 后台运行
-nohup ./code-server --host 0.0.0.0 --port 8080 --auth password &
-```
+   `~/.config/code-server/config.yaml`
 
-之后可以直接访问了，然后部署nginx即可；
+   ```yaml
+   bind-addr: 0.0.0.0:8002
+   auth: password
+   password: 123456
+   cert: false
+   ```
+
+   密码和端口号可以修改，其他不要动
+
+3. **启动**
+
+   ```bash
+   # 进入目录
+   cd code-server....
+   # 直接运行, 不会保留后台
+   ./code-server
+   ```
+
+4. **使用systemctl管理**
+
+   新建`code-server.service` ，并复制到 `/etc/systemd/system/`
+
+   ```bash
+   [Unit]
+   Description=code-server
+   After=network.target
+   
+   [Service]
+   Type=exec
+   ExecStart=${code-server目录}/code-server
+   Restart=always
+   User=${配置文件所在目录所属用户}
+   
+   [Install]
+   WantedBy=default.target
+   ```
+
+5. **启动方式**
+
+   ```bash
+   #启动
+   sudo systemctl start code-server
+   #停止
+   sudo systemctl stop code-server
+   #开机自启
+   sudo systemctl enbale code-server
+   ```
+
+6. 查看日志命令：
+
+   * `systemctl status your-service`
+   * `journalctl -u code-server.service` 
+
+7. 访问方式
+
+   直接输入公网ip:port即可访问
+
+
 
 
 
 ## 本地vscode直接访问服务器
 
 下载remote-ssh插件即可
+
+
+
+
+
+## 安装redis
+
+**Use**
+
+```bash
+sudo apt install redis
+redis-cli --version # 查看版本
+sudo service redis start # 启动
+sudo service redis stop # 停止
+ps -aux | grep redis # 查看redis进程
+
+# 不常用命令
+sudo systemctl status redis # 查看服务状态
+sudo systemctl start redis # 启动
+sudo systemctl stop redis # 停止
+```
+
+
+
+## 安装Alist
+
+通过alist可以管理各个云盘的资源
+
+```bash
+# 一键安装
+curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s install
+```
+
+Alist 安装成功之后：
+
+访问地址：http://YOUR_IP:5244/
+
+配置文件路径：/opt/alist/data/config.json
+$查看管理员信息，请执行
+cd /opt/alist
+./alist admin
+
+查看状态：systemctl status alist
+启动服务：systemctl start alist
+重启服务：systemctl restart alist
+停止服务：systemctl stop alist
