@@ -71,6 +71,20 @@ ssh-keygen -t rsa -C 'heny@qq.com'   // 回车之后记得根据提示按下yes
 
 1. 配置ssh后，拉项目仍然提示无权限，查看是否有`known_hosts`文件存在`.ssh`里面，如果没有的话在拉项目会提示生成，输入yes即可生成，如果回车则不会生成
 
+2. 仍无权限，尝试在.ssh文件夹下新增config文件，并加入如下
+
+   ```bash
+   PubkeyAcceptedKeyTypes +ssh-rsa
+   ```
+
+3. 仍无权限，使用新的签名算法
+
+   ```bash
+   ssh-keygen -t ed25519 -C "xxx@email.com"
+   ```
+
+   
+
 
 
 ## 二、项目初始化

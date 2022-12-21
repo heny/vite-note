@@ -206,7 +206,6 @@ nvm用来管理node版本
 ## 软件推荐
 
 - `Rectangle`  桌面吸附软件，brew安装
-- `switchhosts`   切换host软件，brew安装，下载比较慢
 - `bob`  翻译软件，可以截图翻译，支持配置多种翻译源
 - `超级右键`   可以右键直接创建，在appstore下载
 - `go2shell`   访达添加终端表情，使用brew安装
@@ -216,6 +215,7 @@ nvm用来管理node版本
 - `permute`  格式转换
 - `downie` 视频下载
 - `哈利路亚输入法`   英文单词带提示输入法
+- `Snipaste`  最强截图软件
 - `istat menus`  监控数据神器
 - `appCleaner`  软件彻底卸载
 - `handshaker`  手机与mac连接神器
@@ -225,6 +225,7 @@ nvm用来管理node版本
 - `gif berwery`  gif录制工具
 - `Synergy`   win本和mac放一起时，使用一套键鼠操作
 - `keycastr` 实时显示按键
+- `switchhosts`   切换host软件，brew安装，下载比较慢
 
 更全的mac推荐软件：[https://github.com/jaywcjlove/awesome-mac/blob/master/README-zh.md](https://github.com/jaywcjlove/awesome-mac/blob/master/README-zh.md)
 
