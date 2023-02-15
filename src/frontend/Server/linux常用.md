@@ -189,8 +189,8 @@
 3. docker-compose命令
 
    * `docker-compose up` 前台运行
-   * `-f` 指定文件
-   * `-d` 后台运行
+     * `-f` 指定文件
+     * `-d` 后台运行
 
 
 
