@@ -302,6 +302,12 @@ function Resize(){
 
 
 
+## 移动端不能通过ip地址访问
+
+查看webpack-dev配置，改为：`host: '0.0.0.0'`
+
+
+
 ## 七、与原生端联调
 
 在原生端的最顶端对象同样是window，我们可以将值放在window对象上；

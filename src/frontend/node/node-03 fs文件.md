@@ -484,6 +484,17 @@ copyFiles()
 
 
 
+```js
+import * as fse from 'fs-extra'
+const path = './temp/data/list.json';
+// 目录不存在会自动创建，将json格式直接写入文件
+fse.outputJsonSync(dataPath, auditJson, { spaces: 2 })
+// 读取出来直接是json
+fse.readJSONSync(dataPath);
+```
+
+
+
 
 
 

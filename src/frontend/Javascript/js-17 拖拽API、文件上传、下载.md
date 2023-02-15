@@ -227,6 +227,37 @@ async function uploadChunks(file, fileChunkList) {
   // 上传完成发送合并请求
   await mergeRequest(file.name, setIsSelectFile, socket)
 }
+
+ // xhr
+function request({
+  url,
+  method = "post",
+  data,
+  headers = {},
+  onProgress = e => e,
+  requestList
+}) {
+  return new Promise(resolve => {
+    const xhr = new XMLHttpRequest();
+    xhr.upload.onprogress = onProgress;
+    xhr.open(method, url);
+    Object.keys(headers).forEach(key =>
+      xhr.setRequestHeader(key, headers[key])
+    );
+    xhr.send(data);
+    xhr.onload = e => {
+      resolve({
+        data: e.target.response
+      });
+    };
+  });
+}
+
+function createProgressHandler(item) {
+  return e => {
+    item.percentage = parseInt(String((e.loaded / e.total) * 100));
+  };
+}
 ```
 
 
