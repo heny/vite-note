@@ -806,10 +806,35 @@ Alist 安装成功之后：
 
 配置文件路径：/opt/alist/data/config.json
 $查看管理员信息，请执行
+
+```bash
 cd /opt/alist
 ./alist admin
+```
 
-查看状态：systemctl status alist
-启动服务：systemctl start alist
-重启服务：systemctl restart alist
-停止服务：systemctl stop alist
+**常用功能**
+
+* 查看状态：systemctl status alist
+* 启动服务：systemctl start alist
+* 重启服务：systemctl restart alist
+* 停止服务：systemctl stop alist
+
+### 配置阿里云盘订阅
+
+```dockerfile
+version: '3'
+
+services:
+  aliyun-subscribe:
+    container_name: aliyunsub
+    image: looby/aliyundrive-subscribe:latest
+    restart: always
+    ports: 
+      - 8002:8002
+    volumes:
+      - /root/conf/:/app/conf
+```
+
+下载：https://github.com/adminpass/aliyundrive-subscribe/releases
+
+需要将amd64/arm64以及app.ini文件都下载到/root/conf文件内

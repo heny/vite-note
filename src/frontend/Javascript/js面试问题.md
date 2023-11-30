@@ -206,6 +206,13 @@ function deepCopy( obj ){
 
 
 
+### forEach和map的区别
+
+1. map会返回一个新的数组，而forEach不会
+2. map和forEach不会改变原数组，但是可以改变原数组的引用类型
+3. forEach和map都不能跳出循环，如果需要跳出循环可以使用try...catch，并抛出错误
+4. map支持链式调用，而forEach不支持
+
 
 
 

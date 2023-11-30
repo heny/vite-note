@@ -483,7 +483,36 @@ function currying(fn,length){
 }
 ```
 
+```js
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args);
+    } else {
+      return function (...moreArgs) {
+        return curried.apply(this, args.concat(moreArgs));
+      };
+    }
+  };
+}
+
+// 用例
+function add(a, b, c) {
+  return a + b + c;
+}
+
+const curriedAdd = curry(add);
+
+console.log(curriedAdd(1)(2)(3)); // 输出: 6
+console.log(curriedAdd(1, 2)(3)); // 输出: 6
+console.log(curriedAdd(1)(2, 3)); // 输出: 6
+console.log(curriedAdd(1, 2, 3)); // 输出: 6
+```
+
+
+
 ## 八、偏函数
+
 偏函数，partial application，也叫做部分应用、局部应用、偏应用；
 
 偏函数指的是对一个函数应用一个或多个参数，但不是全部参数，在这个过程中创建一个新函数，这个函数用于接收剩余的参数；

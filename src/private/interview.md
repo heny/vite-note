@@ -56,7 +56,7 @@ constructor
 
 ### new操作符
 1. 创建了一个空对象
-2. 将构造函数的作用域赋给新对象（因此this就指向了这个新对象）
+2. 将构造函数的作用域赋给新对象
 3. 执行构造函数中的代码
 4. 返回新对象
 ```js
@@ -91,7 +91,32 @@ function fn(n, start=1, end=1) {
 }
 ```
 
+### 深拷贝
+
+```js
+function deepCopy( obj ){
+    if( Object.prototype.toString.call( obj ) === '[object Object]' ){
+        var result = {}
+    }else if( Object.prototype.toString.call( obj ) === '[object Array]' ){
+        var result = []
+    }  //判断数据类型类型  如果是数组则初始一个  []  如果是一个Object则初始一个 {}
+
+    //浅拷贝，但是+ 递归思想，就实现了深拷贝
+    for( var attr in obj ){
+        if( typeof obj[attr] == 'object'){      //判断传入的键值是否是数组或对象
+            result[attr] = deepCopy( obj[attr] )  //如果是对象则再调用一次函数; 实现递归;
+        }else{
+            result[attr] = obj[attr]  //将每一天数据输入进对象或数组;
+        }
+    }
+    return result
+}
+```
+
+
+
 ### 数组常用方法
+
 改变原数组：push、pop、shift、unshift、splice、sort、reverse
 其他方法：concat、join、indexOf、includes、flat
 **常用迭代方法**：every、some、forEach、map、filter、reduce
@@ -254,7 +279,12 @@ websocket
 * 使用Object.keys
 * 使用Object.enteries
 
+
+
 ###  缓存
+
+https://juejin.cn/post/7127194919235485733
+
 缓存分为 memory cache和disk cache，内存缓存和硬盘缓存
 会先读取内存，再读硬盘，几乎所有的网络请求都会被浏览器放进memory cache，关闭浏览器就会失效，之后读取disk cache
 
@@ -271,6 +301,8 @@ cache-control可以设置的字段：max-age、no-cache、no-store、public、pr
 3. 查看disk cache
    * 如果有强制缓存未失效，则使用，不请求服务器，这里状态码全是200
    * 如果有强制缓存已失效，则查看协商缓存，比较后确定304还是200
+
+
 
 
 ### 实现一个call
@@ -306,8 +338,23 @@ Function.prototype.myBind = function(context, ...args) {
 }
 ```
 
+### 并发渲染控制
+
+```js
+function limitRequest(urls, limit=2){
+    let len = urls.length;
+    while(len > 0) {
+        let list = urls.splice(0, limit)
+        len -= limit;
+        Promise.all(list.map(Promise.resolve)).then(res => {
+            console.log(res, 'res')
+        })
+    }
+}
+```
 
 ### es6常用方法
+
 * let、const
 * 解构赋值
 * 箭头函数

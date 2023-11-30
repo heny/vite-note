@@ -10,11 +10,57 @@
 
 
 
+### Fiber的描述
+React Fiber 是 React 的一个重新实现的核心算法，旨在改进其对于大型和复杂应用程序的性能。
+
+React Fiber 架构的主要目标是实现增量式渲染，使得在渲染大型组件树时，React 可以将渲染过程拆分成多个较小的步骤，每一步骤都可以被打断或者中止，从而可以让应用程序更加灵敏和响应。
+
+### 老版本的渲染问题
+在传统的 React 渲染模型中，React 会从根组件开始，一直递归渲染整个组件树，直到完成所有的渲染操作。如果组件树非常大或者组件的渲染耗时很长，那么这个渲染过程会非常缓慢，甚至会导致浏览器卡顿或者崩溃。
+
+### Fiber解决的问题
+React Fiber 的实现方式是通过将渲染过程拆分成一系列的小任务，然后将这些任务分散在多个帧中进行处理。在每一帧中，React Fiber 会尽可能多地处理这些小任务，然后将控制权交还给浏览器，让浏览器有足够的时间处理用户的输入和其他操作。这种方式可以有效地避免应用程序的卡顿和崩溃。
+
+React Fiber 架构还支持 React 的异步渲染功能，这意味着可以将优先级高的任务优先处理，而不是等待所有的任务都完成后再开始渲染。这样可以提高应用程序的响应速度，同时还能确保组件的渲染顺序是正确的。
+
+总的来说，React Fiber 架构是 React 的一个重要升级，它可以使得 React 应用程序更加灵活、高效和响应。
+
+### Fiber带来了什么
+
+* 增量渲染
+* 为不同的任务分配优先极
+* 更新时能暂停、终止、复用渲染任务
+* 并发 
+
+
+
 ### fiber数据结构
 
 fiber遍历过程：自上而下，自左至右；
 
 先找子元素 -> 再找兄弟元素 -> 再找父元素；
+
+### fiber结构
+
+```ts
+export type Fiber = {|
+  // 1. fiber节点自身状态相关
+  pendingProps: any,
+  memoizedProps: any,
+  updateQueue: mixed,
+  memoizedState: any,
+
+  // 2. fiber节点副作用(Effect)相关
+  flags: Flags,
+  subtreeFlags: Flags,
+  deletions: Array<Fiber> | null,
+  nextEffect: Fiber | null,
+  firstEffect: Fiber | null,
+  lastEffect: Fiber | null,
+|};
+```
+
+
 
 
 

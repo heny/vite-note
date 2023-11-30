@@ -21,8 +21,8 @@ Webpack 的运行流程是一个串行的过程,从启动到结束会依次执�
 1. 初始化参数：从配置文件和 Shell 语句中读取与合并参数,得出最终的参数。
 2. 开始编译：用上一步得到的参数初始化 Compiler 对象,加载所有配置的插件,执行对象的 run 方法开始执行编译。
 3. 确定入口：根据配置中的 entry 找出所有的入口文件。
-4. 编译模块：从入口文件出发,调用所有配置的 Loader 对模块进行翻译,再找出该模块依赖的模块,再递归本步骤直到所有入口依赖的文件都经过了本步骤的处理。
-5. 完成模块编译：在经过第 4 步使用 Loader 翻译完所有模块后,得到了每个模块被翻译后的最终内容以及它们之间的依赖关系。
+4. 编译模块：从入口文件出发,调用所有配置的 Loader 对模块进行转换,再找出该模块依赖的模块,再递归本步骤直到所有入口依赖的文件都经过了本步骤的处理。
+5. 完成模块编译：在经过第 4 步使用 Loader 转换完所有模块后,得到了每个模块被转换后的最终内容以及它们之间的依赖关系。
 6. 输出资源：根据入口和模块之间的依赖关系,组装成一个个包含多个模块的 Chunk,再把每个 Chunk 转换成一个单独的文件加入到输出列表,这步是可以修改输出内容的最后机会。
 7. 输出完成：在确定好输出内容后,根据配置确定输出的路径和文件名,把文件内容写入到文件系统。
 
@@ -138,6 +138,8 @@ module.exports = function(source) {
 
 ## 编写一个plugin
 
+需要实现一个apply方法
+
 ```js
 //webpack配置文件 
 plugins: [
@@ -202,3 +204,31 @@ compilation事件钩子:
 
 
 参考资料：[webpack原理（二）自定义plugin](https://blog.csdn.net/qq_36228442/article/details/100037165)
+
+
+
+## webpack有哪些常⻅的Loader
+
+- `file-loader`：把⽂件输出到⼀个⽂件夹中，在代码中通过相对 URL 去引⽤输出的⽂件
+- `url-loader`：和 file-loader 类似，但是能在⽂件很⼩的情况下以 base64 的⽅式把⽂件内容注⼊到代码中去
+- `source-map-loader`：加载额外的 Source Map ⽂件，以⽅便断点调试
+- `image-loader`：加载并且压缩图⽚⽂件
+- `babel-loader`：把 ES6 转换成 ES5
+- `css-loader`：加载 CSS，⽀持模块化、压缩、⽂件导⼊等特性
+- `style-loader`：把 CSS 代码注⼊到 JavaScript 中，通过 DOM 操作去加载 CSS。
+- `eslint-loader`：通过 ESLint 检查 JavaScript 代码
+
+## webpack 常见的plugin有哪些
+
+- `ProvidePlugin`：自动加载模块，代替require和import
+- `html-webpack-plugin`可以根据模板自动生成html代码，并自动引用css和js文件
+- `extract-text-webpack-plugin` 将js文件中引用的样式单独抽离成css文件
+- `DefinePlugin` 编译时配置全局变量，这对开发模式和发布模式的构建允许不同的行为非常有用。
+- `HotModuleReplacementPlugin` 热更新
+- `css-minimizer-webpack-plugin` 不同组件中重复的css可以快速去重
+- `webpack-bundle-analyzer` 一个webpack的bundle文件分析工具，将bundle文件以可交互缩放的treemap的形式展示。
+- `compression-webpack-plugin` 生产环境可采用gzip压缩JS和CSS
+- `happypack`：通过多进程模型，来加速代码构建
+- `clean-wenpack-plugin` 清理每次打包下没有使用的文件
+- `speed-measure-webpack-plugin`:可以看至U每个Loader和Plugin执行耗时（整个扌丁包耗时、每个Plugin和 Loader 耗时）
+
