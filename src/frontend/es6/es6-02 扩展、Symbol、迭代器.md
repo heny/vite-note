@@ -1,4 +1,4 @@
-# es6-02 扩展、Symbol、iterator
+# es6-02 扩展、Symbol、迭代器
 
 ## 一、扩展运算符： ...
 
