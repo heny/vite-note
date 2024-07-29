@@ -45,19 +45,19 @@ ssh-keygen -t rsa -C 'heny@qq.com'   // 回车之后记得根据提示按下yes
    Host gitee.com
    HostName gitee.com
    PreferredAuthentications publickey
-   IdentityFile ~/.ssh/id_rsa.gitee
+   IdentityFile ~/.ssh/id_rsa_gitee
    
    # github
    Host github.com
    HostName github.com
    PreferredAuthentications publickey
-   IdentityFile ~/.ssh/id_rsa.github
+   IdentityFile ~/.ssh/id_rsa_github
    
    # gitlab
    Host gitlab.com
    HostName gitlab.com
    PreferredAuthentications publickey
-   IdentityFile ~/.ssh/id_rsa.gitlab
+   IdentityFile ~/.ssh/id_rsa_gitlab
    ```
 
 3. 最后进行测试连通性
