@@ -1,4 +1,4 @@
-import fs from 'fs'
+import fs from 'fs-extra'
 import path from 'path'
 import { rootDir } from '../../scripts/globalConfig';
 
@@ -48,10 +48,47 @@ function byDirNameGetMenu(dirname){
 	return fileList.map(item => ({text: item, link: `/src/${dirname}/${item}/`}))
 }
 
+/**
+ * 
+ * @param filePath private
+ * @returns [{
+ * 	text: 'filename',
+ *  link: /private/***.md
+ * }]
+ */
+function recursionGetMenu(filePath){
+	function getPrivateMenu(...args) {
+		const privateLinks = fs.readdirSync(resolve(rootDir, ...args))
+		const items: any[] = [];
+		
+		privateLinks.forEach(key => {
+			const stats = fs.statSync(resolve(rootDir, ...args, key))
+			if(stats.isDirectory()) {
+				items.push({
+					text: key,
+					collapsed: false,
+					items: getPrivateMenu(...args, key)
+				})
+			} else {
+				const { name: text } = path.parse(key)
+				// 过滤index
+				if(text.includes('index')) return
+				items.push({text, link: `/src/${args.join('/')}/${key}`})
+			}
+		})
+		return items
+	}
+	const result = getPrivateMenu(filePath)
+	// 有目录的排在前面
+	return result.sort((a) => a.items ? -1 : 0)
+}
+
 // 通过文件夹获取菜单
 const frontendLinks = byDirNameGetMenu('frontend')
 
 // 获取frontend的左侧的sidebar
 const sidebar = getSidebar(frontendLinks)
+// 私人目录通过地址访问
+sidebar['/src/private/'] = recursionGetMenu('private')
 
 export { sidebar, frontendLinks };

@@ -9,7 +9,7 @@ const resolve = (...args) => {
 }
 
 createReadme('frontend')
-
+createReadme('private')
 
 const BASE_URL = process.argv.includes('--gitee') ? '/vite-note/' : '/';
 
@@ -38,16 +38,20 @@ export default defineConfig({
       provider: 'local'
     },
 
+    editLink: {
+      pattern: 'https://gitee.com/hnys/vite-note/edit/main/:path'
+    },
+
     nav: [
 			{ text: 'React', link: '/src/frontend/React/'},
 			{ text: 'Vue', link: '/src/frontend/Vue/' },
-			{ text: 'node', link: '/src/frontend/node/' },
-			{ text: 'git', link: '/src/frontend/other-note/git' },
-			{ text: 'frontend', items: frontendLinks },
+			{ text: 'Node', link: '/src/frontend/node/' },
+			{ text: 'Git', link: '/src/frontend/other/git' },
+      { text: 'Other', link: '/src/frontend/other/' },
+			{ text: 'Frontend', items: frontendLinks },
 			{
 				text: '友情链接', 
 				items: [
-					{text: '消息传输站', link: 'https://chat.heny.vip'},
 					{text: '个人博客站', link: 'https://blog.hrhe.cn'}
 				]
 			}
