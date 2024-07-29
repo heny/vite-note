@@ -39,7 +39,7 @@ buildGithub () {
 
 echox '开始构建' 1
 
-# echox 'npm run build'
+echox 'npm run build'
 
 echox 'git-auto push -m "deploy" '
 
