@@ -244,7 +244,7 @@ Symbol.keyFor(s6) // hh
     ```
 
 2. `Symbol.isConcatSpreadable`    concat不扁平化
-    
+   
     ```js
     let arr = [1,2]
     [].concat(arr, [1,2]) // [1,2,3,4]
@@ -307,7 +307,7 @@ for (const [key, value] of Object.entries(me)) {
 
 ③接下来不断调用next方法，指针会一直往后移动，直到指向最后一个成员
 
-④每调用next方法返回的是一个包含value和done的对象，{value: 当前成员的值,done: 布尔值}
+④每调用next方法返回的是一个包含value和done的对象，`{value: 当前成员的值,done: 布尔值}`
 
 ⑤value表示当前成员的值，done对应的布尔值表示当前的数据的结构是否遍历结束。
 
