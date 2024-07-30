@@ -12,10 +12,6 @@ echox () {
 }
 
 buildGithub () {
-  echox '开始构建'
-
-  echox 'npm run build'
-
   echox "开始部署github" 1
 
   echox 'cd .vitepress/dist'
@@ -36,6 +32,11 @@ echox '开始推送' 1
 echox 'git add .'
 echox 'git commit -m "deploy"'
 echox 'git push'
+
+echox '开始构建'
+
+# 服务器构建太慢，用本地构建
+echox 'npm run build'
 
 echox '开始部署服务器' 1
 

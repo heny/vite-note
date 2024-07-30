@@ -214,7 +214,6 @@
 ```bash
 #!/bin/bash
 
-# 检查出错时不执行后面语句
 set -e
 
 # 部署的项目目录
@@ -224,11 +223,15 @@ STATIC_FILE=$PROJECT_DIR/.vitepress/dist
 # nginx html的文件夹
 NGINX_DIR=~/docker-nginx/html/vite-note
 # 部署之前是否检查最新
-CHECK_LATEST=true
+CHECK_LATEST=false
+# 是否服务器构建 如果本地构建上传有静态文件就填false
+IS_SERVER_BUILD=false
 
 # 部署执行的构建命令
 startBuild () {
   echo '开始构建'
+  # 检查node版本
+  node -v
   pnpm i
   pnpm build
   echo '构建完成'
@@ -254,7 +257,9 @@ if [ "$CHECK_LATEST" = true ]; then
   fi
 fi
 
-startBuild
+if [ "$IS_SERVER_BUILD" = true ]; then
+  startBuild
+fi
 
 if [ $? -eq 0 ]; then
   copyFiles
