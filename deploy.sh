@@ -33,7 +33,7 @@ echox 'git add .'
 echox 'git commit -m "deploy"'
 echox 'git push'
 
-echox '开始构建'
+echox '开始构建' 1
 
 # 服务器构建太慢，用本地构建
 echox 'npm run build'
