@@ -223,7 +223,7 @@ STATIC_FILE=$PROJECT_DIR/.vitepress/dist
 # nginx html的文件夹
 NGINX_DIR=~/docker-nginx/html/vite-note
 # 部署之前是否检查最新
-CHECK_LATEST=false
+CHECK_LATEST=true
 # 是否服务器构建 如果本地构建上传有静态文件就填false
 IS_BUILD=false
 
@@ -258,11 +258,7 @@ if [ "$IS_BUILD" = true ]; then
   startBuild
 fi
 
-if [ $? -eq 0 ]; then
-  copyFiles
-else
-  echo '构建失败，跳过文件复制'
-fi
+copyFiles
 
 ```
 
