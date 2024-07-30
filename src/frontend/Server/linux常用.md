@@ -207,6 +207,65 @@
 
 
 
+## 简单的sh自动化部署
+
+创建一个`*.sh`的文件，复制以下代码，之后进行更改变量即可
+
+```bash
+#!/bin/bash
+
+# 检查出错时不执行后面语句
+set -e
+
+# 部署的项目目录
+PROJECT_DIR=~/private/vite-note
+# 静态文件目录
+STATIC_FILE=$PROJECT_DIR/.vitepress/dist
+# nginx html的文件夹
+NGINX_DIR=~/docker-nginx/html/vite-note
+# 部署之前是否检查最新
+CHECK_LATEST=true
+
+# 部署执行的构建命令
+startBuild () {
+  echo '开始构建'
+  pnpm i
+  pnpm build
+  echo '构建完成'
+}
+
+# 开始复制文件到nginx目录
+copyFiles () {
+  echo '开始复制文件部署'
+  rm -rf $NGINX_DIR/*
+  cp -r $STATIC_FILE/* $NGINX_DIR/
+  echo '文件部署完成'
+}
+
+cd $PROJECT_DIR
+echo "当前目录: `pwd`"
+
+if [ "$CHECK_LATEST" = true ]; then
+  pullResult=$(git pull | grep "Already up to date")
+
+  if [ ! -z "$pullResult" ]; then
+    echo "已经是最新的了，不需要再部署了"
+    exit 0
+  fi
+fi
+
+startBuild
+
+if [ $? -eq 0 ]; then
+  copyFiles
+else
+  echo '构建失败，跳过文件复制'
+fi
+
+```
+
+
+
 ## ranger
 
 > ranger 一个文件管理器，终端最好用的文件管理器，可以直接进github了解
