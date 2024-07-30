@@ -249,7 +249,7 @@ cd $PROJECT_DIR
 echo "当前目录: `pwd`"
 pullResult=$(git pull | grep "Already up to date")
 
-if [ "$CHECK_LATEST" = "true" ] && [ -n "$pullResult" ]; then
+if [ "$CHECK_LATEST" = true ] && [ -n "$pullResult" ]; then
   echo "已经是最新的了，不需要再部署了"
   exit 0
 fi
