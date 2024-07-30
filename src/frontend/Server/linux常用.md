@@ -225,7 +225,7 @@ NGINX_DIR=~/docker-nginx/html/vite-note
 # 部署之前是否检查最新
 CHECK_LATEST=false
 # 是否服务器构建 如果本地构建上传有静态文件就填false
-IS_SERVER_BUILD=false
+IS_BUILD=false
 
 # 部署执行的构建命令
 startBuild () {
@@ -247,17 +247,14 @@ copyFiles () {
 
 cd $PROJECT_DIR
 echo "当前目录: `pwd`"
+pullResult=$(git pull | grep "Already up to date")
 
-if [ "$CHECK_LATEST" = true ]; then
-  pullResult=$(git pull | grep "Already up to date")
-
-  if [ ! -z "$pullResult" ]; then
-    echo "已经是最新的了，不需要再部署了"
-    exit 0
-  fi
+if [ "$CHECK_LATEST" = "true" ] && [ -n "$pullResult" ]; then
+  echo "已经是最新的了，不需要再部署了"
+  exit 0
 fi
 
-if [ "$IS_SERVER_BUILD" = true ]; then
+if [ "$IS_BUILD" = true ]; then
   startBuild
 fi
 
