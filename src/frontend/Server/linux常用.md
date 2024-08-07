@@ -247,7 +247,10 @@ copyFiles () {
 
 cd $PROJECT_DIR
 echo "当前目录: `pwd`"
+
+set +e
 pullResult=$(git pull | grep "Already up to date")
+set -e
 
 if [ "$CHECK_LATEST" = true ] && [ -n "$pullResult" ]; then
   echo "已经是最新的了，不需要再部署了"

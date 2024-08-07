@@ -1,16 +1,18 @@
 // https://vitepress.dev/guide/custom-theme
-import { h } from 'vue'
 import type { Theme } from 'vitepress'
 import DefaultTheme from 'vitepress/theme'
+import Layout from './Layout.vue'
+import { inject } from '@vercel/analytics'
+import { injectSpeedInsights } from '@vercel/speed-insights'
 import './style.css'
+
+// 注册 vercel 监视器
+inject()
+injectSpeedInsights()
 
 export default {
   extends: DefaultTheme,
-  Layout: () => {
-    return h(DefaultTheme.Layout, null, {
-      // https://vitepress.dev/guide/extending-default-theme#layout-slots
-    })
-  },
+  Layout,
   enhanceApp({ app, router, siteData }) {
     // ...
   }

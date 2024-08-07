@@ -23,7 +23,7 @@ let arr:any[] = [1,{}, []]
 const test = (text:string):void => {}
 
 // object类型
-const getObj = (obj:object):void => {}
+const getObj = (obj:{}):void => {}
 
 // unknow类型 顶级类型
 let value:unknown;

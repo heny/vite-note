@@ -45,6 +45,9 @@ echox 'git add .'
 echox 'git commit -m "deploy"'
 echox 'git push'
 
+echox '开始推送到github' 1
+echox 'pnpm run deploy:github'
+
 echox '开始部署到服务器' 1
 
 if [ "$DEPLOY_SERVER" = true ]; then
