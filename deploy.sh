@@ -5,7 +5,7 @@ set -e
 
 # 控制变量
 LOCAL_BUILD=true
-DEPLOY_GITHUB=true
+DEPLOY_GITHUB=false
 DEPLOY_SERVER=true
 
 echox () {
