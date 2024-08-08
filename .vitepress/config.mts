@@ -15,8 +15,8 @@ const BASE_URL = process.argv.includes('--gitee') ? '/vite-note/' : '/';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "前端学习圈",
-  description: "前端学习笔记个人记录",
+  title: "Code Garden",
+  description: "Personal Records of Frontend Learning Notes",
   head: [
     ['link', { rel: 'icon', type: "image/x-icon", href: `${BASE_URL}favicon.ico` }],
 		['link', { rel: 'manifest', href: `${BASE_URL}manifest.json` }],
