@@ -18,24 +18,19 @@ echox () {
 echox '开始构建' 1
 
 if [ "$LOCAL_BUILD" = true ]; then
-  echox 'npm run build'
+  echox 'pnpm build'
 else
   echox "跳过本地构建" 1
 fi
 
 echox '开始推送' 1
 
-echox 'pnpm run push'
-
-echox '开始推送到github' 1
-echox 'pnpm run deploy:github'
+echox 'pnpm push'
 
 echox '开始部署到服务器' 1
 
 if [ "$DEPLOY_SERVER" = true ]; then
-  echox 'npm run deploy'
+  echox 'pnpm deploy:server'
 else
   echox "跳过部署到服务器" 1
 fi
-
-buildGithub

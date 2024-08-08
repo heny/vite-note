@@ -4,13 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vitepress dev",
     "build": "vitepress build",
     "preview": "vitepress preview",
-    "deploy": "ssh root@101.43.223.31 'sh ~/docker-nginx/deploy_sh/vite-note.sh'",
-    "deploy:github": "git push git@github.com:heny/vite-note.git main",
-    "push": "npm run build && git-auto push -m 'update'"
+    "deploy": "sh ./deploy.sh",
+    "deploy:server": "ssh root@101.43.223.31 'sh ~/docker-nginx/deploy_sh/vite-note.sh'",
+    "push:gh": "git push git@github.com:heny/vite-note.git main",
+    "push": "git-auto push -m 'update' && pnpm push:gh"
   },
   "keywords": [],
   "author": "",

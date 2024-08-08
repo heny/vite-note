@@ -155,7 +155,7 @@ app.engine('html',require('ejs').__express)     //告诉express html以ejs模板
 
 ### class使用变量
 
-```ejs
+```html
 <div class="<% if(!theme.music.fixed) { %> music-player <% } %>"></div>
 ```
 
@@ -165,7 +165,7 @@ app.engine('html',require('ejs').__express)     //告诉express html以ejs模板
 
 ejs还可以在外部声名变量，在内部直接使用，ejs也可以直接写js代码
 
-```ejs
+```html
 <%
 	var name = 'hny'    
 %>
@@ -180,7 +180,7 @@ ejs还可以在外部声名变量，在内部直接使用，ejs也可以直接�
 
 ejs是有作用域的，在ejs写的代码，必须使用ejs模板
 
-```ejs
+```html
 <%
 	var name = 'hny'    
 %>

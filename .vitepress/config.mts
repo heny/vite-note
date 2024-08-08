@@ -31,6 +31,9 @@ export default defineConfig({
 		['script', {}, fs.readFileSync(resolve('./share/hm.js'), 'utf-8')]
   ],
   lastUpdated: true,
+  rewrites: {
+    'src/:path/(.*)': ':path/(.*)',
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     search: {
@@ -39,15 +42,15 @@ export default defineConfig({
     },
 
     editLink: {
-      pattern: 'https://gitee.com/hnys/vite-note/edit/main/:path'
+      pattern: 'https://github.com/heny/vite-note/edit/main/:path'
     },
 
     nav: [
-			{ text: 'React', link: '/src/frontend/React/'},
-			{ text: 'Vue', link: '/src/frontend/Vue/' },
-			{ text: 'Node', link: '/src/frontend/node/' },
-			{ text: 'Git', link: '/src/frontend/other/git' },
-      { text: 'Other', link: '/src/frontend/other/' },
+			{ text: 'React', link: '/frontend/React/'},
+			{ text: 'Vue', link: '/frontend/Vue/' },
+			{ text: 'Node', link: '/frontend/node/' },
+			{ text: 'Git', link: '/frontend/other/git' },
+      { text: 'Other', link: '/frontend/other/' },
 			{ text: 'Frontend', items: frontendLinks },
 			{
 				text: '友情链接', 
@@ -70,7 +73,7 @@ export default defineConfig({
     // ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://gitee.com/hnys/vite-note' }
+      { icon: 'github', link: 'https://github.com/heny/vite-note' }
     ],
 
     footer: {

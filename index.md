@@ -9,7 +9,7 @@ hero:
   actions:
     - theme: brand
       text: Start Learning
-      link: /src/frontend/React/
+      link: /frontend/React/
     - theme: alt
       text: Vitepress API
       link: https://vitepress.dev/zh/guide/what-is-vitepress

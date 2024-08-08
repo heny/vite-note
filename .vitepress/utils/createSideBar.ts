@@ -33,7 +33,7 @@ function getFile (dirname) {
     const fileName = item.replace(/\.md/, '');
     return {
       text: fileName,
-      link: `/src/frontend/${dirname}/${fileName}`
+      link: `/frontend/${dirname}/${fileName}`
     }
   })
 }
@@ -41,11 +41,11 @@ function getFile (dirname) {
 /**
  * @name 通过传入的name名字去src获取对应的文件夹，并转换为menu下拉菜单
  * @param {String} dirname 
- * @return [{text: dirname, link: '/src/dirname'}]
+ * @return [{text: dirname, link: '/dirname'}]
  */
 function byDirNameGetMenu(dirname){
 	let fileList = fs.readdirSync(resolve(rootDir, dirname))
-	return fileList.map(item => ({text: item, link: `/src/${dirname}/${item}/`}))
+	return fileList.map(item => ({text: item, link: `/${dirname}/${item}/`}))
 }
 
 /**
@@ -73,7 +73,7 @@ function recursionGetMenu(filePath){
 				const { name: text } = path.parse(key)
 				// 过滤index
 				if(text.includes('index')) return
-				items.push({text, link: `/src/${args.join('/')}/${key}`})
+				items.push({text, link: `/${args.join('/')}/${key}`})
 			}
 		})
 		return items
@@ -89,6 +89,6 @@ const frontendLinks = byDirNameGetMenu('frontend')
 // 获取frontend的左侧的sidebar
 const sidebar = getSidebar(frontendLinks)
 // 私人目录通过地址访问
-sidebar['/src/private/'] = recursionGetMenu('private')
+sidebar['/private/'] = recursionGetMenu('private')
 
 export { sidebar, frontendLinks };
