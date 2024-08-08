@@ -5,7 +5,6 @@ set -e
 
 # 控制变量
 LOCAL_BUILD=true
-DEPLOY_GITHUB=false
 DEPLOY_SERVER=true
 
 echox () {
@@ -13,21 +12,6 @@ echox () {
   echo -e "\e[1;35m[$date]\e[0m \e[1;34m$1\e[0m"
   if [ ! $2 ]; then
     eval $1
-  fi
-}
-
-buildGithub () {
-  if [ "$DEPLOY_GITHUB" = true ]; then
-    echox "开始部署到 GitHub" 1
-
-    echox 'cd .vitepress/dist'
-    echox 'git init'
-    echox 'git add .'
-    echox 'git commit -m "deploy"'
-    echox 'git branch -m main'
-    echox 'git push -f git@github.com:heny/heny.github.io.git main'
-  else
-    echox "跳过部署到 GitHub" 1
   fi
 }
 
@@ -41,9 +25,7 @@ fi
 
 echox '开始推送' 1
 
-echox 'git add .'
-echox 'git commit -m "deploy"'
-echox 'git push'
+echox 'pnpm run push'
 
 echox '开始推送到github' 1
 echox 'pnpm run deploy:github'
