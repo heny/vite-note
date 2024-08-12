@@ -86,4 +86,6 @@
 ## 其他公共图床地址
 
 * https://imgse.com/
+* https://www.imgurl.org/
+* https://cdnjson.com/
 

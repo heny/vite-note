@@ -3,14 +3,22 @@ editLink: false
 ---
 # 日志
 
+## 2024-08-12 15:23:50
+<span style="color: #2ecc71;">修改</span> [七牛云cdn加速图片](/frontend/other/七牛云cdn加速图片.html)  
+  
+<span style="color: #2ecc71;">修改</span> [团队协作工具](/frontend/other/团队协作工具.html)  
+  
+
+## 2024-08-12 14:54:40
+<span style="color: #2ecc71;">修改</span> [七牛云cdn加速图片](/frontend/other/七牛云cdn加速图片.html)  
+  
+
 ## 2024-08-12 11:17:29
 <span style="color: #e74c3c;">删除</span> Typora设置  
   
 <span style="color: #2ecc71;">添加</span> [Win使用技巧](/frontend/other/Win使用技巧.html)  
   
 <span style="color: #2ecc71;">修改</span> [七牛云cdn加速图片](/frontend/other/七牛云cdn加速图片.html)  
-  
-<span style="color: #2ecc71;">修改</span> [其他笔记](/private/其他笔记.html)  
   
 
 ## 2024-08-08 15:07:31
@@ -70,18 +78,6 @@ editLink: false
   
 <span style="color: #2ecc71;">添加</span> [es6-02](/frontend/es6/es6-02.html)  
   
-<span style="color: #2ecc71;">修改</span> [interview](/private/interview.html)  
-  
-<span style="color: #2ecc71;">修改</span> [其他笔记](/private/其他笔记.html)  
-  
-<span style="color: #2ecc71;">修改</span> [常见面试题](/private/常见面试题.html)  
-  
-
-## 2023-12-15 20:15:19
-<span style="color: #2ecc71;">修改</span> [第一课](/private/日语/第一课.html)  
-  
-<span style="color: #2ecc71;">修改</span> [音调](/private/日语/音调.html)  
-  
 
 ## 2023-11-30 22:55:34
 <span style="color: #2ecc71;">修改</span> [js-16](/frontend/Javascript/js-16.html)  
@@ -98,26 +94,10 @@ editLink: false
   
 <span style="color: #2ecc71;">修改</span> [包管理工具](/frontend/other-note/包管理工具.html)  
   
-<span style="color: #2ecc71;">修改</span> [interview](/private/interview.html)  
-  
-<span style="color: #e74c3c;">删除</span> steam打开epic游戏  
-  
-<span style="color: #e74c3c;">删除</span> test  
-  
-<span style="color: #2ecc71;">修改</span> [其他笔记](/private/其他笔记.html)  
-  
-<span style="color: #2ecc71;">修改</span> [各大厂面试题](/private/各大厂面试题.html)  
-  
-<span style="color: #2ecc71;">添加</span> [五十音图](/private/日语/五十音图.html)  
-  
-<span style="color: #2ecc71;">添加</span> [第一课](/private/日语/第一课.html)  
-  
-<span style="color: #2ecc71;">添加</span> [音调](/private/日语/音调.html)  
-  
-<span style="color: #2ecc71;">修改</span> [面试技巧](/private/面试技巧.html)  
-  
 
 ## 2023-02-15 20:42:26
+<span style="color: #e74c3c;">删除</span> .DS_Store  
+  
 <span style="color: #2ecc71;">修改</span> [js-17](/frontend/Javascript/js-17.html)  
   
 <span style="color: #2ecc71;">修改</span> [linux常用](/frontend/Server/linux常用.html)  
@@ -128,6 +108,8 @@ editLink: false
   
 
 ## 2023-02-15 10:48:20
+<span style="color: #2ecc71;">添加</span> [.DS_Store](/frontend/.DS_Store.html)  
+  
 <span style="color: #2ecc71;">修改</span> [linux常用](/frontend/Server/linux常用.html)  
   
 <span style="color: #2ecc71;">修改</span> [浏览器技巧](/frontend/other-note/浏览器技巧.html)  
@@ -204,14 +186,6 @@ editLink: false
   
 <span style="color: #2ecc71;">修改</span> [面试复习](/frontend/other-note/面试复习.html)  
   
-<span style="color: #2ecc71;">修改</span> [interview](/private/interview.html)  
-  
-<span style="color: #2ecc71;">添加</span> [各大厂面试题](/private/各大厂面试题.html)  
-  
-<span style="color: #2ecc71;">添加</span> [常见面试题](/private/常见面试题.html)  
-  
-<span style="color: #2ecc71;">添加</span> [面试技巧](/private/面试技巧.html)  
-  
 
 ## 2022-08-26 14:30:46
 <span style="color: #2ecc71;">修改</span> [js-06](/frontend/Javascript/js-06.html)  
@@ -248,8 +222,6 @@ editLink: false
   
 <span style="color: #2ecc71;">修改</span> [包管理工具](/frontend/other-note/包管理工具.html)  
   
-<span style="color: #2ecc71;">添加</span> [四阶魔方公式](/private/四阶魔方公式.html)  
-  
 
 ## 2022-07-26 15:14:44
 <span style="color: #2ecc71;">修改</span> [js-08](/frontend/Javascript/js-08.html)  
@@ -276,13 +248,9 @@ editLink: false
   
 <span style="color: #2ecc71;">修改</span> [浏览器技巧](/frontend/other-note/浏览器技巧.html)  
   
-<span style="color: #2ecc71;">添加</span> [构建发布提速](/private/构建发布提速.html)  
-  
 
 ## 2022-04-12 15:49:40
 <span style="color: #2ecc71;">修改</span> [git](/frontend/other-note/git.html)  
-  
-<span style="color: #2ecc71;">修改</span> [React-常用的hooks](/private/React-常用的hooks.html)  
   
 
 ## 2022-04-08 18:44:20
@@ -293,8 +261,6 @@ editLink: false
 <span style="color: #2ecc71;">修改</span> [git](/frontend/other-note/git.html)  
   
 <span style="color: #2ecc71;">修改</span> [包管理工具](/frontend/other-note/包管理工具.html)  
-  
-<span style="color: #2ecc71;">添加</span> [React-常用的hooks](/private/React-常用的hooks.html)  
   
 
 ## 2022-03-30 09:54:56
@@ -436,10 +402,6 @@ editLink: false
   
 <span style="color: #2ecc71;">修改</span> [rn-01](/frontend/react-native/rn-01.html)  
   
-<span style="color: #2ecc71;">添加</span> [test](/private/test.html)  
-  
-<span style="color: #2ecc71;">修改</span> [其他笔记](/private/其他笔记.html)  
-  
 
 ## 2022-02-15 16:39:26
 <span style="color: #2ecc71;">修改</span> [vue项目bug记录](/frontend/Vue/vue项目bug记录.html)  
@@ -496,16 +458,6 @@ editLink: false
   
 <span style="color: #2ecc71;">修改</span> [vue-08](/frontend/Vue/vue-08.html)  
   
-<span style="color: #2ecc71;">添加</span> [steam打开epic游戏](/private/steam打开epic游戏.html)  
-  
-
-## 2022-01-07 22:31:29
-<span style="color: #2ecc71;">修改</span> [node-item](/private/node-item.html)  
-  
-
-## 2022-01-07 22:30:22
-<span style="color: #2ecc71;">修改</span> [node-item](/private/node-item.html)  
-  
 
 ## 2022-01-07 22:19:54
 <span style="color: #2ecc71;">修改</span> [包管理工具](/frontend/other-note/包管理工具.html)  
@@ -521,8 +473,6 @@ editLink: false
 <span style="color: #2ecc71;">修改</span> [node插件分享](/frontend/node/node插件分享.html)  
   
 <span style="color: #2ecc71;">修改</span> [包管理工具](/frontend/other-note/包管理工具.html)  
-  
-<span style="color: #2ecc71;">修改</span> [其他笔记](/private/其他笔记.html)  
   
 
 ## 2022-01-05 13:53:49
@@ -560,8 +510,6 @@ editLink: false
   
 <span style="color: #2ecc71;">修改</span> [包管理工具](/frontend/other-note/包管理工具.html)  
   
-<span style="color: #2ecc71;">修改</span> [其他笔记](/private/其他笔记.html)  
-  
 
 ## 2021-12-09 00:14:08
 <span style="color: #2ecc71;">修改</span> [js-17](/frontend/Javascript/js-17.html)  
@@ -591,8 +539,6 @@ editLink: false
 
 ## 2021-10-08 22:11:13
 ## 2021-10-08 22:04:01
-<span style="color: #2ecc71;">添加</span> [日报](/daily/日报.html)  
-  
 <span style="color: #2ecc71;">修改</span> [js-05](/frontend/Javascript/js-05.html)  
   
 <span style="color: #2ecc71;">修改</span> [js-06](/frontend/Javascript/js-06.html)  
@@ -613,10 +559,6 @@ editLink: false
   
 <span style="color: #2ecc71;">修改</span> [包管理工具](/frontend/other-note/包管理工具.html)  
   
-<span style="color: #2ecc71;">修改</span> [interview](/private/interview.html)  
-  
-<span style="color: #2ecc71;">修改</span> [其他笔记](/private/其他笔记.html)  
-  
 
 ## 2021-08-12 10:09:36
 <span style="color: #2ecc71;">修改</span> [webpack-01](/frontend/Webpack/webpack-01.html)  
@@ -634,8 +576,6 @@ editLink: false
 <span style="color: #2ecc71;">修改</span> [js理论面试题](/frontend/Javascript/js理论面试题.html)  
   
 <span style="color: #2ecc71;">修改</span> [Mac使用技巧](/frontend/other-note/Mac使用技巧.html)  
-  
-<span style="color: #2ecc71;">添加</span> [interview](/private/interview.html)  
   
 
 ## 2021-07-21 00:00:54
@@ -691,8 +631,6 @@ editLink: false
   
 <span style="color: #2ecc71;">修改</span> [面试复习](/frontend/other-note/面试复习.html)  
   
-<span style="color: #2ecc71;">修改</span> [其他笔记](/private/其他笔记.html)  
-  
 
 ## 2021-05-26 22:43:36
 <span style="color: #2ecc71;">修改</span> [React搭建项目](/frontend/React/React搭建项目.html)  
@@ -712,8 +650,6 @@ editLink: false
 <span style="color: #2ecc71;">修改</span> [AST抽象语法树](/frontend/other-note/AST抽象语法树.html)  
   
 <span style="color: #2ecc71;">添加</span> [Mac使用技巧](/frontend/other-note/Mac使用技巧.html)  
-  
-<span style="color: #2ecc71;">修改</span> [其他笔记](/private/其他笔记.html)  
   
 
 ## 2021-05-12 08:34:02
@@ -798,8 +734,6 @@ editLink: false
 <span style="color: #2ecc71;">修改</span> [包管理工具](/frontend/other-note/包管理工具.html)  
   
 <span style="color: #2ecc71;">修改</span> [团队协作工具](/frontend/other-note/团队协作工具.html)  
-  
-<span style="color: #2ecc71;">添加</span> [node-item](/private/node-item.html)  
   
 
 ## 2021-04-10 12:39:36
@@ -1152,6 +1086,4 @@ editLink: false
 <span style="color: #2ecc71;">添加</span> [配置支付宝接口](/frontend/other-note/配置支付宝接口.html)  
   
 <span style="color: #2ecc71;">添加</span> [rn-01](/frontend/react-native/rn-01.html)  
-  
-<span style="color: #2ecc71;">添加</span> [其他笔记](/private/其他笔记.html)  
   
