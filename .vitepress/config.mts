@@ -1,38 +1,19 @@
 import { defineConfig } from 'vitepress'
-import path from 'path'
-import fs from 'fs'
+import head from './config/head'
 import createReadme from './utils/createREADME'
 import { frontendLinks, sidebar } from './utils/createSideBar'
 
-const resolve = (...args) => {
-  return path.resolve(__dirname, ...args)
-}
-
 createReadme('frontend')
 createReadme('private')
-
-const BASE_URL = process.argv.includes('--gitee') ? '/vite-note/' : '/';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "Code Garden",
   description: "Personal Records of Frontend Learning Notes",
-  head: [
-    ['link', { rel: 'icon', type: "image/x-icon", href: `${BASE_URL}favicon.ico` }],
-		['link', { rel: 'manifest', href: `${BASE_URL}manifest.json` }],
-		['meta', { name: 'theme-color', content: '#3eaf7c' }],
-		['meta', { name: 'apple-mobile-web-app-capable', content: 'yes' }],
-		['meta', { name: 'viewport', content: 'width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0'}],
-		['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }],
-		['link', { rel: 'apple-touch-icon', href: `${BASE_URL}icons/apple-touch-icon-152x152.png` }],
-		['link', { rel: 'mask-icon', href: `${BASE_URL}icons/safari-pinned-tab.svg`, color: '#3eaf7c' }],
-		['meta', { name: 'msapplication-TileImage', content: `${BASE_URL}icons/msapplication-icon-144x144.png` }],
-		['meta', { name: 'msapplication-TileColor', content: '#000000' }],
-		['script', {}, fs.readFileSync(resolve('./share/hm.js'), 'utf-8')]
-  ],
+  head,
   lastUpdated: true,
   rewrites: {
-    'src/:path/(.*)': ':path/(.*)',
+    'src/(.*)': '(.*)',
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
@@ -46,7 +27,7 @@ export default defineConfig({
     },
 
     nav: [
-			{ text: 'React', link: '/frontend/React/'},
+      { text: 'React', link: '/frontend/React/'},
 			{ text: 'Vue', link: '/frontend/Vue/' },
 			{ text: 'Node', link: '/frontend/node/' },
 			{ text: 'Git', link: '/frontend/other/git' },
@@ -60,7 +41,10 @@ export default defineConfig({
 			}
     ],
     sidebar,
-    outline: 'deep',
+    outline: {
+      level: 'deep',
+      label: '页面导航'
+    },
 
     // sidebar: [
     //   {
@@ -77,7 +61,7 @@ export default defineConfig({
     ],
 
     footer: {
-      message: 'MIT Licensed',
+      message: 'Released under the MIT License.',
       copyright: 'Copyright © 2022-备案号：京ICP备2022004926号-1'
     }
   }

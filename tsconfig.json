@@ -13,5 +13,5 @@
     ".vitepress/**/*.ts",
     ".vitepress/**/*.tsx",
     ".vitepress/**/*.vue"
-  ]
+, ".vitepress/config/head.ts"  ]
 }

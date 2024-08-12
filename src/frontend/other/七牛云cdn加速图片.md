@@ -47,3 +47,43 @@
 
 
 
+## Typora上传
+
+1. 上传服务选PicGo，然后下载PicGo
+
+![image](https://s21.ax1x.com/2024/08/12/pApMNSx.png)
+
+2. PicGo配置七牛云
+
+   ![image](https://s21.ax1x.com/2024/08/12/pApM0mD.png)
+
+   ![image](https://s21.ax1x.com/2024/08/12/pApMgpt.png)
+
+3. 参数介绍：
+
+   * 获取access&secre：https://portal.qiniu.com/developer/user/key
+   * 设定Bucket：空间管理名字
+   * 设定访问网站：自己的cdn网址
+   * 设定存储区域：
+     * 首先在`空间概览`找到存储区域
+     * 访问文档查找代码：https://developer.qiniu.com/kodo/1671/region-endpoint-fq
+
+4. picgo推荐插件
+
+   * compress 压缩图片
+
+   * folder-name 上传时使用与本地相同的文件路径
+
+   
+
+5. 配置完之后验证
+
+   ![image](https://s21.ax1x.com/2024/08/12/pApQruT.png)
+
+
+
+
+## 其他公共cdn地址
+
+* https://imgse.com/
+
