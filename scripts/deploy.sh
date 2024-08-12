@@ -4,7 +4,6 @@
 set -e
 
 # 控制变量
-LOCAL_BUILD=true
 DEPLOY_SERVER=true
 
 echox () {
@@ -14,14 +13,6 @@ echox () {
     eval $1
   fi
 }
-
-
-if [ "$LOCAL_BUILD" = true ]; then
-  echox '开始构建' 1
-  echox 'pnpm build'
-else
-  echox "跳过本地构建" 1
-fi
 
 echox '开始推送' 1
 
