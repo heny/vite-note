@@ -10,6 +10,8 @@ createReadme('private')
 export default defineConfig({
   title: "Code Garden",
   description: "Personal Records of Frontend Learning Notes",
+  // 忽略死链
+  ignoreDeadLinks: true,
   head,
   lastUpdated: true,
   rewrites: {

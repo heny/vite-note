@@ -11,22 +11,24 @@ ROOT_DIR="$(git rev-parse --show-toplevel)"
     # 使用 awk 生成日志内容
     awk '
     function format_output(pre_tag) {
-        split($2, parts, "/");            # 将路径按 / 分割
+        split($0, parts, "/"); # 这里$0取整行,确保文件路径最后没有东西了, 将路径按 / 分割
         file_name = parts[length(parts)]; # 获取文件名
-        sub(/\.md$/, "", file_name);      # 去掉 .md 后缀
+        gsub(/\.md$/, "", file_name);     # 去掉 .md 后缀
+        url_name = file_name; # 初始化url_name
+        gsub(/ /, "%20", url_name);  # 替换空格
         path = "";                        # 初始化路径
         for (i = 2; i < length(parts); i++) {
-            path = (path ? path "/" : "") parts[i];     # 重建路径
+            path = (path ? path "/" : "") parts[i];  # 重建路径
         }
-        print pre_tag "[" file_name "](" "/" path "/" file_name ".html)" "  \n  "; # 输出格式化链接
+        print pre_tag "[" file_name "](" "/" path "/" url_name ".html)" "  \n  "; # 输出格式化链接
     }
 
     {
         if ($1 == "D") {
             pre_tag = "<span style=\"color: #e74c3c;\">删除</span> "
-            split($2, parts, "/");            # 将路径按 / 分割
+            split($2, parts, "/"); # 将路径按 / 分割
             file_name = parts[length(parts)]; # 获取文件名
-            sub(/\.md$/, "", file_name);      # 去掉 .md 后缀
+            gsub(/\.md$/, "", file_name);     # 去掉 .md 后缀
             print pre_tag file_name  "  \n  ";
         } else if ($1 == "A") {
             pre_tag = "<span style=\"color: #2ecc71;\">添加</span> "
@@ -41,5 +43,5 @@ ROOT_DIR="$(git rev-parse --show-toplevel)"
                 print $0;  # 打印原始行
             }
         }
-    }' $SCRIPT_DIR/commit_log.txt
-} > $ROOT_DIR/src/log.md
+    }' "$SCRIPT_DIR/commit_log.txt"
+} > "$ROOT_DIR/src/log.md"
