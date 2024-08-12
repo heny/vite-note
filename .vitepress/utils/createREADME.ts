@@ -1,7 +1,7 @@
 import path from 'path'
 import fs from 'fs'
-import { rootDir } from '../../scripts/globalConfig';
 
+const rootDir = path.resolve(process.cwd(),'src')
 const resolve = (...arg) => {
   return path.resolve(__dirname, ...arg)
 }

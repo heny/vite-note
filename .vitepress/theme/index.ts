@@ -15,7 +15,7 @@ export default {
   extends: DefaultTheme,
   Layout,
   enhanceApp({ app, router, siteData }) {
-    // ...
+    // 注册全局组件
     app.component('Nav', Nav)
   }
 } satisfies Theme

@@ -15,9 +15,9 @@ echox () {
   fi
 }
 
-echox '开始构建' 1
 
 if [ "$LOCAL_BUILD" = true ]; then
+  echox '开始构建' 1
   echox 'pnpm build'
 else
   echox "跳过本地构建" 1
@@ -27,9 +27,8 @@ echox '开始推送' 1
 
 echox 'pnpm push'
 
-echox '开始部署到服务器' 1
-
 if [ "$DEPLOY_SERVER" = true ]; then
+  echox '开始部署到服务器' 1
   echox 'pnpm deploy:server'
 else
   echox "跳过部署到服务器" 1

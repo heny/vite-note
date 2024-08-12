@@ -11,8 +11,8 @@ hero:
       text: Start Learning
       link: /frontend/React/
     - theme: alt
-      text: Vitepress API
-      link: https://vitepress.dev/zh/guide/what-is-vitepress
+      text: View Log
+      link: /log
 
 features:
   - title: 作者简介
