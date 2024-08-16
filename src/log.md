@@ -3,6 +3,16 @@ editLink: false
 ---
 # 日志
 
+## 2024-08-16 16:00:20
+<span style="color: #2ecc71;">添加</span> [node后端开发](/frontend/node/node后端开发.html)  
+  
+<span style="color: #2ecc71;">修改</span> [git](/frontend/other/git.html)  
+  
+<span style="color: #2ecc71;">修改</span> [包管理工具](/frontend/other/包管理工具.html)  
+  
+<span style="color: #2ecc71;">修改</span> [浏览器技巧](/frontend/other/浏览器技巧.html)  
+  
+
 ## 2024-08-12 15:23:51
 <span style="color: #2ecc71;">修改</span> [七牛云cdn加速图片](/frontend/other/七牛云cdn加速图片.html)  
   
