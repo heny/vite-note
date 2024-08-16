@@ -3,23 +3,27 @@ sidebar: auto
 ---
 # git
 ## 一、配置ssh
-1. 设置user name和email
+1. 设置全局的user name和email
 ```bash
 # 如果需要配置当前项目，则不用加--global
-git config --global user.name 'heny'
-git config --global user.email 'heny@qq.com'
+git config --global user.name 'demo'
+git config --global user.email 'demo@163.com'
 ```
-2. 生成SSH密钥过程
+2. 生成SSH密钥
 
-（1）查看是否已经有了ssh密钥：cd ~/.ssh
+   查看现有的密钥，密钥的位置：
 
-路径：c:/用户/Administrator/.ssh   删除.ssh下面的所有文件
+   * windows系统：c:/用户/Administrator/.ssh
+   * mac系统：~/.ssh
 
-（2）生成密钥
+   如果本身有文件，则删除.ssh下面所有的文件
 
-```bash
-ssh-keygen -t rsa -C 'heny@qq.com'   // 回车之后记得根据提示按下yes
-```
+   输入以下命令：
+
+   ```bash
+   ssh-keygen -t rsa -C 'demo@163.com'   # 回车之后记得根据提示全部回车
+   ```
+
 注意：如果提示ssh-keygen不是内部命令或者其他的报错，则需要以下配置
 
 找到git/usr/bin目录下的ssh-keygen.exe，之后配置到Path环境变量;
@@ -32,13 +36,15 @@ ssh-keygen -t rsa -C 'heny@qq.com'   // 回车之后记得根据提示按下yes
 
 ### 配置多个ssh
 
-1. 创建ssh key，名字随便写，后面地址记得修改为自己的.ssh地址，mac为~/.ssh，window为c盘下面的用户下面的.ssh
+> 很多时候单个ssh无法满足需求，比如使用了gitlab、github、gitee，甚至其他的code平台
+
+1. 创建ssh key，复制以下代码，自己修改为自己的邮箱地址，-f目录后面如果是修改对应的，这里以github为例
 
    ```bash
-   ssh-keygen -t rsa -C "hny@q.com" -f ~/.ssh/id_rsa_gitlab
+   ssh-keygen -t rsa -C "demo@163.com" -f ~/.ssh/id_rsa_github
    ```
 
-2. 创建一个config文件，没有后缀，编辑以下内容：
+2. 在.ssh目录创建一个config文件，**没有后缀**，编辑以下内容：
 
    ```bash
    # gitee
@@ -60,12 +66,13 @@ ssh-keygen -t rsa -C 'heny@qq.com'   // 回车之后记得根据提示按下yes
    IdentityFile ~/.ssh/id_rsa_gitlab
    ```
 
-3. 最后进行测试连通性
+3. 去官网绑定对应的ssh，绑定教程参考后面的
+
+4. 最后进行测试连通性
 
    ```bash
    ssh -T git@gitlab.com
    ```
-
 
 **注意**
 
@@ -83,7 +90,31 @@ ssh-keygen -t rsa -C 'heny@qq.com'   // 回车之后记得根据提示按下yes
    ssh-keygen -t ed25519 -C "xxx@email.com"
    ```
 
+
+### 绑定ssh
+
+> 这里以github为例，其他的code平台基本一致
+
+1. 找到code平台setting，[github](https://github.com/settings/profile)
+
+   ![](https://notecdn.hrhe.cn/images/git/image-20240813110710658.png)
    
+   ![image-20240813110845155](https://notecdn.hrhe.cn/images/git/image-20240813110845155.png)
+   
+   ![image-20240813110910634](https://notecdn.hrhe.cn/images/git/image-20240813110910634.png)
+   
+2. 打开终端，输入以下命令
+
+   ```bash
+   # github记得换成你输入的，之后复制内容即可
+   cat ~/.ssh/id_rsa_github.pub
+   ```
+
+   如果输入了命令没有内容，或者cat命令不可用，那得换别的终端，比如git bash
+
+3. 将cat出来的内容复制到key即可, title可随便填写
+
+   ![image-20240813112411794](https://notecdn.hrhe.cn/images/git/image-20240813112411794.png)
 
 
 
