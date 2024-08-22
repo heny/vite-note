@@ -3,6 +3,12 @@ editLink: false
 ---
 # 日志
 
+## 2024-08-22 17:34:29
+<span style="color: #2ecc71;">添加</span> [部署服务](/frontend/Server/部署服务.html)  
+  
+<span style="color: #2ecc71;">添加</span> [单页面推荐](/frontend/Vue/单页面推荐.html)  
+  
+
 ## 2024-08-16 16:00:20
 <span style="color: #2ecc71;">添加</span> [node后端开发](/frontend/node/node后端开发.html)  
   
