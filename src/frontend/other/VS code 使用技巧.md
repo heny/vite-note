@@ -98,6 +98,13 @@ vscode快捷键
 
 * 同步vscode配置：settings sync（出问题就重置一下设置，重新登录授权就可以了）
 
+* AI自动补齐扩展：
+
+  * marscode
+  * codeium
+  * cursor
+  * supermaven
+
 * REST Client：请求接口常用
 
   创建test.http

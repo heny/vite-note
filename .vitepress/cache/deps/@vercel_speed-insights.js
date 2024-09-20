@@ -1,3 +1,5 @@
+import "./chunk-BUSYA2B4.js";
+
 // node_modules/.pnpm/@vercel+speed-insights@1.0.12_vue@3.4.34/node_modules/@vercel/speed-insights/dist/index.mjs
 var name = "@vercel/speed-insights";
 var version = "1.0.12";

@@ -48,6 +48,8 @@ brew install git
 
 #### 安装oh my zsh（国内gitee）
 
+> windows想安装的话可以参考： https://i.lckiss.com/?p=6268
+
 使用ohmyzsh之后，可以配置喜欢的主题，默认的终端在git项目文件夹是不会显示当前分支的，配置之后可以显示分支
 
 ```bash

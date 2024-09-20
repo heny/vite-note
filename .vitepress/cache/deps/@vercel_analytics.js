@@ -1,3 +1,5 @@
+import "./chunk-BUSYA2B4.js";
+
 // node_modules/.pnpm/@vercel+analytics@1.3.1/node_modules/@vercel/analytics/dist/index.mjs
 var name = "@vercel/analytics";
 var version = "1.3.1";

@@ -2,7 +2,7 @@
 sidebar: auto
 ---
 # git
-## 一、配置ssh
+## 配置ssh
 1. 设置全局的user name和email
 ```bash
 # 如果需要配置当前项目，则不用加--global
@@ -118,7 +118,7 @@ git config --global user.email 'demo@163.com'
 
 
 
-## 二、项目初始化
+## 项目初始化
 
 1. 在git官网新建一个git仓库之后；
 
@@ -152,7 +152,7 @@ git push
 
 
 
-## 三、分支操作
+## 分支操作
 ### 分支常用命令
 
 * `git branch` 查看本地分支
@@ -247,7 +247,7 @@ git rebase -i commit-id
 
 
 
-## 四、commit
+## commit
 
 ### commit 提交消息类型
 
@@ -275,7 +275,7 @@ git rebase -i commit-id
 
 
 
-## 四、常用指令
+## 常用指令
 
 ### git rebase
 
@@ -405,12 +405,12 @@ git stash pop # 拉下来
 
 
 
-## 五、用户管理
+## 用户管理
 `git config --list`   查看git配置
 
 
 
-## 六、版本管理
+## 版本管理
 
 ### 状态查看
 
@@ -493,9 +493,7 @@ git push --mirror git地址  # 直接push到新的项目仓库
 
 
 
-
-
-## 七、git常见问题
+## git常见问题
 ### 描述出错怎么修改描述
 
 **第一种方法：**`git commit --amend`，之后直接修改描述保存即可
@@ -600,7 +598,7 @@ git remote add origin url # 重新配置远程地址
 
 
 
-## 八、git统计代码量
+## git统计代码量
 
 修改since开始日期，和until到什么日期，如果不修改则是至今
 
@@ -628,7 +626,7 @@ git log --format='%aN' | sort -u | while read name; do echo -en "$name\t"; git l
 
 
 
-## 九、git其他操作
+## git其他操作
 
 在一行查看提交日志：`git log --oneline --decorate --graph`
 
@@ -661,7 +659,35 @@ git log --format='%aN' | sort -u | while read name; do echo -en "$name\t"; git l
 
 
 
-## 十、vscode操作git
+## 推荐git配置
+
+windows默认的git bash终端是换行的不太好看，推荐换成下面的样式更好看
+
+```bash
+alias gl='git pull'
+alias gamp='git-auto push -m'
+alias gco='git checkout'
+alias gp='git push'
+alias gm='git merge'
+alias gpsu='git push --set-upstream origin $(git branch --show-current)'
+
+# 获取当前 Git 分支名
+git_branch() {
+    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
+    if [ $? -eq 0 ]; then
+        echo " ($branch)"
+    fi
+}
+PROMPT_COMMAND='PS1="\[\e[0;32m\]➜  \[\e[0;33m\]$(basename $PWD)\[\e[0;32m\]$(git_branch)\[\e[0m\] \$ "'
+```
+
+![image-20240904095559856](https://notecdn.hrhe.cn/images/git/image-20240904095559856.png)
+
+
+
+参考安装zsh：https://i.lckiss.com/?p=6268
+
+## vscode操作git
 
 ### vscode配置git环境
 终端直接使用git方式，带有颜色
@@ -719,7 +745,7 @@ X: 未知状态(很可能是遇到git的bug了，你可以向git提交bug report
 
 
 
-## 十一、vscode插件
+## vscode插件
 
 ### gitlens 
 
@@ -757,7 +783,7 @@ X: 未知状态(很可能是遇到git的bug了，你可以向git提交bug report
 
 
 
-## 十二、github搜索技巧
+## github搜索技巧
 
 ![image](https://notecdn.hrhe.cn/images/image-20200715162848585.png)
 
