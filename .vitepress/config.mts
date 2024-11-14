@@ -29,18 +29,19 @@ export default defineConfig({
     },
 
     nav: [
-      { text: 'React', link: '/frontend/React/'},
-			{ text: 'Vue', link: '/frontend/Vue/' },
-			{ text: 'Node', link: '/frontend/node/' },
-			{ text: 'Git', link: '/frontend/other/git' },
+      { text: 'React', link: '/frontend/React/' },
+      { text: 'Vue', link: '/frontend/Vue/' },
+      { text: 'Node', link: '/frontend/node/' },
+      { text: 'Git', link: '/frontend/other/git' },
       { text: 'Other', link: '/frontend/other/' },
-			{ text: 'Frontend', items: frontendLinks },
-			{
-				text: '友情链接', 
-				items: [
-					{text: '个人博客站', link: 'https://blog.hrhe.cn'}
-				]
-			}
+      { text: 'Frontend', items: frontendLinks },
+      {
+        text: '友情链接',
+        items: [
+          { text: '个人博客站', link: 'https://blog.hrhe.cn' },
+          { text: '导航网', link: 'https://nav.hrhe.cn' }
+        ]
+      }
     ],
     sidebar,
     outline: {
