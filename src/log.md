@@ -3,6 +3,22 @@ editLink: false
 ---
 # 日志
 
+## 2024-11-14 10:15:20
+<span style="color: #2ecc71;">添加</span> [vue单元测试](/frontend/Vue/vue单元测试.html)  
+  
+<span style="color: #2ecc71;">添加</span> [vue响应式语法糖](/frontend/Vue/vue响应式语法糖.html)  
+  
+
+## 2024-09-20 11:47:02
+<span style="color: #2ecc71;">修改</span> [Mac使用技巧](/frontend/other/Mac使用技巧.html)  
+  
+<span style="color: #2ecc71;">修改</span> [VS code 使用技巧](/frontend/other/VS%20code%20使用技巧.html)  
+  
+<span style="color: #2ecc71;">修改</span> [Win使用技巧](/frontend/other/Win使用技巧.html)  
+  
+<span style="color: #2ecc71;">修改</span> [git](/frontend/other/git.html)  
+  
+
 ## 2024-08-22 17:34:29
 <span style="color: #2ecc71;">添加</span> [部署服务](/frontend/Server/部署服务.html)  
   

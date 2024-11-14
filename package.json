@@ -12,7 +12,7 @@
     "deploy": "pnpm build && sh ./scripts/deploy.sh",
     "deploy:server": "ssh root@101.43.223.31 'sh ~/docker-nginx/deploy_sh/vite-note.sh'",
     "push:gh": "git push git@github.com:heny/vite-note.git main",
-    "push": "git add . && git commit -m 'update' && pnpm print_log && git add . && git commit --amend --no-edit && git push && pnpm push:gh"
+    "push": "git add . && git commit -m 'update' && pnpm print_log && git add . && git commit --amend --no-edit && git push && git push github"
   },
   "keywords": [],
   "author": "",
